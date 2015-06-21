@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chatty - Twitch Chat Client</title>
+<link rel="icon" href="icons2.ico" type="image/x-icon" />
+<script type="text/javascript" src="humanized_time_span.js"></script>
+<script type="text/javascript">
+<!--
+function loaded() {
+	custom_date_formats = {
+		past: [
+		      { ceiling: 86400, text: "today" },
+		      { ceiling: 2629744, text: "$days days ago" },
+		      { ceiling: 31556926, text: "$months months ago" },
+		      { ceiling: null,  text: "$years years ago" }
+		]
+	}
+	document.getElementById("ago").innerHTML = "Version 0.8 released "+humanized_time_span("2015/06/09", Date(), custom_date_formats)+"";
+}
+-->
+</script>
+<style type="text/css">
+	body {
+		font-size: 1em;
+		font-family: Arial, sans-serif;
+		
+		background-color: #EEE;
+	}
+	#content {
+		margin: auto;
+		width: 1000px;
+		background-color: #FFF;
+		padding: 30px;
+		border: 1px solid #DDD;
+		clear:both;
+	}
+	li {
+		margin: 5px;
+		
+	}
+	h1 {
+		display: inline;
+	}
+	h2 {
+		font-size: 1.1em;
+	}
+	h3 {
+		font-size: 0.9em;
+	}
+
+	#menu {
+		display: inline;
+	}
+	#menu li {
+		display: inline;
+	}
+	#ago {
+		display: inline;
+		font-weight: bold;
+		color: Firebrick;
+		border: 0px solid #333;
+		float: right;
+		
+	}
+	#top {
+		width: 1000px;
+		margin: auto;
+		text-align: right;
+		margin-top: 10px;
+	}
+	#bottom {
+		width: 1000px;
+		margin: auto;
+		text-align: center;
+		margin-top: 10px;
+	}
+	#sourceforge {
+		float: right;
+		padding-bottom: 10px;
+	}
+	#twitter {
+		float:right;
+		padding-right: 25px;
+		}
+	#youtube {
+	float:right;
+	padding-right: 25px;
+	}
+	#flattr {
+		float:left;
+	}
+
+	dt {
+		margin-top: 8px;
+		margin-bottom: 2px;
+	}
+	.new {
+		font-size: 0.75em;
+		font-style: italic;
+		background-color: #FFFF77;
+	}
+
+</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */</script>
+</head>
+<body onload="loaded()">
+	<div id="top">
+		<div id="flattr"><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://getchatty.sourceforge.net"></a></div>
+		<div id="sourceforge"><a href="https://sourceforge.net/projects/getchatty/">SourceForge.net Project Page</a></div>
+		<div id="youtube"><a href="https://youtube.com/chattyclient">YouTube Channel</a></div>
+		<div id="twitter"><a href="https://twitter.com/ChattyClient"><img src="twitter.png" /></a></div>
+	</div>
+	<div id="content">
+		<h1><img src="icons2.png" style="margin-bottom: -5px;padding-right: 7px;" />Chatty</h1>
+	<ul id="menu">
+		<li><a href="#features">Features</a></li>
+		<li><a href="#requirements">Requirements</a></li>
+		<li><a href="#download">Download & Getting started</a></li>
+		<li><a href="#bugs">Feedback</a></li>
+		<li><a href="#faq">FAQ</a></li>
+	</ul>
+<p id="ago"></p>
+
+	<p style="clear:both;">Chatty is a Twitch chat client for everyone who wants to try something new and different from the webchat, but doesn't want the complexity of an IRC client or miss out on the Twitch specific features.</p>
+	
+
+	<h2 id="features">Features</h2>
+	<ul>
+		<li>Twitch specific features
+		<ul>
+			<li>Nick colors, emoticons, user icons (mod, sub, turbo, ..), showing bans, stream status and viewercount display and stats</li>
+			<li>Click on nick in chat to open dialog with moderation buttons, showing the last messages of this user (no banning the wrong user)</li>
+			<li>Change title/game of your stream and run commercials</li>
+			<li>Get notified when channels you follow go live and view a list of live streams</li>
+			<li>Easily open streams in your browser, or run <a href="http://livestreamer.tanuki.se/en/latest/">Livestreamer</a> out of Chatty</li>
+			<li>Optional compact way of showing mod/unmod/joins/parts messages</li>
+			<li>View a list with the most recent followers/subscribers of your channel
+			<li>With <a href="http://frankerfacez.com">FrankerFaceZ</a>-Support (Emoticons &amp; Custom Mod Icons) and <a href="http://betterttv.nightdev.com">BetterTTV</a> emotes, including unified bot badge<span class="new">(new!)</span></li>
+			<li>Dialog with your paid emotes, channel-specific emotes, all global emotes<span class="new">(new!)</span> and Twitch emotes you favorited</li>
+			<li>Connect with OAuth (your Twitch account password is never entered in the application)</li>
+			<li>Let Chatty help making Stream Highlights by adding the current stream time to a file (including optionally your moderators)</li>
+		</ul>
+		</li>
+
+		<li>General features
+		<ul>
+			<li>Hopefully easy to use.. ;)</li>
+			<li>Chatlog, clickable links, improved TAB Completion (nicks, emotes, commands, custom) <span class="new">(new!)</span>, input history</li>
+			<li>Message Highlighting, Message Ignore System, Channel Favorites/History</li>
+			<li>Join several channels, popout individual channels to view them side-by-side</li>
+			<li>Desktop application (some might prefer this over an application running in a browser)</li>
+			<li><a href="http://speedrunslive.com">SpeedRunsLive</a> Race Viewer</li>
+		</ul>
+		</li>
+
+		<li>Customization
+		<ul>
+			<li>Choose your font, customize colors, timestamp, how bans are shown, joins/parts and more</li>
+			<li>Customize usercolors based on user-type (mod, sub, turbo..), specific usernames or colors (replace colors)</li>
+			<li>Customize usericons (badges), replace default ones or add your own for specific users</li>
+			<li>Disable specific emotes, replace emotes with your own locally, change scaling all emotes in chat or the Emote Dialog <span class="new">(new!)</span></li>
+			<li>Create custom commands and add them to context menus or the user dialog</li>
+			<li>Add or remove regular, app-wide or global hotkeys according to your needs</li>
+			<li>Extensive settings dialog to adjust the features to your needs</li>
+		</ul>
+		</li>
+
+	</ul>
+
+	<p style="font-size:0.8em;">Kind of old screenshots because I'm lazy.</p>
+	<img src="0_4_wide1.png" style="margin-bottom:5px;" />
+	<a href="0_4_big.jpg"><img src="0_4_big_thumb.png" style="height: 190px;float:left;padding: 6px;" /></a>
+	<a href="0_4_big1.png"><img src="0_4_big1_thumb.png" style="height: 190px;padding: 6px;" /></a>
+	<a href="0_6_2_dark_colors.jpg"><img src="0_6_2_dark_colors.jpg" style="height: 190px;padding: 6px;" /></a>
+	<a href="0_6_2_admin_dialog.jpg"><img src="0_6_2_admin_dialog.jpg" style="height: 190px;padding: 6px;" /></a>
+
+	<h2 id="requirements" style="clear:both;">Requirements</h2>
+	<p>You need to have the Java 7 JRE or later installed. <a href="http://www.java.com/download/">Download Java</a> if you need it.</p>
+	
+	<h2 id="download">Download & Getting started</h2>
+	<ul>
+		<li><a href="http://sourceforge.net/projects/getchatty/files/Chatty_0.8.zip/download"><strong>Download Version 0.8</strong></a> [<a href="https://www.dropbox.com/s/a3k1y8hxdohjnsy/Chatty_0.8.zip?dl=0">Mirror</a>] (Recommended version if you don't need global hotkeys or don't use Windows)</li>
+		<li>With global hotkey support (Windows only):<ul>
+			<li><a href="http://sourceforge.net/projects/getchatty/files/Chatty_0.8_hotkey_32bit.zip/download">Download Version 0.8 (for 32bit-Java)</a> [<a href="https://www.dropbox.com/s/jh7qodggjhahyni/Chatty_0.8_hotkey_32bit.zip?dl=0">Mirror</a>]</li>
+			<li><a href="http://sourceforge.net/projects/getchatty/files/Chatty_0.8_hotkey_64bit.zip/download">Download Version 0.8 (for 64bit-Java)</a> [<a href="https://www.dropbox.com/s/jfm8y0w9cl7c5mb/Chatty_0.8_hotkey_64bit.zip?dl=0">Mirror</a>]</li>
+		</ul></li>
+	</ul>
+	
+	<p>Extract the .zip into a folder of your choice and start Chatty.jar.</p>
+	<p>When you start Chatty the Connect Dialog should come up. Click <code>Create login..</code> and <code>Request login data</code> and follow the instructions to authorize Chatty to connect to chat for you. There is also a short
+	<a href="help-getting-started.html"><strong>Getting Started Guide</strong></a>.</p>
+	<p>There is some <a href="help.html">help</a> available (you can find the same in the program itself). There is also a <a href="changes.txt">changelog</a>.</p>
+	<p>You can use <a href="Chatty_banner_320px.png">this banner</a> if you like Chatty and want to promote it. Just link to <code>http://getchatty.sourceforge.net</code> please. :)</p>
+
+	<h2 id="bugs">Feedback (Feature requests, Bug reports)</h2>
+	<p>This is my first slightly bigger program, so go easy on me. ;) But if you find any bugs or have any other feedback, feel free to tell me. You can <a href="http://www.twitch.tv/message/compose?to=tduva">message me on Twitch</a>, write me an <a href="mailto:chattyclient@gmail.com">e-mail</a> or use <a href="https://twitter.com/chattyclient">Twitter</a>.</p>
+	<p>Please tell me about bugs or else I can't fix them. Please describe exactly <em>what</em> happened and <em>how</em> it happened, since this is absolutely necessary to find out what went wrong (just saying "it doesn't work" or "it won't load" can mean a lot of things). You should also copy the debug.log file in your settings directory (type /openDir to open it, or /dir if that doesn't work) before it is overwritten, in case it could be helpful to find the bug.</p>
+	<h3>Known issues</h3>
+	<ul>
+		<li>Sometimes users aren't correctly sorted in the userlist</li>
+		<li>Windows: Dragging the upper edge to maximize the window vertically doesn't resize the contents of the window.
+		This may be a Java Bug that I cannot fix. Workaround: Try double-clicking the upper edge instead of dragging it.</li>
+	</ul>
+
+	<h2 id="faq">FAQ (Frequently Asked Questions)</h2>
+	<dl>
+		<dt>Is Chatty more reliable when Chat is breaking?</dt>
+		<dd>Not really. Chatty uses the same Chat Servers as any other Twitch Chat Client (Default Webchat, IRC Clients), so it is affected in the same
+		way when messages get lost. It's possible however that some servers/ports are not as affected as others, so there can be differences.</dd>
+
+		<dt>What are the advantages of Chatty then?</dt>
+		<dd>Chatty provides a different way of using Twitch Chat and has a lot of features you may find useful.</dd>
+
+		<dt>Does Chatty support Twitch Group Chat?</dt>
+		<dd>No. However, you can manually connect to Group Chat by changing the server/port to connect to (you can change it in the Settings under Advanced, use the <a href="help.html#settings">'server' and 'port' 
+			settings</a>, the <a href="help.html#commands">/server</a> command or <a href="help.html#launch">commandline parameters</a>) and looking up the channel name yourself
+		(you can use <a href="http://blog.bashtech.net/twitch-group-chat-irc/">this blogpost</a> for help on that). There are a few drawbacks: Since Chatty can currently only
+		connect to one server at a time, you would have to run more than one instance if you want to use regular Twitch Chat at the same
+		time. Use <a href="help-guide1.html">this guide</a> in the help for more information. It also wouldn't recognize the channel as a group chat channel, so some stuff
+		might not work correctly.</dd>
+
+		<dt>Is Group Chat support planned?</dt>
+		<dd>No.</dd>
+
+		<dt>Does Chatty support other streaming services like hitbox.tv?</dt>
+		<dd>Unfortunately not. And adding support wouldn't be a trivial task either, since Chatty is designed around Twitch and adding other services would require a lot of changes.</dd>
+
+		<dt>Why does Chatty randomly say UNMOD/MOD, even though the user never left/was never actually unmodded?</dt>
+		<dd>Twitch Chat just sometimes does that and seemingly unmods/mods people (sometimes just one person, sometimes more, but they still have mod power, it just doesn't show) and Chatty simply displays that. If you are bothered by this, then you can just disable MOD/UNMOD messages in the <code>Settings - Messages</code> altogether.</dd>
+
+		<dt>Why does Chatty report "Stream offline", even though the stream clearly didn't go offline?</dt>
+		<dd>Sometimes the Twitch API will return a stream as offline, even though it isn't. Chatty checks the API twice before reporting a stream as offline, but if both checks return false data, then a false offline report will happen.</dd>
+
+		<dt>Why does the userlist only contain users that send a message?</dt>
+		<dd>Check what Twitch Client Version you have set under <code>Settings - Advanced</code>. Learn more about what that does in the <a href="help-settings.html#Advanced-TC">Settings Help</a>. Otherwise this may just be Twitch not sending the userlist, which can sometimes happen (especially on larger channels).</dd>
+
+		<dt>Why do I see much less messages in Chatty compared to webchat?</dt>
+		<dd>If you receive fewer/not the same messages on a particular channel compared to webchat, then webchat is probably using the Event Chat servers for that channel. They are a seperate group from servers than the normal ones you get when connecting to <code>irc.twitch.tv</code>. See: <a href="help-short_guides.html#eventchat">Join Eventchat</a>.</dd>
+
+		<dt>Is there any help/documentation?</dt>
+		<dd><a href="help.html">Yes.</a></dd>
+	</dl>
+</div>
+<div id="bottom">
+	If you like Chatty and would like to support me:<br /><a href="http://flattr.com/thing/3038268/Chatty" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+</div>
+</body>
+</html>
