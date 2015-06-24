@@ -74,7 +74,7 @@ function loaded() {
 		text-align: center;
 		margin-top: 10px;
 	}
-	#sourceforge {
+	#project {
 		float: right;
 		padding-bottom: 10px;
 	}
@@ -83,8 +83,8 @@ function loaded() {
 		padding-right: 25px;
 		}
 	#youtube {
-	float:right;
-	padding-right: 25px;
+		float:right;
+		padding-right: 25px;
 	}
 	#flattr {
 		float:left;
@@ -115,7 +115,7 @@ function loaded() {
 <body onload="loaded()">
 	<div id="top">
 		<div id="flattr"><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://getchatty.sourceforge.net"></a></div>
-		<div id="sourceforge"><a href="https://sourceforge.net/projects/getchatty/">SourceForge.net Project Page</a></div>
+		<div id="project"><a href="https://github.com/chatty/chatty">GitHub</a></div>
 		<div id="youtube"><a href="https://youtube.com/chattyclient">YouTube Channel</a></div>
 		<div id="twitter"><a href="https://twitter.com/ChattyClient"><img src="twitter.png" /></a></div>
 	</div>
@@ -197,8 +197,8 @@ function loaded() {
 	
 	<p>Extract the .zip into a folder of your choice and start Chatty.jar.</p>
 	<p>When you start Chatty the Connect Dialog should come up. Click <code>Create login..</code> and <code>Request login data</code> and follow the instructions to authorize Chatty to connect to chat for you. There is also a short
-	<a href="help-getting-started.html"><strong>Getting Started Guide</strong></a>.</p>
-	<p>There is some <a href="help.html">help</a> available (you can find the same in the program itself). There is also a <a href="changes.txt">changelog</a>.</p>
+	<a href="help/help-getting-started.html"><strong>Getting Started Guide</strong></a>.</p>
+	<p>There is some <a href="help/help.html">help</a> available (you can find the same in the program itself). There is also a <a href="changes.txt">changelog</a>.</p>
 	<p>You can use <a href="Chatty_banner_320px.png">this banner</a> if you like Chatty and want to promote it. Just link to <code>http://getchatty.sourceforge.net</code> please. :)</p>
 
 	<h2 id="bugs">Feedback (Feature requests, Bug reports)</h2>
@@ -221,11 +221,11 @@ function loaded() {
 		<dd>Chatty provides a different way of using Twitch Chat and has a lot of features you may find useful.</dd>
 
 		<dt>Does Chatty support Twitch Group Chat?</dt>
-		<dd>No. However, you can manually connect to Group Chat by changing the server/port to connect to (you can change it in the Settings under Advanced, use the <a href="help.html#settings">'server' and 'port' 
-			settings</a>, the <a href="help.html#commands">/server</a> command or <a href="help.html#launch">commandline parameters</a>) and looking up the channel name yourself
+		<dd>No. However, you can manually connect to Group Chat by changing the server/port to connect to (you can change it in the Settings under Advanced, use the <a href="help/help.html#settings">'server' and 'port' 
+			settings</a>, the <a href="help/help.html#commands">/server</a> command or <a href="help/help.html#launch">commandline parameters</a>) and looking up the channel name yourself
 		(you can use <a href="http://blog.bashtech.net/twitch-group-chat-irc/">this blogpost</a> for help on that). There are a few drawbacks: Since Chatty can currently only
 		connect to one server at a time, you would have to run more than one instance if you want to use regular Twitch Chat at the same
-		time. Use <a href="help-guide1.html">this guide</a> in the help for more information. It also wouldn't recognize the channel as a group chat channel, so some stuff
+		time. Use <a href="help/help-guide1.html">this guide</a> in the help for more information. It also wouldn't recognize the channel as a group chat channel, so some stuff
 		might not work correctly.</dd>
 
 		<dt>Is Group Chat support planned?</dt>
@@ -241,13 +241,13 @@ function loaded() {
 		<dd>Sometimes the Twitch API will return a stream as offline, even though it isn't. Chatty checks the API twice before reporting a stream as offline, but if both checks return false data, then a false offline report will happen.</dd>
 
 		<dt>Why does the userlist only contain users that send a message?</dt>
-		<dd>Check what Twitch Client Version you have set under <code>Settings - Advanced</code>. Learn more about what that does in the <a href="help-settings.html#Advanced-TC">Settings Help</a>. Otherwise this may just be Twitch not sending the userlist, which can sometimes happen (especially on larger channels).</dd>
+		<dd>Check what Twitch Client Version you have set under <code>Settings - Advanced</code>. Learn more about what that does in the <a href="help/help-settings.html#Advanced-TC">Settings Help</a>. Otherwise this may just be Twitch not sending the userlist, which can sometimes happen (especially on larger channels).</dd>
 
 		<dt>Why do I see much less messages in Chatty compared to webchat?</dt>
-		<dd>If you receive fewer/not the same messages on a particular channel compared to webchat, then webchat is probably using the Event Chat servers for that channel. They are a seperate group from servers than the normal ones you get when connecting to <code>irc.twitch.tv</code>. See: <a href="help-short_guides.html#eventchat">Join Eventchat</a>.</dd>
+		<dd>If you receive fewer/not the same messages on a particular channel compared to webchat, then webchat is probably using the Event Chat servers for that channel. They are a seperate group from servers than the normal ones you get when connecting to <code>irc.twitch.tv</code>. See: <a href="help/help-short_guides.html#eventchat">Join Eventchat</a>.</dd>
 
 		<dt>Is there any help/documentation?</dt>
-		<dd><a href="help.html">Yes.</a></dd>
+		<dd><a href="help/help.html">Yes.</a></dd>
 	</dl>
 </div>
 <div id="bottom">

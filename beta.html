@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chatty - Twitch Chat Client</title>
+<link rel="icon" href="icons2.ico" type="image/x-icon" />
+<script type="text/javascript" src="humanized_time_span.js"></script>
+<script type="text/javascript">
+<!--
+function loaded() {
+	custom_date_formats = {
+		past: [
+		      { ceiling: 86400, text: "today" },
+		      { ceiling: 2629744, text: "$days days ago" },
+		      { ceiling: 31556926, text: "$months months ago" },
+		      { ceiling: null,  text: "$years years ago" }
+		]
+	}
+	document.getElementById("ago").innerHTML = "Version 0.7.3 released "+humanized_time_span("2015/01/19", Date(), custom_date_formats)+"";
+}
+-->
+</script>
+<style type="text/css">
+	body {
+		font-size: 1em;
+		font-family: Arial, sans-serif;
+		
+		background-color: #EEE;
+	}
+	#content {
+		margin: auto;
+		width: 1000px;
+		background-color: #FFF;
+		padding: 30px;
+		border: 1px solid #DDD;
+		clear:both;
+	}
+	li {
+		margin: 5px;
+		
+	}
+	h1 {
+		display: inline;
+	}
+	h2 {
+		font-size: 1.1em;
+	}
+	h3 {
+		font-size: 0.9em;
+	}
+
+	#menu {
+		display: inline;
+	}
+	#menu li {
+		display: inline;
+	}
+	#ago {
+		display: inline;
+		font-weight: bold;
+		color: Firebrick;
+		border: 0px solid #333;
+		float: right;
+		
+	}
+	#top {
+		width: 1000px;
+		margin: auto;
+		text-align: right;
+		margin-top: 10px;
+	}
+	#bottom {
+		width: 1000px;
+		margin: auto;
+		text-align: center;
+		margin-top: 10px;
+	}
+	#sourceforge {
+		float: right;
+		padding-bottom: 10px;
+	}
+	#twitter {
+		float:right;
+		padding-right: 25px;
+		}
+	#youtube {
+	float:right;
+	padding-right: 25px;
+	}
+	#flattr {
+		float:left;
+	}
+
+	dt {
+		margin-top: 8px;
+		margin-bottom: 2px;
+	}
+	.new {
+		font-size: 0.75em;
+		font-style: italic;
+		background-color: #FFFF77;
+	}
+
+</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+    (function() {
+        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+        t.parentNode.insertBefore(s, t);
+    })();
+/* ]]> */</script>
+</head>
+<body onload="loaded()">
+	<div id="top">
+		<div id="flattr"><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://getchatty.sourceforge.net"></a></div>
+		<div id="sourceforge"><a href="https://sourceforge.net/projects/getchatty/">SourceForge.net Project Page</a></div>
+		<div id="youtube"><a href="https://youtube.com/chattyclient">YouTube Channel</a></div>
+		<div id="twitter"><a href="https://twitter.com/ChattyClient"><img src="twitter.png" /></a></div>
+	</div>
+	<div id="content">
+		<h1><img src="icons2.png" style="margin-bottom: -5px;padding-right: 7px;" />Chatty Beta <span style="font-size:0.7em"><a href="index.html">to main page</a></span></h1>
+	
+		<!--<p><em>Currently there is no beta version that is more recent than the regular release. Download Chatty from the main page if you want the most recent version.</em></p>-->
+		<p>You can try out a beta preview version of the next Chatty version. This is a snapshot from the middle of development and may not be as stable and definitely won't be finished, which means:</p>
+		<ul>
+			<li>Some features may still change</li>
+			<li>The help won't be finshed/may not be there for some features</li>
+			<li>There may still be more bugs or small inconsistencies</li>
+			<li>New beta versions (e.g. <code>b4 -&gt; b5</code>) are not announced in program, so check this page if you may want to update, especially if you encounter bugs</li>
+		</ul>
+		<p>What this is for:</p>
+		<ul>
+			<li>You can use new features right now if you are ok with the downsides in the list above</li>
+			<li>You can help test Chatty</li>
+		</ul>
+		<h2>How to use</h2>
+		<p><a href="https://www.dropbox.com/s/rcnvlao4gp7dvql/Chatty_0.8.1b3.jar?dl=0">Download the beta version (0.8.1b3)</a> and put it in the same folder as your regular <code>Chatty.jar</code>, then start it the same way. <em>You need to have the regular version of Chatty from the <a href="http://getchatty.sourceforge.net">main website</a> first. If you were using a Chatty version already, you're set.</em></p>
+		
+		<p>As with every new version, if you have invested a lot of time into adjusting settings (like maybe added 50 different usericons), you may want to make a manual backup of the settings (enter <code>/dir</code> in Chatty to display the folder where they are saved, <a href="help-guide_folders.html">more information</a> on the files Chatty uses). This shouldn't be necessary, but it's always prudent to know where your settings are saved and to keep a backup.</p>
+		<p>The beta version will always be the version with global hotkey support. If you are normally using the version without global hotkey support, there will be an error message about it when you start Chatty that says you can ignore it if you don't actually make use of global hotkeys.</p>
+		<p>If you decide to use the old regular version again, be aware that any changes to settings that were introduced with the beta version will be lost.</p>
+</div>
+<div id="bottom">
+	If you like Chatty and would like to support me:<br /><a href="http://flattr.com/thing/3038268/Chatty" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+</div>
+</body>
+</html>
+
