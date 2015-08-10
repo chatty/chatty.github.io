@@ -15,7 +15,7 @@ function loaded() {
 		      { ceiling: null,  text: "$years years ago" }
 		]
 	}
-	document.getElementById("ago").innerHTML = "Version 0.8 released "+humanized_time_span("2015/06/09", Date(), custom_date_formats)+"";
+	document.getElementById("ago").innerHTML = "Version 0.8.1 released "+humanized_time_span("2015/08/10", Date(), custom_date_formats)+"";
 }
 -->
 </script>
@@ -144,17 +144,19 @@ function loaded() {
 			<li>Easily open streams in your browser, or run <a href="http://livestreamer.tanuki.se/en/latest/">Livestreamer</a> out of Chatty</li>
 			<li>Optional compact way of showing mod/unmod/joins/parts messages</li>
 			<li>View a list with the most recent followers/subscribers of your channel
-			<li>With <a href="http://frankerfacez.com">FrankerFaceZ</a>-Support (Emoticons &amp; Custom Mod Icons) and <a href="http://betterttv.nightdev.com">BetterTTV</a> emotes, including unified bot badge<span class="new">(new!)</span></li>
-			<li>Dialog with your paid emotes, channel-specific emotes, all global emotes<span class="new">(new!)</span> and Twitch emotes you favorited</li>
+			<li>With <a href="http://frankerfacez.com">FrankerFaceZ</a>-Support (Emoticons &amp; Custom Mod Icons) and <a href="http://betterttv.nightdev.com">BetterTTV</a> emotes, including unified bot badge</li>
+			<li>Dialog with your paid emotes, channel-specific emotes, all global emotes and Twitch emotes you favorited</li>
 			<li>Connect with OAuth (your Twitch account password is never entered in the application)</li>
 			<li>Let Chatty help making Stream Highlights by adding the current stream time to a file (including optionally your moderators)</li>
+			<li>Show channel information like uptime, slowmode, submode <span class="new">(new!)</span></li>
+			<li>Experimental Whisper Support <span class="new">(new!)</span></li>
 		</ul>
 		</li>
 
 		<li>General features
 		<ul>
 			<li>Hopefully easy to use.. ;)</li>
-			<li>Chatlog, clickable links, improved TAB Completion (nicks, emotes, commands, custom) <span class="new">(new!)</span>, input history</li>
+			<li>Chatlog, clickable links, improved TAB Completion (nicks, emotes, commands, custom), input history</li>
 			<li>Message Highlighting, Message Ignore System, Channel Favorites/History</li>
 			<li>Join several channels, popout individual channels to view them side-by-side</li>
 			<li>Desktop application (some might prefer this over an application running in a browser)</li>
@@ -167,7 +169,7 @@ function loaded() {
 			<li>Choose your font, customize colors, timestamp, how bans are shown, joins/parts and more</li>
 			<li>Customize usercolors based on user-type (mod, sub, turbo..), specific usernames or colors (replace colors)</li>
 			<li>Customize usericons (badges), replace default ones or add your own for specific users</li>
-			<li>Disable specific emotes, replace emotes with your own locally, change scaling all emotes in chat or the Emote Dialog <span class="new">(new!)</span></li>
+			<li>Disable specific emotes, replace emotes with your own locally, change scaling all emotes in chat or the Emote Dialog</li>
 			<li>Create custom commands and add them to context menus or the user dialog</li>
 			<li>Add or remove regular, app-wide or global hotkeys according to your needs</li>
 			<li>Extensive settings dialog to adjust the features to your needs</li>
@@ -188,10 +190,14 @@ function loaded() {
 	
 	<h2 id="download">Download & Getting started</h2>
 	<ul>
-		<li><a href="https://www.dropbox.com/s/a3k1y8hxdohjnsy/Chatty_0.8.zip?dl=0"><strong>Download Version 0.8</strong></a> (Recommended version if you don't need global hotkeys or don't use Windows)</li>
+		<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.1/Chatty_0.8.1.zip"><strong>Download Version 0.8.1</strong></a>
+	       		[<a href="https://www.dropbox.com/s/9nik7ejjc4odrxt/Chatty_0.8.1.zip?dl=0">Mirror</a>]
+			(Recommended version if you don't need global hotkeys or don't use Windows)</li>
 		<li>With global hotkey support (Windows only):<ul>
-			<li><a href="https://www.dropbox.com/s/jh7qodggjhahyni/Chatty_0.8_hotkey_32bit.zip?dl=0">Download Version 0.8 (for 32bit-Java)</a></li>
-			<li><a href="https://www.dropbox.com/s/jfm8y0w9cl7c5mb/Chatty_0.8_hotkey_64bit.zip?dl=0">Download Version 0.8 (for 64bit-Java)</a></li>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.1/Chatty_0.8.1_hotkey_32bit.zip">Download Version 0.8.1 (for 32bit-Java)</a>
+				[<a href="https://www.dropbox.com/s/jdkleqba9dga4uw/Chatty_0.8.1_hotkey_32bit.zip?dl=0">Mirror</a>]</li>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.1/Chatty_0.8.1_hotkey_64bit.zip">Download Version 0.8.1 (for 64bit-Java)</a>
+				[<a href="https://www.dropbox.com/s/bzyrlk0khupkve3/Chatty_0.8.1_hotkey_64bit.zip?dl=0">Mirror</a>]</li>
 		</ul></li>
 	</ul>
 	
