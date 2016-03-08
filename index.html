@@ -99,6 +99,11 @@ function loaded() {
 		font-style: italic;
 		background-color: #FFFF77;
 	}
+	.announce {
+		border: 1px solid #000;
+		padding: 10px;
+		margin: 10px;
+	}
 
 </style>
 <script type="text/javascript">
@@ -129,6 +134,14 @@ function loaded() {
 		<li><a href="#faq">FAQ</a></li>
 	</ul>
 <p id="ago"></p>
+
+	<div class="announce">
+		<p>Twitch is in the progress of moving Twitch Chat to different servers (AWS EC2). First only selected channels will be moved over, later all of chat. For channels that are on the new servers, you will have to connect to a different server.</p>
+		<p>During the switchover period, different channels may be on different servers. Since Chatty can only connect to one server at a time, you might not be able to chat in all channels simultaneously (kind of like Regular Chat and <a href="help/help-short_guides.html#eventchat">Event Chat</a>).</p>
+		<p>Partner channels are moved over first, so if you are a partner or watching a partner that has been moved you need to connect to a different server. You'll notice that you may have to change servers when you don't receive chat messages as usual.</p>
+		<p>For the new servers you need to connect to <code>irc.chat.twitch.tv</code> (instead of <code>irc.twitch.tv</code>). You can either go to <code>Main - Settings - Advanced - Connection</code> and change the server there and disconnect/connect (which stays between restarts) or enter <code>/server irc.chat.twitch.tv</code> while not being connected (only temporary).</p>
+		<p>Eventually all channels will be moved over, although I'm not sure about the timeframe (probably depends on how it goes).</p>
+	</div>
 
 	<p style="clear:both;">Chatty is a Twitch chat client for everyone who wants to try something new and different from the webchat, but doesn't want the complexity of an IRC client or miss out on the Twitch specific features.</p>
 	
