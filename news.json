@@ -1,0 +1,10 @@
+{
+	"intro": "This is mainly used for important announcements. Follow [@ChattyClient](https://twitter.com/chattyclient) for more frequent news.",
+	"news":	[
+			{
+				"title": "Chat Server Migration Complete",
+				"timestamp": 1458817200,
+				"content": "Twitch completed the migration to the new chat servers, all channels should work again as normal.",
+			},
+	]
+}
