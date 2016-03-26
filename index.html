@@ -136,21 +136,7 @@ function loaded() {
 <p id="ago"></p>
 
 	<div class="announce">
-		<p>Twitch is in the <a href="https://discuss.dev.twitch.tv/t/psa-chat-servers-are-going-to-migrate-to-aws-ec2-servers/4877">progress of moving Twitch Chat</a> to different servers (AWS EC2). First only selected channels will be moved over, later all of chat. For channels that are on the new servers, you will have to connect to a different server.</p>
-		<p>During the switchover period, some channels may be on the old and others on the new servers and you have to connect to the old or new servers accordingly. Since Chatty can only connect to one server at a time, you might not be able to chat in all channels simultaneously (kind of like Regular Chat and <a href="help/help-short_guides.html#eventchat">Event Chat</a>).</p>
-		<p>You'll notice that you may have to change servers (either to old or new depending on what you are currently connected to) when you don't receive chat messages as usual.</p>
-		<p>For the new servers you need to connect to <code>irc.chat.twitch.tv</code> (instead of <code>irc.twitch.tv</code> for the old servers). You can either go to <code>Main - Settings - Advanced - Connection</code> and change the server there and disconnect/connect (which stays between restarts) or enter <code>/server irc.chat.twitch.tv</code> while not being connected (only temporary).</p>
-		<p>Eventually all channels will be moved over, although I'm not sure about the exact timeframe (probably depends on whether Twitch encounters any problems on the new servers). There will be a Chatty Update after the move is complete.</p>
-		<ul>
-			<li><a href="https://www.reddit.com/r/Twitch/comments/4a4azf/updating_chatty_for_aws_cluster/">Reddit Post on how to connect Chatty to new/old servers</a></li>
-			<li><a href="https://discuss.dev.twitch.tv/t/psa-chat-servers-are-going-to-migrate-to-aws-ec2-servers/4877">Twitch Dev Forum Thread on this topic</a></li>
-		</ul>
-		<p>You can test on which servers a specific channel currently is. Enter the Channel Name and click on "Submit". At the start of the page that opens it says <code>cluster":&nbsp;"main"</code> (old servers) or <code>cluster":&nbsp;"aws"</code> (new servers).</p>
-		<form action="http://tmi.twitch.tv/servers" method="get">
-			<label for="channel">Channel Name:</label>
-			<input type="text" id="channel" name="channel" />
-			<input type="submit" value="Submit" />
-		</form>
+		<p><em>Update:</em> Twitch completed <a href="https://discuss.dev.twitch.tv/t/psa-chat-servers-are-going-to-migrate-to-aws-ec2-servers/4877">migrating Twitch Chat</a> to the new servers (AWS). All channels should be on the new servers now and both <code>irc.twitch.tv</code> and <code>irc.chat.twitch.tv</code> work for connecting.</p>
 	</div>
 
 	<p style="clear:both;">Chatty is a Twitch chat client for everyone who wants to try something new and different from the webchat, but doesn't want the complexity of an IRC client or miss out on the Twitch specific features.</p>
