@@ -5,6 +5,7 @@
 				"title": "Chat Server Migration Complete",
 				"timestamp": 1458817200,
 				"content": "Twitch completed the migration to the new chat servers, all channels should work again as normal.",
+				"old": true
 			},
 	]
 }
