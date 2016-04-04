@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    <h1><a name="top">Chatty (Version: 0.8.2b1)</a></h1>
+    <h1><a name="top">Chatty (Version: 0.8.2b5)</a></h1>
     <table>
         <tr>
             <td valign="top">
@@ -20,6 +20,7 @@
                 <strong>Chat basics</strong>
                 <ul class="menu">
                     <li><a href="#symbols">Symbols used in chat</a></li>
+                    <li><a href="#userlist">Userlist</a></li>
                     <li><a href="#favorites">Favorites / History</a></li>
                     <li><a href="help-whisper.html">Whisper Feature</a></li>
                 </ul>
@@ -74,6 +75,7 @@
                     <li><a href="#about">About/License</a></li>
                     <li><a href="#ignoreJoinsParts">Ignore joins/parts</a></li>
                     <li><a href="help-memory_usage.html">About Memory Usage</a></li>
+                    <li><a href="#custom-processes">Run Custom Processes</a></li>
                 </ul>
 
                 <strong>Guides</strong>
@@ -81,8 +83,8 @@
                     <li><a href="help-getting-started.html">Getting Started Guide</a></li>
                     <li><a href="help-guide1.html">Run more than one instance of Chatty</a></li>
                     <li><a href="help-guide2.html">What to do when getting login fails</a></li>
-                    
 		    <li><a href="help-guide_create_shortcut.html">Create shortcut (launch options/icon)</a></li>
+                    <li><a href="help-bouncer.html">Using a Bouncer</a></li>
                     <li><a href="help-short_guides.html">More Guides..</a></li>
                 </ul>
                 <p style="padding: 10px;">Also check out the official
@@ -220,13 +222,22 @@
     <ul>
         <li><code>/server &lt;host&gt;[:port]</code> - Connect to a custom server</li>
         <li><code>/raw &lt;command&gt;</code> - Send a raw command to the server</li>
-        <li><code>/refresh &lt;emoticons/badges/ffz/ffzglobal/bttvemotes&gt;</code>
-            - Refresh the Twitch emoticons or badges (current channel) list or
-            refresh FrankerFaceZ channel emoticons (current channel) or global emoticons.
+        <li><code>/refresh &lt;emoticons/badges/ffz/ffzglobal/bttvemotes/emotesets&gt;</code>
+            - Refresh the given data from it's respective API:
+            <ul>
+                <li><code>emoticons</code>: Twitch Emotes</li>
+                <li><code>badges</code>: Twitch Badges (current channel)</li>
+                <li><code>ffz</code>: FFZ Emotes (current channel)</li>
+                <li><code>ffzglobal</code>: Global FFZ Emotes</li>
+                <li><code>bttvemotes</code>: BTTV Emotes (global and current channel)</li>
+                <li><code>emotesets</code>: Association between emoteset and
+                    channel name, to display Twitch Subemotes info correctly
+                    (twitchemotes.com API)</li>
+            </ul>
             <em>This downloads the lists from the Internet, so don't use this
             unless you need to (it's basicially like pressing reload in your
             browser, just only for some stuff).</em></li>
-            <li><code>/changetoken &lt;token&gt;</code> - Checks if the given token
+        <li><code>/changetoken &lt;token&gt;</code> - Checks if the given token
             is valid and sets it as new token if it is</li>
     </ul>
     
@@ -363,6 +374,52 @@
     <p><a href="http://frankerfacez.com">FrankerFaceZ</a> provides a custom
     mod icon for some channels. You can disable this in the settings if you
     want to keep the default one for all channels.</p>
+    
+    <h2>
+        <a name="userlist">Userlist</a>
+        <a href="#top" class="top">[back to menu]</a>
+    </h2>
+    <p>The userlist on the side of the channel shows all users currently
+        considered to be in the channel.</p>
+    
+    <ul>
+        <li>A user gets added to the userlist..
+            <ul>
+                <li>..when the user says something in chat.</li>
+                <li>..when Chatty receives a JOIN from Twitch Chat for that user (or
+                    that user is on the received NAMES list).</li>
+            </ul>
+        </li>
+        <li>A user gets removed from the userlist..
+            <ul>
+                <li>..when Chatty receives a PART from Twitch Chat for that user.</li>
+            </ul>
+        </li>
+        <li>The userlist gets cleared entirely..
+            <ul>
+                <li>..when you close the channel (close the Tab).</li>
+                <li>..when you rejoin the channel (e.g. when reconnecting).</li>
+            </ul>
+        </li>
+    </ul>
+    
+    <p>In order to receive JOIN/PART messages, the setting <code>Correct Userlist</code>
+        under <code>Settings - Advanced - Connection</code> has to be enabled.</p>
+    
+    <p>JOIN/PART messages are sent in batches and can be pretty delayed. So if
+        someone joins the chat, he may only appear as joined after e.g. 15
+        seconds. If you want to use this to directly react on stream to someone
+        joining, then including stream delay your reaction may be e.g. 30
+        seconds too late (possibly longer). The user may even have already left
+        the channel again, but it just doesn't show yet.</p>
+    
+    <p>The userlist can also take some time to initially load after you join a
+        channel, or not load at all sometimes.</p>
+    
+    <p>Also note that the userlist doesn't necessarily have to do with who
+        watches your stream. A user can be logged into chat without watching the
+        stream and vice versa. Overall, just don't take the userlist too
+        seriously.</p>
     
     <h2>
         <a name="nickCompletion">TAB Completion</a>
@@ -663,7 +720,9 @@ MiniK   http://static-cdn.jtvnw.net/emoticons/v1/25/1.0     set:793 id:3287</pre
         <p>Required:</p>
         <ul>
             <li>The <strong>code</strong> can be prefixed with <code>re:</code>
-            to specify a regular expression. Otherwise it is interpreted as plain text.</li>
+            to specify a regular expression. Otherwise it is interpreted as plain text
+            (the same as regular Twitch emotes, case-sensitive and usually separated
+            by space from other characters).</li>
             <li>The <strong>image file</strong> is relative to the settings directory (where you created
             the <code>emotes.txt</code> in), so just put them in the same directory.
         You should also be able to use URLs to load the image from the internet.</li>
@@ -1077,6 +1136,30 @@ MiniK   http://static-cdn.jtvnw.net/emoticons/v1/25/1.0     set:793 id:3287</pre
         setting to not get any joins/parts if you think it could improve performance.</em></p>
     
     <h2>
+        <a name="custom-processes">Run custom processes</a>
+        <a href="#top" class="top">[back to menu]</a>
+    </h2>
+    <p>Using the <code>/proc</code> command you can start processes directly out
+        of Chatty. An example of where this is already integrated into Chatty is
+        starting Livestreamer, however this is a more basic implementation.
+        <em>This is probably only interesting for advanced users.</em></p>
+    
+    <ul>
+        <li><code>/proc exec &lt;command and parameters&gt;</code> - Try to
+            start a process on your computer.</li>
+        <li><code>/proc list</code> - List of processes currently running out of
+            Chatty.</li>
+        <li><code>/proc kill &lt;id&gt;</code> - Forcefully end the process with
+            the given id (get the id from the list of processes).</li>
+    </ul>
+    
+    <p>Example: <code>/proc exec notepad H:\hl.txt</code> will start Notepad
+        and open the given file.</p>
+    
+    <p><em>Note:</em> Commands and output of the process is logged in the Debug Log which
+        is written to file and output to <code>Extra&nbsp;-&nbsp;Debug window</code>.</p>
+        
+    <h2>
         <a name="launch">Launch options</a>
         <a href="#top" class="top">[back to menu]</a>
     </h2>
@@ -1110,7 +1193,8 @@ MiniK   http://static-cdn.jtvnw.net/emoticons/v1/25/1.0     set:793 id:3287</pre
         <dd>Connect immediately when starting Chatty</dd>
         
         <dt><code>-channel &lt;channel&gt;</code></dt>
-        <dd>The channel to join</dd>
+        <dd>The channel to join (you can specify more than one channel by
+            separating them with a comma)</dd>
         
         <dt><code>-ds</code></dt>
         <dd>Don't save settings on exit (settings are everything that is
@@ -1120,11 +1204,27 @@ MiniK   http://static-cdn.jtvnw.net/emoticons/v1/25/1.0     set:793 id:3287</pre
         <dd>Use current working directory (usually the directory you
                 start Chatty from) for saving/loading settings and other files.
                 This can be useful to make Chatty more portable or use several
-                different setting files on the same computer.</dd>
+                different setting files on the same computer.
+                <a href="help-guide_folders.html">More information..</a></dd>
         
         <dt><code>-set:&lt;settingName&gt; &lt;setting value&gt;</code></dt>
         <dd>Change any setting that can be edited via the <code>/set</code>
         command (see <a href="help-setting_commands.html">Setting Commands</a>).</dd>
+        
+        <dt><code>-single [port]</code></dt>
+        <dd>Run in single instance mode, which means if you start Chatty while 
+            it's already running the parameters are forwarded to the already
+            running instance instead of starting another one. You have to
+            specify the <code>-single</code> parameter with the same port (or
+            no port to use the default one) for all instances that you want to
+            have run in the same single instance mode.</dd>
+        <dd>The port is listened to locally to check if any instance is already
+            running and to forward the commandline parameters. If you don't
+            supply a port a default one is used. If the used port is already
+            taken by another program you have to specify one that works or else
+            no instance of Chatty will be able to start.</dd>
+        <dd>Currently only the <code>-channel</code> parameter is used when 
+            forwarded to an already running instance (joining the channel).</dd>
     </dl>
     
     <h2>
