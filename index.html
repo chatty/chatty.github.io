@@ -15,10 +15,24 @@ function loaded() {
 		      { ceiling: null,  text: "$years years ago" }
 		]
 	}
-	document.getElementById("ago").innerHTML = "Version 0.8.1 released "+humanized_time_span("2015/08/10", Date(), custom_date_formats)+"";
+	document.getElementById("ago").innerHTML = "Version 0.8.2 released "+humanized_time_span("2016/04/26", Date(), custom_date_formats)+"";
+
+	getDownloads("v0.8.2");
+}
+
+function getDownloads(tag) {
+	$.getJSON( "https://api.github.com/repos/chatty/chatty/releases/tags/"+tag, function( data ) {
+		var assets = data.assets;
+		var total = 0;
+		for (var i=0; i < assets.length; i++) {
+			total += assets[i].download_count;
+		}
+		$("#dlCount").text("Total Downloads ("+tag+"): "+total);
+	});
 }
 -->
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
 <style type="text/css">
 	body {
 		font-size: 1em;
@@ -147,8 +161,8 @@ function loaded() {
 		<li>Twitch specific features
 		<ul>
 			<li>Nick colors, emoticons, user icons (mod, sub, turbo, ..), showing bans, stream status and viewercount display and stats</li>
-			<li>Click on nick in chat to open dialog with moderation buttons, showing the last messages of this user (no banning the wrong user)</li>
-			<li>Change title/game of your stream and run commercials</li>
+			<li>Click on nick in chat to open customizable moderation dialog, showing the last messages of this user (no banning the wrong user) and basic account info</li>
+			<li>Change title/game of your stream (including presets/favorited games) and run commercials</li>
 			<li>Get notified when channels you follow go live and view a list of live streams</li>
 			<li>Easily open streams in your browser, or run <a href="http://livestreamer.tanuki.se/en/latest/">Livestreamer</a> out of Chatty</li>
 			<li>Optional compact way of showing mod/unmod/joins/parts messages</li>
@@ -157,8 +171,8 @@ function loaded() {
 			<li>Dialog with your paid emotes, channel-specific emotes, all global emotes and Twitch emotes you favorited</li>
 			<li>Connect with OAuth (your Twitch account password is never entered in the application)</li>
 			<li>Let Chatty help making Stream Highlights by adding the current stream time to a file (including optionally your moderators)</li>
-			<li>Show channel information like uptime, slowmode, submode <span class="new">(new!)</span></li>
-			<li>Experimental Whisper Support <span class="new">(new!)</span></li>
+			<li>Show channel information like uptime, slowmode, submode</li>
+			<li>Basic Whisper Support (no history)</li>
 		</ul>
 		</li>
 
@@ -187,6 +201,7 @@ function loaded() {
 
 	</ul>
 
+
 	<p style="font-size:0.8em;">Kind of old screenshots because I'm lazy.</p>
 	<img src="0_4_wide1.png" style="margin-bottom:5px;" />
 	<a href="0_4_big.jpg"><img src="0_4_big_thumb.png" style="height: 190px;float:left;padding: 6px;" /></a>
@@ -199,14 +214,14 @@ function loaded() {
 	
 	<h2 id="download">Download & Getting started</h2>
 	<ul>
-		<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.1/Chatty_0.8.1.zip"><strong>Download Version 0.8.1</strong></a>
-	       		[<a href="https://www.dropbox.com/s/9nik7ejjc4odrxt/Chatty_0.8.1.zip?dl=0">Mirror</a>]
-			(Recommended version if you don't need global hotkeys or don't use Windows)</li>
+		<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.2/Chatty_0.8.2.zip"><strong>Download Version 0.8.2</strong></a>
+	       		[<a href="https://www.dropbox.com/s/i46kqefzhxfrlvr/Chatty_0.8.2.zip?dl=0">Mirror</a>]
+			(all OS)</li>
 		<li>With global hotkey support (Windows only):<ul>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.1/Chatty_0.8.1_hotkey_32bit.zip">Download Version 0.8.1 (for 32bit-Java)</a>
-				[<a href="https://www.dropbox.com/s/jdkleqba9dga4uw/Chatty_0.8.1_hotkey_32bit.zip?dl=0">Mirror</a>]</li>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.1/Chatty_0.8.1_hotkey_64bit.zip">Download Version 0.8.1 (for 64bit-Java)</a>
-				[<a href="https://www.dropbox.com/s/bzyrlk0khupkve3/Chatty_0.8.1_hotkey_64bit.zip?dl=0">Mirror</a>]</li>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.2/Chatty_0.8.2_hotkey_32bit.zip">Download Version 0.8.2 (for 32bit-Java)</a>
+				[<a href="https://www.dropbox.com/s/olpeg2z4a422lg2/Chatty_0.8.2_hotkey_32bit.zip?dl=0">Mirror</a>]</li>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.2/Chatty_0.8.2_hotkey_64bit.zip">Download Version 0.8.2 (for 64bit-Java)</a>
+				[<a href="https://www.dropbox.com/s/m72kyhvb9e0t5nd/Chatty_0.8.2_hotkey_64bit.zip?dl=0">Mirror</a>]</li>
 		</ul></li>
 	</ul>
 	
@@ -228,6 +243,8 @@ function loaded() {
 
 	<h2 id="faq">FAQ (Frequently Asked Questions)</h2>
 	<dl>
+		<dt>Chatty is not starting when I double-click the <code>Chatty.jar</code>, what now?</dt>
+		<dd>Read the <a href="help/help-troubleshooting.html#start">Troubleshooting</a>.</dd>
 		<dt>Is Chatty more reliable when Chat is breaking?</dt>
 		<dd>Not really. Chatty uses the same Chat Servers as any other Twitch Chat Client (Default Webchat, IRC Clients), so it is affected in the same
 		way when messages get lost. It's possible however that some servers/ports are not as affected as others, so there can be differences.</dd>
@@ -255,17 +272,14 @@ function loaded() {
 		<dt>Why does Chatty report "Stream offline", even though the stream clearly didn't go offline?</dt>
 		<dd>Sometimes the Twitch API will return a stream as offline, even though it isn't. Chatty checks the API twice before reporting a stream as offline, but if both checks return false data, then a false offline report will happen.</dd>
 
-		<dt>Why does the userlist only contain users that send a message?</dt>
-		<dd>Check what Twitch Client Version you have set under <code>Settings - Advanced</code>. Learn more about what that does in the <a href="help/help-settings.html#Advanced-TC">Settings Help</a>. Otherwise this may just be Twitch not sending the userlist, which can sometimes happen (especially on larger channels).</dd>
-
-		<dt>Why do I see much less messages in Chatty compared to webchat?</dt>
-		<dd>If you receive fewer/not the same messages on a particular channel compared to webchat, then webchat is probably using the Event Chat servers for that channel. They are a seperate group from servers than the normal ones you get when connecting to <code>irc.twitch.tv</code>. See: <a href="help/help-short_guides.html#eventchat">Join Eventchat</a>.</dd>
-
+		<dt>Why does the userlist not show all users correctly?</dt>
+		<dd>First of all check that <code>Settings - Advanced - Correct Userlist</code> is enabled. Even then, the userlist in Twitch Chat shouldn't be taken too seriously. <a href="http://chatty.github.io/help/help.html#userlist">Read more about the userlist..</a></dd>
 		<dt>Is there any help/documentation?</dt>
 		<dd><a href="help/help.html">Yes.</a></dd>
 	</dl>
 </div>
 <div id="bottom">
+	<div id="dlCount" style="margin-bottom:7px;"></div>
 	If you like Chatty and would like to support me:<br /><a href="http://flattr.com/thing/4399636/Chatty" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 </div>
 </body>

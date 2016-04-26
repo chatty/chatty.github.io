@@ -1,1 +1,1 @@
-0.8.1 Experimental Whisper Support, FFZ Feature Friday support (again), Bugfixes, and much more..
+0.8.2 Twitch Chat updates, Bugfixes, and much more..
