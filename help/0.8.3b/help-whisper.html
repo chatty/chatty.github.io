@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<title>Chatty Help - Whisper Feature</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+<body>
+    <div id="backlink"><a href="help.html">Back to main help page</a></div>
+    <h1><a name="top">Whisper Feature</a></h1>
+    
+    <p>
+        <a href="#start">Settings</a> |
+        <a href="#usage">Usage</a> |
+        <a href="#troubleshooting">Troubleshooting</a>
+    </p>
+    
+    <p>Chatty implements the <code>/w</code> command that Twitch Chat
+        provides, allowing you to send private messages in chat to other users.
+        Chatty does not provide the Whisper History as on the website and is
+        only a very basic implementation in general.</p>
+    
+    <p>The Whisper Feature is disabled by default.</p>
+    
+    <p>In April 2016 Twitch moved Whispers from the Group Chat servers to the
+        new AWS Twitch Chat servers. There is no additional server configuration
+        required anymore.</p>
+        
+        
+    <h2><a name="start">Settings</a></h2>
+    <ul>
+        <li><strong>Whisper Enabled</strong>: Allow sending and receiving
+            Whispers. With this disabled, you won't be able to send Whispers and
+            any received Whispers will be entirely ignored.</li>
+            <li><strong>Whitelist</strong>: If enabled, only users that have the
+                <a href="help-addressbook.html">Addressbook</a> category
+                <code>whisper</code> will be able to send whispers to you.
+                Messages from other users are discarded. Alternatively you can
+                also <strong>blacklist</strong> users by adding them to the
+                <code>blockwhisper</code> category (which makes most sense with
+                the Whitelist setting disabled).<br /><br >
+                
+                In addition, you can also add users to the Ignore List by
+                right-clicking on them in chat to open the context menu and
+                choosing <code>Miscellaneous - Ignore (whisper)</code>. Unlike
+                the Blacklist or Whitelist using the Addressbook, this will not
+                completely discard the messages, but instead add them to the
+                Ignored Messages dialog and possibly output some other messages
+                about it, depending on the Ignore settings.</li>
+            <li><strong>Display</strong>: Changes where the whispers are
+                displayed.
+                <ul>
+                    <li><strong>Active Chat</strong> - Show in the chat window
+                        you are currently having active in Chatty.</li>
+                    <li><strong>One Window</strong> - Show all whispers in one
+                        separate window. In that window you will be able to
+                        respond to whispers by just typing <code>&lt;name&gt;
+                        &lt;message&gt;</code> instead of having to use the
+                        <code>/w</code> command. To be sure you actually provide
+                        the user to send it to you can only whisper to users
+                        that have already whispered to you (so e.g.
+                        <code>Hey how are you? :)</code> wont't be send to the
+                        user named <code>Hey</code>). The tab for collecting all
+                        whispers is named <code>$[whisper]</code>.</li>
+                    <li><strong>Per User</strong> - Open an extra tab for every
+                        user that whispers to you. You can respond to whispers
+                        by just typing the message in the tab for that user. The
+                        tab will be named <code>$&lt;username&gt;</code>.</li>
+                </ul>
+            </li>
+            <li><strong>Auto-respond to ignored/non-whitelisted users</strong>:
+                If enabled, sends an automatic reponse to users that you have
+                ignored (or not whitelisted if you have the whitelist enabled),
+                if they whisper to you. This does not apply to messages that are
+                ignored due to the regular ignore list, just the separate user
+                ignore list (changeable through the Settings, commands or the
+                User Context Menu) or the special Addressbook categories for
+                whispers (see above).<br />
+                The message being sent is <code>[Auto-Message] This user has not
+                allowed to receive whispers from you.</code>. The message is
+                only sent once per session to each different user that whispers
+                to you and is also spam protected.</li>
+    </ul>
+    
+    
+    <h2><a name="usage">Usage</a></h2>
+    <p>When the Whisper Feature is connected (<code>[W]</code> appears in the
+        titlebar) you can receive and send whispers:</p>
+    <ul>
+        <li>When you receive a whisper, it will be displayed depending on the
+            Display setting and will be indicated by the nickname being marked
+            like this: <code>-[name]-</code></li>
+        <li>When you send a whisper via
+            <code>/w &lt;name&gt; &lt;message&gt;</code>, then this will be
+            indicated in chat by the nickname being marked like this:
+            <code>&gt;&gt;[name]</code></li>
+        <li>In both cases the name is the name of the person you are talking
+            with, not your own name.</li>
+        <li>When you click on the name, you will be able to see your
+            conversation, with your own messages marked with a asterisk in front
+            (*), which is usually used to mark action messages
+            (<code>/me</code>).</li>
+    </ul>
+</body>
+</html>
+    
+    
+    
+    
+    
+    
+    
+    
