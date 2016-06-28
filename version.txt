@@ -1,1 +1,1 @@
-0.8.2 Twitch Chat updates, Bugfixes, and much more..
+0.8.3 Timeout lengths/reasons, new sub messages, and more..
