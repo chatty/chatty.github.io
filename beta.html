@@ -3,22 +3,6 @@
 <head>
 <title>Chatty - Twitch Chat Client</title>
 <link rel="icon" href="icons2.ico" type="image/x-icon" />
-<script type="text/javascript" src="humanized_time_span.js"></script>
-<script type="text/javascript">
-<!--
-function loaded() {
-	custom_date_formats = {
-		past: [
-		      { ceiling: 86400, text: "today" },
-		      { ceiling: 2629744, text: "$days days ago" },
-		      { ceiling: 31556926, text: "$months months ago" },
-		      { ceiling: null,  text: "$years years ago" }
-		]
-	}
-	document.getElementById("ago").innerHTML = "Version 0.7.3 released "+humanized_time_span("2015/01/19", Date(), custom_date_formats)+"";
-}
--->
-</script>
 <style type="text/css">
 	body {
 		font-size: 1em;
@@ -74,7 +58,7 @@ function loaded() {
 		text-align: center;
 		margin-top: 10px;
 	}
-	#sourceforge {
+	#project {
 		float: right;
 		padding-bottom: 10px;
 	}
@@ -83,8 +67,8 @@ function loaded() {
 		padding-right: 25px;
 		}
 	#youtube {
-	float:right;
-	padding-right: 25px;
+		float:right;
+		padding-right: 25px;
 	}
 	#flattr {
 		float:left;
@@ -112,10 +96,11 @@ function loaded() {
     })();
 /* ]]> */</script>
 </head>
+</head>
 <body onload="loaded()">
 	<div id="top">
-		<div id="flattr"><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://getchatty.sourceforge.net"></a></div>
-		<div id="sourceforge"><a href="https://sourceforge.net/projects/getchatty/">SourceForge.net Project Page</a></div>
+		<div id="flattr"><a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://chatty.github.io"></a></div>
+		<div id="project"><a href="https://github.com/chatty/chatty">GitHub</a></div>
 		<div id="youtube"><a href="https://youtube.com/chattyclient">YouTube Channel</a></div>
 		<div id="twitter"><a href="https://twitter.com/ChattyClient"><img src="twitter.png" /></a></div>
 	</div>
@@ -143,7 +128,7 @@ function loaded() {
 		<p>If you decide to use the old regular version again, be aware that any changes to settings that were introduced with the beta version will be lost.</p>
 </div>
 <div id="bottom">
-	If you like Chatty and would like to support me:<br /><a href="http://flattr.com/thing/3038268/Chatty" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+	If you like Chatty and would like to support me:<br /><a href="http://flattr.com/thing/4399636/Chatty" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 </div>
 </body>
 </html>

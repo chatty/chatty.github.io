@@ -17,7 +17,7 @@ function loaded() {
 	}
 	document.getElementById("ago").innerHTML = "Version 0.8.3 released "+humanized_time_span("2016/06/28", Date(), custom_date_formats)+"";
 
-	getDownloads("v0.8.2");
+	getDownloads("v0.8.3");
 }
 
 function getDownloads(tag) {
@@ -118,6 +118,9 @@ function getDownloads(tag) {
 		padding: 10px;
 		margin: 10px;
 	}
+	.group {
+		background-color: lightyellow;
+	}
 
 </style>
 <script type="text/javascript">
@@ -149,41 +152,40 @@ function getDownloads(tag) {
 	</ul>
 <p id="ago"></p>
 
-	<div class="announce">
-		<p><em>Update:</em> Twitch completed <a href="https://discuss.dev.twitch.tv/t/psa-chat-servers-are-going-to-migrate-to-aws-ec2-servers/4877">migrating Twitch Chat</a> to the new servers (AWS). All channels should be on the new servers now and both <code>irc.twitch.tv</code> and <code>irc.chat.twitch.tv</code> work for connecting.</p>
-	</div>
-
 	<p style="clear:both;">Chatty is a Twitch chat client for everyone who wants to try something new and different from the webchat, but doesn't want the complexity of an IRC client or miss out on the Twitch specific features.</p>
-	
 
 	<h2 id="features">Features</h2>
 	<ul>
-		<li>Twitch specific features
+		<li>General Features
 		<ul>
 			<li>Nick colors, emoticons, user icons (mod, sub, turbo, ..), showing bans, stream status and viewercount display and stats</li>
-			<li>Click on nick in chat to open customizable moderation dialog, showing the last messages of this user (no banning the wrong user) and basic account info</li>
-			<li>Change title/game of your stream (including presets/favorited games) and run commercials</li>
-			<li>Get notified when channels you follow go live and view a list of live streams</li>
-			<li>Easily open streams in your browser, or run <a href="http://livestreamer.tanuki.se/en/latest/">Livestreamer</a> out of Chatty</li>
-			<li>Optional compact way of showing mod/unmod/joins/parts messages</li>
-			<li>View a list with the most recent followers/subscribers of your channel
-			<li>With <a href="http://frankerfacez.com">FrankerFaceZ</a>-Support (Emoticons &amp; Custom Mod Icons) and <a href="http://betterttv.nightdev.com">BetterTTV</a> emotes, including unified bot badge</li>
-			<li>Dialog with your paid emotes, channel-specific emotes, all global emotes and Twitch emotes you favorited</li>
+			<li>With <a href="http://frankerfacez.com">FrankerFaceZ</a>-Support (Emoticons &amp; Custom Mod Icons) and <a href="http://betterttv.nightdev.com">BetterTTV</a> emotes (no Personal Emotes though), including unified bot badge</li>
 			<li>Connect with OAuth (your Twitch account password is never entered in the application)</li>
-			<li>Let Chatty help making Stream Highlights by adding the current stream time to a file (including optionally your moderators)</li>
 			<li>Show channel information like uptime, slowmode, submode</li>
 			<li>Basic Whisper Support (no history)</li>
+			<li>Chatlog, clickable links, improved TAB Completion (nicks, emotes, commands, custom), input history</li>
+			<li>Message Highlighting, Message Ignore System, Channel Favorites/History</li>
+			<li><a href="http://speedrunslive.com">SpeedRunsLive</a> Race Viewer</li>
 		</ul>
 		</li>
 
-		<li>General features
+		<li>Viewer-centered Features
 		<ul>
-			<li>Hopefully easy to use.. ;)</li>
-			<li>Chatlog, clickable links, improved TAB Completion (nicks, emotes, commands, custom), input history</li>
-			<li>Message Highlighting, Message Ignore System, Channel Favorites/History</li>
+			<li>Get notified when channels you follow go live and view a list of live streams</li>
+			<li>Follow and unfollow channels directly out of Chatty</li>
+			<li>View and insert your subemotes, channel-specific emotes, all global emotes and Twitch emotes you favorited</li>
+			<li>Easily open streams in your browser, or run <a href="http://livestreamer.tanuki.se/en/latest/">Livestreamer</a> out of Chatty</li>
 			<li>Join several channels, popout individual channels to view them side-by-side</li>
-			<li>Desktop application (some might prefer this over an application running in a browser)</li>
-			<li><a href="http://speedrunslive.com">SpeedRunsLive</a> Race Viewer</li>
+		</ul>
+		</li>
+
+		<li>Streamer/Moderation-centered Features
+		<ul>
+			<li>Streamers can change their stream title (using presets/favorited games) and run commercials</li>
+			<li>Let Chatty help making Stream Highlights by adding the current stream time to a file (including optionally your moderators)</li>
+			<li>View a list with the 100 most recent followers/subscribers of your channel</li>
+			<li>Graph of how your viewercount developed over time this session</li>
+			<li>Click on nick in chat to open customizable moderation dialog, showing the last messages of this user (no banning the wrong user) and basic account info</li>
 		</ul>
 		</li>
 
@@ -210,7 +212,7 @@ function getDownloads(tag) {
 	<a href="0_6_2_admin_dialog.jpg"><img src="0_6_2_admin_dialog.jpg" style="height: 190px;padding: 6px;" /></a>
 
 	<h2 id="requirements" style="clear:both;">Requirements</h2>
-	<p>You need to have the Java 7 JRE or later installed. <a href="http://www.java.com/download/">Download Java</a> if you need it.</p>
+	<p>You need to have the Java 8 JRE or later installed. <a href="http://www.java.com/download/">Download Java</a> if you need it.</p>
 	
 	<h2 id="download">Download & Getting started</h2>
 	<ul>
@@ -244,12 +246,6 @@ function getDownloads(tag) {
 	<dl>
 		<dt>Chatty is not starting when I double-click the <code>Chatty.jar</code>, what now?</dt>
 		<dd>Read the <a href="help/help-troubleshooting.html#start">Troubleshooting</a>.</dd>
-		<dt>Is Chatty more reliable when Chat is breaking?</dt>
-		<dd>Not really. Chatty uses the same Chat Servers as any other Twitch Chat Client (Default Webchat, IRC Clients), so it is affected in the same
-		way when messages get lost. It's possible however that some servers/ports are not as affected as others, so there can be differences.</dd>
-
-		<dt>What are the advantages of Chatty then?</dt>
-		<dd>Chatty provides a different way of using Twitch Chat and has a lot of features you may find useful.</dd>
 
 		<dt>Does Chatty support Twitch Group Chat?</dt>
 		<dd>No. However, you can manually connect to Group Chat by changing the server/port to connect to (you can change it in the Settings under Advanced, use the <a href="help/help.html#settings">'server' and 'port' 
@@ -264,9 +260,6 @@ function getDownloads(tag) {
 
 		<dt>Does Chatty support other streaming services like hitbox.tv?</dt>
 		<dd>Unfortunately not. And adding support wouldn't be a trivial task either, since Chatty is designed around Twitch and adding other services would require a lot of changes.</dd>
-
-		<dt>Why does Chatty randomly say UNMOD/MOD, even though the user never left/was never actually unmodded?</dt>
-		<dd>Twitch Chat just sometimes does that and seemingly unmods/mods people (sometimes just one person, sometimes more, but they still have mod power, it just doesn't show) and Chatty simply displays that. If you are bothered by this, then you can just disable MOD/UNMOD messages in the <code>Settings - Messages</code> altogether.</dd>
 
 		<dt>Why does Chatty report "Stream offline", even though the stream clearly didn't go offline?</dt>
 		<dd>Sometimes the Twitch API will return a stream as offline, even though it isn't. Chatty checks the API twice before reporting a stream as offline, but if both checks return false data, then a false offline report will happen.</dd>
