@@ -202,31 +202,18 @@
             </dl>
         
         </dd>
+        
+        <dt>Show moderator actions in chat</dt>
+        <dd>Outputs extra messages for commands that moderators execute in the
+            channel, except for the commands you exexcute yourself.</dd>
+        <dd>This is only available for the broadcaster and moderators.</dd>
+        <dd>This is a Twitch Beta, so it may still change and break things.</dd>
+        <dd>To view mod actions you can also open a separate dialog via
+            <code>Extra - Moderation Log</code>.</dd>
     </dl>
     
     <h3><a name="capitalization">Name Capitalization</a></h3>
-    <p>Names in Twitch Chat are send all-lowercase by default, however there is
-        an IRCv3 tag send with each message with the display name which Chatty
-        can use to show correct capitalization. You have the following settings:</p>
-    <ul>
-        <li><strong>Capitalized Names (First Letter)</strong> simply makes the
-        first letter of names uppercase. This will be correct for many names,
-        but by far not for all (names might have capital letters in the middle
-        or be all-lowercase). You can enable this if you simply prefer it this
-        way.</li>
-        <li><strong>Correctly Capitalized Names</strong> uses the capitalization
-        send in the IRCv3 tag with each message and should be what the user
-        configured. In very rare cases the display nick may differ more than the
-        capitalization. This is enabled by default.</li>
-    </ul>
-    
-    <p><em>The previous function that requested correctly capitalized names from the
-    Twitch API has been removed. This also means that the associated commands
-    (<code>/refreshCase</code>, <code>/setCase</code> and <code>/getCase</code>)
-    have been removed as well. If you want to customize the capitalization of someone else's
-    name locally, you can now use the <a href="help.html#customNames">Custom Names feature</a>.
-    The names in the userlist will not be correctly capitalized until Chatty has
-    received a message from that user during this session.</em></p>
+    <p>This has been moved to it's own <a href="#Names">settings page</a>.</p>
     
     <h2>
         <a name="Chat">Chat</a>
@@ -282,27 +269,56 @@
         <a href="#top" class="top">[back to menu]</a>
     </h2>
     <h3>General Settings</h3>
-    <ul>
-        <li><strong>Show emoticons</strong>: Shows emoticons as images instead
-        of just the text</li>
-        <li><strong>Enable BetterTTV Emotes</strong>: Shows some of the BetterTTV emotes.
-        <em>Requires a restart to take effect when you change it.</em></li>
-        <li><strong>Enable FrankerFaceZ (FFZ)</strong>: Downloads <a href="help.html#emoticons">FrankerFaceZ</a>
-            emotes and Mod Icons (where available). <em>Requires a restart to take
-                effect when you change it.</em></li>
-        <li><strong>Enable FFZ Mod Icon</strong>: Show the FFZ Mod Icon instead of the regular
-            Mod Icon (where available). <em>Requires FrankerFaceZ setting to be enabled.</em></li>
-        <li><strong>Enable FFZ Featured Emotes</strong>: Show special FFZ emotes
-            available in some channels (mainly Speedrunning Events). To receive
-            these emotes Chatty maintains a connection to the FFZ Socket Server.</li>
-        <li><strong>Allow animated emotes</strong>: Show animated emotes (BTTV GIF emotes).</li>
-        <li><strong>Scale</strong>: The relative size of how emotes are displayed in chat (100% is regular size).</li>
-        <li><strong>Maximum Height</strong>: The maximum height of emotes in chat (in pixels). Use 0 to allow any height.</li>
-        <li><strong>Emotes Dialog</strong>: The relative size of how emotes are displayed in the Emotes Dialog (100% is regular size).</li>
-        <li><strong>Double-click on emote closes Emote Dialog</strong>: If
-            enabled, double-clicking on an emote in the Emote Dialog closes the
-            Emote Dialog.</li>
-    </ul>
+    
+    <dl class="dl-settings">
+        <dt>Show emoticons</dt>
+        <dd>Turns emoticon codes into images. This needs to be enabled for any
+            emotes to show up.</dd>
+        
+        <dt>Enable BetterTTV Emotes</dt>
+        <dd>Shows BetterTTV emotes (Personal Emotes not supported at this time).</dd>
+        
+        <dt>Enable FrankerFaceZ (FFZ)</dt>
+        <dd>Downloads <a href="help.html#emoticons">FrankerFaceZ</a> emotes and
+            Mod Icons (where available).</dd>
+        <dd><em>Requires a restart to take full effect when you change it.</em></dd>
+        
+        <dt>Enable FFZ Mod Icon</dt>
+        <dd>Show the FFZ Mod Icon in place of the default Mod Icon (where available).</dd>
+        
+        <dt>Enable FFZ Featured Emotes</dt>
+        <dd>Show special FFZ emotes available in some channels (mainly
+            Speedrunning Events). To receive these emotes Chatty maintains a
+            connection to the FFZ Socket Server.</dd>
+        
+        <dt>Allow animated emotes</dt>
+        <dd>Show animated emotes (BTTV GIF emotes).</dd>
+        
+        <dt>Scale</dt>
+        <dd>The relative size of how emotes are displayed in chat (100% is regular size).</dd>
+        
+        <dt>Maximum Height</dt>
+        <dd>The maximum height of emotes in chat (in pixels). Use 0 to allow any height.</dd>
+        
+        <dt>Emotes Dialog</dt>
+        <dd>The relative size of how emotes are displayed in the Emotes Dialog (100% is regular size).</dd>
+        
+        <dt>Double-click on emote closes Emote Dialog</dt>
+        <dd>If enabled, double-clicking on an emote in the Emote Dialog closes
+            the Emote Dialog.</dd>
+        
+        <dt>Emoji Set</dt>
+        <dd>Turns Emoji characters into images. You can choose between different
+            sets of Emoji images, or choose <code>None</code> to turn off Emoji
+            images altogether.</dd>
+        
+        <dt>Cheers (Bits)</dt>
+        <dd>You can choose whether to show <a href="https://help.twitch.tv/customer/portal/articles/2449458">Cheering</a>
+            emotes in chat animated, as static images (like other emotes) or
+            not at all (so they'll just show up as text).</dd>
+        <dd>Showing Cheering Badges and sending Cheers is not supported at this
+            point.</dd>
+    </dl>
     
     <h3>Ignored Emotes</h3>
     <p>Emotes added to this list will not be turned into an image, but instead
@@ -337,21 +353,43 @@
     </ul>
     
     <h3>Custom Usericons</h3>
-    <p>By adding entries to the table you can either replace the default icons (Mod, Turbo, Subscriber, ..)
-    or add additional icons for certain users or addressbook categories. The order
-    of the entries can matter, they are matched from the top, so if more than one
-    icon matches that is supposed to replace a default icon, then the first one
-    is used. If more than one <code>Addon</code> icon matches, then all are used
-    (unless you use the <code>$stop</code> restriction, see section <em>Restriction</em> below).</p>
+    <p>Add entries to the table to show additional icons (<code>Addon</code>-Type)
+        or replace the default icons (all other Types).</p>
+    <p>The order of the entries can matter, they are looked at from the top:</p>
+    <ul>
+        <li>All <code>Addon</code> icons that match are shown, unless you use
+            the <code>$stop</code> restriction (see section <em>Restriction</em>
+            below).</li>
+        <li>When replacing default icons (all other Types), the first entry that
+            matches is used. For example if you have several entries for
+            replacing the Turbo badge, then the first one from the top that
+            matches is used.</li>
+    </ul>
     
-    <p>You have the following options when you add/edit an item:</p>
-    <dl class="paragraphs">
+    <h3>Custom Usericon Properties</h3>
+    <dl class="dl-settings">
         <dt>Type</dt>
-        <dd>The type determines whether a default icon will be replaced
-            (if you choose <code>Moderator, Subscriber, Turbo, ..</code>) or if
-            it should be an additional icon added after the default ones (<code>Addon</code>).
-            Currently, you can have as many Addon-Icons as you want and they are
-            all displayed at once (if they match the requirements of course).</dd>
+        <dd>A type of <code>Addon</code> will add an additional badge. All
+            Addon-badges that matche the Restrictions are shown at once.</dd>
+        <dd>Other types replace an already shown default badge. For example
+            adding an entry of Type <code>Turbo</code> allows you to define a
+            custom icon for all Turbo badges shown in chat.</dd>
+        <dd>The Type <code>Other Twitch</code> allows you to directly select a
+            default icon via Twitch's own Badge ID/Version, which allows you to
+            target badges that are not a supported Type.</dd>
+        
+        <dt>ID/Version</dt>
+        <dd>You can only use this when you have the <code>Other Twitch</code>
+            Type selected. This specifies the Badge ID/Version that Twitch uses
+            to identify Badges, which gives you a bit more flexibilities on what
+            badges you match.</dd>
+        <dd>For example if you wanted to replace the 100-Bits Badge, you'd want
+            to use <code>bits/100</code>. If you don't specify a Version, for
+            example just <code>bits</code>, then it matches all versions, in
+            this case it would match all Bits Badges.</dd>
+        <dd>If you are already connected to a channel, it should automatically
+            populate the list with known ID/Version combinations. Note that some
+            of these may only be used in some channels.</dd>
         
         <dt>Restriction</dt>
         <dd>This is similiar to the <a href="#Usercolors">Usercolors</a> settings,
@@ -365,8 +403,7 @@
         implicit restriction, since e.g. the default moderator icons are only
         displayed if the user is a moderator.</dd>
         <dd>Normally you can only specify <em>one</em> restriction, but you can
-            also add  <strong>special restrictions</strong> for <code>Addon</code>
-            icons:
+            also add <strong>special restrictions</strong>:
             <ul>
                 <li><code>$stop</code> means if this icon matches (and is thus used),
                     it stops searching for further <code>Addon</code> icons. So
@@ -377,33 +414,45 @@
                     the regular icons. The <code>$stop</code> restriction only
                     applies to one group of <code>Addon</code> icons separately
                     (before or after the regular icons).</li>
+                <li><code>$badge:&lt;ID/Version&gt;</code> matches a Twitch
+                    Badge a user has. For example <code>$badge:bits/100</code>
+                    will only target users that currently have the 100-Bits
+                    Badge</li>
             </ul>
         </dd>
-        <dd>Examples: <code>$cat:streamer $first</code>, <code>lotsofs</code></dd>
+        <dd><em>Example:</em> <code>$cat:streamer $first</code> - Matches users
+            in the Addressbook category <code>streamer</code> and puts the badge
+            in front of the default ones.</dd>
+        <dd><em>Example:</em> <code>lotsofs</code> - Matches a user by the name
+            <code>lotsofs</code>.</dd>
+        <dd><em>Example:</em> <code>$cat:vip $badge:bits</code> - Matches users
+            in the Addresbook category <code>vip</code>, but only if they also
+            have a Bits-Badge displayed.</dd>
         
         <dt>Channel</dt>
-        <dd>This is another requirement that also has to be met in order for the
-        icon to be displayed. You can entere a channel name here, so that the
-        icon will only be displayed in that channel. You can add an exclamation
-        mark in front of the channel name (like <code>!#channel</code>) to have
-        it displayed in all channels except the one you specified. If you keep
-        this empty, then it will be displayed in all channels.</dd>
+        <dd>You can enter a channel name here, so that the icon will only be
+            displayed in that channel. You can add an exclamation mark in front
+            of the channel name (like <code>!#channel</code>) to have it
+            displayed in all channels <em>except</em> the one you specified.</dd>
+        <dd>If you keep this empty, then it will be displayed in all channels.</dd>
         
         <dt>Image File</dt>
-        <dd>The image file to use for the icon. Must be a <code>.png</code> and
-        should usually be about 18x18 pixels (because that is the size of the
-        default icons). The image files are looked for in the <code>/img</code>
-        subfolder of the working directory (similiar to the <code>/sounds</code>
-        folder). You can click on <code>Image Folder</code> to show information
-        about it and rescan it to update the list of images in the dropdown menu.</dd>
-        <dd>You can add the special Image File name <code>$ffz</code> which will
-        make it use a FrankerFaceZ icon for that, if available (this only really
-        applies if you use the <em>Type</em> <code>Moderator</code> and want to
-        replace the moderator icon in all channels execept the ones that have a
-        FFZ Mod Icon).</dd>
-        <dd>You should also be able to specify the full path to an image, if you
-        don't want to use the dedicated image folder. A filename starting with
-        <code>http</code> is interpreted as URL.</dd>
+        <dd>The image to use. Must be a <code>.png</code> and is recommended to
+            be about 18x18 pixels (because that is the default size). If you
+            specify no image, then the matching default icon is removed.</dd>
+        <dd>Chatty lookes for images in <code>&lt;working_directory&gt;/img/</code>
+            (<a href="help-guide_folders.html#wdir">Chatty directories help</a>).
+            You can click on <code>Image Folder</code> to show information about
+            it and rescan to update the list.</dd>
+        <dd>The <em>special image file name</em> <code>$default</code> will use
+            the default image file, that would be shown without defining
+            Custom Usericons. This can be useful if you e.g. want to replace all
+            Badge Types, except for one, so you can define that one to use the
+            default.</dd>
+        <dd><em>Tip:</em> You should also be able to manually enter the full
+            path to an image, in case you don't want to use the dedicated image
+            folder. A filename starting with <code>http</code> is interpreted as
+            URL.</dd>
     </dl>
     
     <p><em>Tip:</em> Jump to entries in the table by clicking into a column and
@@ -447,6 +496,51 @@
     been used instead of a colon, so "$color:Blue" would be correct. This can
     also happen if it doesn't recognize the given color or the item is just in
     an invalid format.</p>
+    
+    
+    <h2>
+        <a name="Names">Names</a>
+        <a href="#top" class="top">[back to menu]</a>
+    </h2>
+    <h3>Names / Localized Names</h3>
+    
+    <p>Users can customize the capitalization of their name, or set a localized
+        name for some locales, like Japanese.</p>
+    
+    <p><strong>Chat</strong> messages and the <strong>Userlist</strong> can be
+        configured separately with the following options:</p>
+    
+    <dl class="dl-settings">
+        <dt>Username Only</dt>
+        <dd>Always show the non-capitalized username for all users.</dd>
+
+        <dt>Capitalized Only</dt>
+        <dd>Show the capitalized name, if available (but never localized names).</dd>
+
+        <dt>Localized Only</dt>
+        <dd>Show the localized name, if set by the user, or the capitalized name
+            otherwise.</dd>
+
+        <dt>Localized+Username</dt>
+        <dd>If the user has a localized name set, show both the localized
+            name and the original username in parentheses, or the capitalized
+            name otherwise.</dd>
+    </dl>
+    
+    <p>If you have a <a href="help.html#customNames">Custom Name</a> set for a
+        user, then only that Custom Name will be shown.</p>
+    
+    <p>Other related settings:</p>
+    <dl class="dl-settings">
+        <dt>Capitalize First Letter if no display name available</dt>
+        <dd>If there is no capitalized/localized name for a user available then
+            capitalize the first letter. This especially applies to names in the
+            userlist of people who haven't said anything in chat yet.</dd>
+    </dl>
+    
+    <h3>Custom Names</h3>
+    <div class="moreInfo">More information: <a href="help.html#customNames">Custom Names</a></div>
+    
     
     <h2>
         <a name="Highlight">Highlight</a>
@@ -719,6 +813,10 @@
     make the files show up in the list. You can open the folder in your standard
     file browser from here to add files to it more quickly.</p>
     
+    <p>The <strong>Output Device</strong> lets you choose the device on your
+        computer the sounds gets output to. This is kind of experimental and may
+        not work properly.</p>
+    
     <h3>Sound Types Settings</h3>
     <p>You can specify requirements, soundfile, volume and delay for
         different types of events:</p>
@@ -875,6 +973,10 @@
             any processing, except being formatted depending on the current
             locale.</dd>
         <dd><code>VIEWERS: 12,521</code></dd>
+        
+        <dt>Mod Actions</dt>
+        <dd>Logs the commands performed by mods in your channel (Broadcaster/Mods only).</dd>
+        <dd><code>MOD_ACTION: tduva (host coollertmb)</code></dd>
     </dl>
     
     <h2>
@@ -933,7 +1035,10 @@
             userlist in pixels.</li>
         <li><strong>Min. Width</strong>: The minimum width of the userlist in
             pixels.</li>
-        
+        <li><strong>Enable userlist by default</strong>: Show the userlist by
+            default. When you disable this the userlist will be entirely hidden
+            from the start. You can always use a shortcut (<kbd>Shift+F10</kbd>
+            by default) to toggle the userlist per channel.</li>
     </ul>
     
     <h3>Popout</h3>
@@ -1077,7 +1182,7 @@
         <dd>Underscores in command names are replaced with a space for display
         in a Context Menu or on a button.</dd>
     </dl>
-    
+
     <p>In addition, you can define for the <strong>User Dialog Buttons</strong>:</p>
     <dl>
         <dt><code>5, 2m, 10m, 24h</code></dt>
@@ -1319,73 +1424,101 @@
         <a name="Completion">Completion</a>
         <a href="#top" class="top">[back to menu]</a>
     </h2>
-                <p>TAB Completion allows you to write the beginning characters
-                of a nickname in chat and then press TAB to complete it. To learn how to
-                use TAB Completion <a href="help.html#nickCompletion">check out the general help</a>.</p>
+    <p>TAB Completion allows you to write the beginning characters
+        of a nickname in chat and then press TAB to complete it. To learn how to
+        use TAB Completion <a href="help.html#nickCompletion">check out the general help</a>.</p>
                 
-                <h3>TAB Completion</h3>
-                <ul>
-                    <li><strong>Show popup:</strong>
-                    If enabled, shows a small window with information about the
-                    current completion if there is more than one matching result.
-                    It shows at which result of how many you are when cycling
-                    through results as well as a limited overview of which results
-                    there actually are.</li>
-                    <li><strong>Max Items Shown:</strong> How many items
-                        (e.g. names that match what you entered) to show
-                    in the popup at once. You can set this to 0 to not show any
-                    items.</li>
-                    <li><strong>Complete to common prefix</strong>:
-                        Pressing TAB only completes up to the common prefix for
-                        all found matches, giving you the opportunity to add
-                        more characters and then press TAB again to refine the
-                        results or just press TAB again to start cycling through
-                        the results.
-                        <br /><br />
-                    With this
-                    setting disabled, it immediately completes the first found
-                    result, allowing you to directly cycle through by pressing TAB repeatedly.</li>
-                    <li><strong>Sorting:</strong> Changes how the matching usernames
-                        are sorted for completion (only applies to usernames,
-                        not for other stuff like emotes or setting names which
-                        are always alphabetical).
-                        <ul>
-                            <li>Predictive: Gives names of users that were recently
-                            active in chat higher priority, with users who send
-                            a message that was highlighted the highest. This way
-                            people you talk to probably appear under the first
-                            few results.</li>
-                            <li>Alphabetical: Sort names alphabetical.</li>
-                            <li>Userlist: Sort names the same as in the userlist.</li>
-                        </ul></li>
-                </ul>
+    <h3>TAB Completion</h3>
+    <dl class="dl-settings">
+        <dt>Show popup</dt>
+        <dd>Shows a small window with information about the current completion
+            if there is more than one matching result. It shows your position in
+            the results when cycling through them (and how many there are in
+            total) as well as a limited list of results.</dd>
+        
+        <dt>Max Items Shown</dt>
+        <dd>How many items (results) are shown in the popup at once.</dd>
+        <dd>You can set this to 0 to not show any items (and thus only your
+            position in the results when cycling through and how many results
+            there are in total).</dd>
+        
+        <dt>Complete to common prefix</dt>
+        <dd>Pressing <kbd>TAB</kbd> only completes up to the common prefix for
+            all found matches, giving you the opportunity to refine your search
+            by adding more characters and then pressing <kbd>TAB</kbd> again, or
+            just press TAB again to start cycling through the results.</dd>
+        <dd>With this setting disabled, it immediately completes to the first
+            found result, allowing you to directly cycle through by pressing
+            <kbd>TAB</kbd> repeatedly.</dd>
+        
+        <dt>Sorting</dt>
+        <dd>Changes how the matching usernames are sorted for completion (only
+            applies to usernames, not to other stuff like emotes or setting
+            names, which are always alphabetical).</dd>
+        <dd>
+            <dl class="dl-settings-sub">
+                <dt>Predictive</dt>
+                <dd>Gives users that were recently active in chat a higher
+                    priority, and users with highlighted messages the highest.
+                    This way people you currently talk to (or that mentioned
+                    you) probably appear under the first few results.</dd>
                 
-                    <h3><a name="Completion-custom">Custom Completion Items</a></h3>
-                <p>Custom Completion allows you to add terms and their completion,
-                    allowing you to not only complete names in chat (<kbd>TAB</kbd>) or emotes
-                (<kbd>Shift-TAB</kbd>) but also custom stuff you added to the list by prepending the term with a
-                point and using <kbd>Shift-TAB</kbd>.</p>
+                <dt>Alphabetical</dt>
+                <dd>Sorts names alphabetical.</dd>
                 
-                <p>Example: Add <code>chatty</code> as <em>Key</em> and
-                    <code>http://chatty.github.io</code> as <em>Value</em>
-                    and then in the inputbox type <code>.chatty</code> (notice the dot in front) and press
-                    <kbd>Shift-TAB</kbd> to complete it to the URL.</p>
+                <dt>Userlist</dt>
+                <dd>Sorts names the same as in the userlist.</dd>
+            </dl>
+        </dd>
+        
+        <dt>Include all name types in result</dt>
+        <dd>If a user has a Localized name, or you have a
+            <a href="help.html#customNames">Custom name</a> set, then not only
+            the name that matched, but also the other types of names are added
+            to the result.</dd>
+        <dd><em>Example:</em> If a user is called <code>test</code> and has the
+            Localized Name <code>名前</code>, then entering
+            <code>tes</code> and <kbd>TAB</kbd> will show in the results both
+            <code>test (名前)</code> and
+            <code>名前 (test)</code>, so you can select either name by cycling
+            through the results via <kbd>TAB</kbd> as usual.</dd>
+        <dd>
+            <dl class="dl-settings-sub">
+                <dt>Only when no more than two matches</dt>
+                <dd>Only include all name types when no more than two names
+                    match, so that you don't have to cycle through all the
+                    different name types when you have a larger list.</dd>
+                <dd><em>Tip:</em> Once you found the right name, you can move the cursor
+                    to leave completion, and then press <kbd>TAB</kbd> again to
+                    complete the name again to get the other name types again.</dd>
+            </dl>
+        </dd>
+    </dl>
                 
-                <p>Custom Completion items can only have one completion, so you
-                    can't have <code>.chatty</code> complete to several things
-                    as it could be the case with a nickname.</p>
+    <h3><a name="Completion-custom">Custom Completion Items</a></h3>
+    
+    <p>Custom Completion allows you to add user-specified keywords, that if
+        prepended with a dot (<code>.</code>) can be completed to their defined
+        value using <kbd>Shift-TAB</kbd>.</p>
+
+    <p><em>Example:</em> Add <code>chatty</code> as <em>Key</em> and
+        <code>http://chatty.github.io</code> as <em>Value</em> and then in the
+        inputbox type <code>.chatty</code> (notice the dot in front) and press
+        <kbd>Shift-TAB</kbd> to complete it to the URL.</p>
                 
-                <p>Besides the Settings Dialog, you can also use the
-                    <code>/customCompletion</code> command to modify custom
-                completion items:</p>
+    <p>Custom Completion items can only have one completion, so you can't have
+        <code>.chatty</code> complete to several different values.</p>
                 
-                <ul>
-                    <li><code>/customCompletion add &lt;item&gt; &lt;value&gt;</code> - Add an item</li>
-                    <li><code>/customCompletion set &lt;item&gt; &lt;value&gt;</code> - Change an item that already exists</li>
-                    <li><code>/customCompletion remove &lt;item&gt;</code> - Remove an item</li>
-                </ul>
+    <p>Besides the Settings Dialog, you can also use the <code>/customCompletion</code>
+        command to modify custom completion items:</p>
                 
-                <p>Remember that you can also use TAB Completion for commands. Kappab</p>
+    <ul>
+        <li><code>/customCompletion add &lt;item&gt; &lt;value&gt;</code> - Add an item</li>
+        <li><code>/customCompletion set &lt;item&gt; &lt;value&gt;</code> - Change an item if it already exists (or otherwise add it)</li>
+        <li><code>/customCompletion remove &lt;item&gt;</code> - Remove an item</li>
+    </ul>
+                
+    <p>Remember that you can also use TAB Completion for commands. Kappab</p>
 </body>
 </html>
 

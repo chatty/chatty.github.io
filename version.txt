@@ -1,1 +1,1 @@
-0.8.3 Timeout lengths/reasons, new sub messages, and more..
+0.8.4 New Badges, Mod Action Log, Bugfixes, and much more..
