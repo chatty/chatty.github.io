@@ -15,9 +15,9 @@ function loaded() {
 		      { ceiling: null,  text: "$years years ago" }
 		]
 	}
-	document.getElementById("ago").innerHTML = "Version 0.8.4.1 released "+humanized_time_span("2016/10/29", Date(), custom_date_formats)+"";
+	document.getElementById("ago").innerHTML = "Version 0.8.5 released "+humanized_time_span("2017/04/12", Date(), custom_date_formats)+"";
 
-	getDownloads("v0.8.4.1");
+	getDownloads("v0.8.5");
 }
 
 function getDownloads(tag) {
@@ -181,11 +181,12 @@ function getDownloads(tag) {
 
 		<li>Streamer/Moderation-centered Features
 		<ul>
-			<li>Streamers can change their stream title (using presets/favorited games) and run commercials</li>
+			<li>Streamers can change their stream title/game/community (using presets/favorited games) and run commercials</li>
 			<li>Let Chatty help making Stream Highlights by adding the current stream time to a file (including optionally your moderators)</li>
 			<li>View a list with the 100 most recent followers/subscribers of your channel</li>
 			<li>Graph of how your viewercount developed over time this session</li>
 			<li>Click on nick in chat to open customizable moderation dialog, showing the last messages of this user (no banning the wrong user) and basic account info</li>
+			<li>AutoMod dialog to approve/deny filtered messages</li>
 		</ul>
 		</li>
 
@@ -204,7 +205,7 @@ function getDownloads(tag) {
 	</ul>
 
 
-	<p style="font-size:0.8em;">Kind of old screenshots because I'm lazy.</p>
+	<p style="font-size:0.8em;"><del>Kind of</del> Really old screenshots because I'm <u>extremely</u> lazy.</p>
 	<img src="0_4_wide1.png" style="margin-bottom:5px;" />
 	<a href="0_4_big.jpg"><img src="0_4_big_thumb.png" style="height: 190px;float:left;padding: 6px;" /></a>
 	<a href="0_4_big1.png"><img src="0_4_big1_thumb.png" style="height: 190px;padding: 6px;" /></a>
@@ -212,21 +213,23 @@ function getDownloads(tag) {
 	<a href="0_6_2_admin_dialog.jpg"><img src="0_6_2_admin_dialog.jpg" style="height: 190px;padding: 6px;" /></a>
 
 	<h2 id="requirements" style="clear:both;">Requirements</h2>
-	<p>You need to have the Java 8 JRE or later installed. <a href="http://www.java.com/download/">Download Java</a> if you need it.</p>
+	<p>You need to have the Java 8 JRE or later installed (unless you're using the Windows Standalone version). <a href="http://www.java.com/download/">Download Java</a> if you need it.</p>
 	
 	<h2 id="download">Download & Getting started</h2>
 	<ul>
-		<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.4.1/Chatty_0.8.4.1.zip"><strong>Download Version 0.8.4.1</strong></a>
+		<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.5/Chatty_0.8.5.zip"><strong>Download Version 0.8.5</strong></a>
 			(all OS)</li>
 		<li>With global hotkey support (Windows only):<ul>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.4.1/Chatty_0.8.4.1_hotkey_32bit.zip">Download Version 0.8.4.1 (for 32bit-Java)</a>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.5/Chatty_0.8.5_hotkey_32bit.zip">Download Version 0.8.5 (for 32bit-Java)</a>
 				</li>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.4.1/Chatty_0.8.4.1_hotkey_64bit.zip">Download Version 0.8.4.1 (for 64bit-Java)</a>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.8.5/Chatty_0.8.5_hotkey_64bit.zip">Download Version 0.8.5 (for 64bit-Java)</a>
 				</li>
 		</ul></li>
+		<li>Standalone Bundle (Windows executable, includes JRE, no installed Java required):<ul><li><a href="https://github.com/chatty/chatty/releases/download/v0.8.5/Chatty_0.8.5_windows_standalone.zip">Download Version 0.8.5 Windows Standalone</a></li></ul></li>
+		<li>Previous versions and source code are on <a href="https://github.com/chatty/chatty/releases">GitHub</a></li>
 	</ul>
 	
-	<p>Extract the .zip into a folder of your choice and start Chatty.jar.</p>
+	<p>Extract the .zip into a folder of your choice and start Chatty.jar (or the Chatty.exe in case of the standalone).</p>
 	<p>When you start Chatty the Connect Dialog should come up. Click <code>Create login..</code> and <code>Request login data</code> and follow the instructions to authorize Chatty to connect to chat for you. There is also a short
 	<a href="help/help-getting-started.html"><strong>Getting Started Guide</strong></a>.</p>
 	<p>There is some <a href="help/help.html">help</a> available (you can find the same in the program itself). There is also a <a href="changes.txt">changelog</a>.</p>

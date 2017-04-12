@@ -1,1 +1,1 @@
-0.8.4.1 Message Spacing, Bugfixes, and some more..
+0.8.5 Support for AutoMod/Communities, improved Custom Commands, and more..
