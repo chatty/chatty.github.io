@@ -1,5 +1,14 @@
 
-0.8.5 (2016-04-12) Latest Version
+0.8.5.1 (2017-04-14) Latest Version
+
+- Fixed Whispering that didn't work due to changed Twitch behaviour
+- Fixed bug related to Custom Commands which would prevent startup
+- Minor change to not removing leading/trailing whitespace from entering
+  commands, to allow for some more usages
+- Updated help
+
+
+0.8.5 (2017-04-12)
 
 ### New features
 - Admin Dialog: Added support for setting a Community

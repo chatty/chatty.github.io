@@ -1,1 +1,1 @@
-0.8.5 Support for AutoMod/Communities, improved Custom Commands, and more..
+0.8.5.1 Some Bugfixes
