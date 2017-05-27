@@ -1,1 +1,1 @@
-0.8.5.1 Some Bugfixes
+0.8.6 New Notification system, Bugfixes, and more..

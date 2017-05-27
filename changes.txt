@@ -1,5 +1,31 @@
 
-0.8.5.1 (2017-04-14) Latest Version
+0.8.6 (2017-05-27) Latest Version
+
+### General
+- Added new Notification system
+- Added support for new sub messages
+- Added button to sort some setting lists alphabetically
+- Changed Emote Context Menu entry "Twitch Profile" to "Twitch Stream"
+- Some other Settings Dialog and GUI improvements
+- Made Addressbook mod commands channel setting case-insensitive
+- Some debug output improvements
+- Updated help
+
+### Custom Commands
+- Added custom replacements
+- Added $ifeq function
+- Added feature to add channel-specific Custom Commands
+- Made identifiers case-insensitive
+- Allow absolute positioning of Custom Menu Items
+
+### Bugfixes
+- Fixed word wrapping issues (hopefully)
+- Fixed selection in chat window moving around
+- Added workaround for error occuring in Java 1.8.0_131 (the actual cause of the
+  error is still unclear, but hopefully this works well enough)
+
+
+0.8.5.1 (2017-04-14)
 
 - Fixed Whispering that didn't work due to changed Twitch behaviour
 - Fixed bug related to Custom Commands which would prevent startup
