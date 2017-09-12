@@ -1,1 +1,1 @@
-0.8.6 New Notification system, Bugfixes, and more..
+0.8.7 Communities update, Bugfixes, and much more..
