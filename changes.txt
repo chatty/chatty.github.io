@@ -1,5 +1,51 @@
 
-0.8.7 (2017-09-12) Latest Version
+0.9 (2017-12-26) Latest Version
+
+### Twitch Updates
+- Added /raid command and display of incoming raids, joining raids doesn't work
+- Added support for gifted sub messages
+
+### Look / GUI
+- Added more Look and Feels, including dark themes
+- Added custom presets to color settings
+- Added userlist font setting
+- Improved organization and help in Settings Dialog a bit
+- Updated Chatty app icons
+- Added feature to customize message color based on rules (like Highlighting,
+  except it only colors messages)
+- Updated help
+
+### Emoticons / Emoji
+- Load emoticon metadata only as needed to improve memory usage
+- Updated source for subscriber emoticon metadata, fixing e.g. which channel an
+  emote is from, added display of emote tiers
+- Improved display of information in emote context menu and emote dialog
+- Grouped together sets with only one emote in Emote Dialog
+- Fixed some BTTV emotes (like D:) appearing when they shouldn't
+- Added Emoji TAB Completion (anything starting with ":")
+- Added conversion of Emoji short code to Emoji character when entered into the
+  inputbox (e.g. :thinking: -> 🤔 when being sent)
+
+### Settings
+- Added -d launch argument to directly specify settings directory
+- Added ability to execute program for Notifications (e.g. run native Linux
+  notification)
+- Added ability to change spamProtection setting without restart
+- Added F1 to open help to settings (instead of it being hardcoded)
+- Added "log ignored messages" setting, to be able to turn that off (by default
+  it does log them, as before)
+- Added more timestamp options to the settings (anything can be set via setting
+  commands anyway, but that's not very accessible)
+- Improve setting commands
+
+### Bugfixes
+- Fixed bug with separators in custom context menus
+- Fixed some emote code conversions
+- Fixed error on "Use title only" in Admin Dialog
+- Possibly fixed rare error with parsing livestreamer menu options
+
+
+0.8.7 (2017-09-12)
 
 ### Communities / Channel Info
 - Added support for selecting several communities in Admin Dialog
