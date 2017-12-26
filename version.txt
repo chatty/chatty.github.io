@@ -1,1 +1,1 @@
-0.8.7 Communities update, Bugfixes, and much more..
+0.9 Added Dark Themes, Performance Improvements, Bugfixes, and more..
