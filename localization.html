@@ -87,7 +87,7 @@
 </style>
 </head>
 </head>
-<body onload="loaded()">
+<body>
 	<div id="top">
 		<div id="project"><a href="https://github.com/chatty/chatty">GitHub</a></div>
 		<div id="youtube"><a href="https://youtube.com/chattyclient">YouTube Channel</a></div>
@@ -101,17 +101,31 @@
 	<h2>Getting started</h2>
 	<p><a href="https://poeditor.com/join/project/1Lld6f5Swi">Join the localization project</a> and tell me the account name you used so I can approve it. The best way is via <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a>, but you can also <a href="mailto:chattyclient@gmail.com">send a mail</a>. If the language you want to work on hasn't been added yet, tell me.</p>
 
-	<p>Remember that you may also join languages that have already been completely translated, since future Chatty updates will likely also require more or updated translations. This is especially true now, since still not all GUI parts have been added for localization yet.</p>
+	<p>Remember that you can also join languages that have already been completely translated, since future Chatty updates will likely also require more or updated translations. This is especially true now, since still not all GUI parts have been added for localization yet.</p>
+
+	<p>Note that not everything can be translated yet, and the help pages probably won't be at all, since it would be too much work to keep updated. My goal for now is to make the basic functions of the program more comfortable to use for people who don't speak english as their first language.</p>
 
 	<h2>Translation Guidelines</h2>
 	<ul>
-		<li>You don't have to translate everything. If there is no good word for something, just keep it in English.</li>
-		<li>Strings that aren't translated will automatically fallback to English, so please don't just copy the English strings to fill translations.</li>
-		<li>Strings containing replacements (e.g. <code>Join #{0}</code>, where <code>{0}</code> is replaced with the stream name) use the <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a> class. Most importantly this means that any single quotes need to be escaped with a single quote (e.g. <code>Can''t join ''{0}'' (not connected)</code>). Sometimes it may also contain some more advanced patterns. If you just stick to the template it should be fine.</li>
-		<li>The <a href="https://poeditor.com/kb/using-the-comment-system">comments</a> for a specific translation item sometimes give additional hints about the string.</li>
-		<li>If have a question or want to discuss something, ask in <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a> or the comments for a specific translation in the localization project.</li>
-	</ul>
+		<li>You don't have to translate everything. If there is no good translation for something, just keep it in English.</li>
+		<li>Strings that aren't translated will automatically fallback to English, so please don't just copy the English strings to fill translations, unless the English string <em>is</em> the translation (see previous point).</li>
 		
+		<li>If you're translating a term specific to Twitch or Streaming, try to use the "official" translation from the Twitch website.</li>
+		<li>The <a href="https://poeditor.com/kb/using-the-comment-system">comments</a> for a specific translation item sometimes give additional hints about the string.</li>
+		<li>If have a question or want to discuss something, ask in <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a> or leave a comment on the translation page.</li>
+	</ul>
+
+	<h3>Replacements</h3>
+	<p>Something like <code>{0}</code> in a string is replaced with a certain value, for example in <code>Join #{0}</code> the <code>{0}</code> is replaced with the stream name (e.g. resulting in <code>Join #joshimuz</code>).</p>
+	
+	<p>Replacements use the <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a> class, you can read that documentation if you're interested, although mostly it's enough to just stick close to the template. One important thing is that any single quotes need to be escaped with a single quote (e.g. <code>Can''t join ''{0}''</code>).</p>
+
+	<p>The more advanced <code>choice</code> pattern is commonly used for plurals: <code>Join {0,choice,1#|1&lt;{0} }{0,choice,1#channel|1&lt;channels}</code>. In this example there are two separate choice patterns (<code>{0,choice,&lt;choices&gt;}</code>), both using the first parameter (<code>0</code>), which contains the number of channels:</p>
+
+	<ul>
+		<li>The first one <code>{0,choice,1#|1&lt;{0} }</code> outputs the number and a space (<code>{0} </code>) only if it's greater than one.</li>
+		<li>In the second one the choices are "<code>1#channel</code>" and "<code>1&lt;channels</code>", meaning if the parameter is 1 it will be replaced with "channel", if it's 1 or greater it will be replaced with "channels" (the plural). In this case the number should never be 0, so that's not a consideration.</li>
+	</ul>
 </div>
 </body>
 </html>
