@@ -107,12 +107,21 @@
 
 	<h2>Translation Guidelines</h2>
 	<ul>
-		<li>You don't have to translate everything. If there is no good translation for something, just keep it in English.</li>
+		<li>You don't have to translate everything. If there is no good translation for something, just keep it in English (this especially applies if the English term is commonly used in that language and better fitting).</li>
 		<li>Strings that aren't translated will automatically fallback to English, so please don't just copy the English strings to fill translations, unless the English string <em>is</em> the translation (see previous point).</li>
-		
 		<li>If you're translating a term specific to Twitch or Streaming, try to use the "official" translation from the Twitch website.</li>
-		<li>The <a href="https://poeditor.com/kb/using-the-comment-system">comments</a> for a specific translation item sometimes give additional hints about the string.</li>
-		<li>If have a question or want to discuss something, ask in <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a> or leave a comment on the translation page.</li>
+		<li>Try to be consistent within each language, for example check other translations for already used terms.</li>
+		<li>Try to replicate things like strings ending with a colon (e.g. <code>Language:</code>) or HTML codes.</li>
+		<li>In some cases (like button labels) it can be important that the translated text is not too long, so it may be necessary to rephrase things.</li>
+		<li>Some strings may be marked as <a href="https://poeditor.com/kb/fuzzy-translations">Fuzzy</a>, which indicates that the original string has changed and the translation may have to be updated. You can filter and order by Fuzzy strings.</li>
+	</ul>
+
+	<p>Translations have to be converted to be included in Chatty. Currently I'm still developing the conversion program, so I have to commit the translation files (Java properties) myself. I'll probably make the conversion program available later, or maybe even completely automate the process.</p>
+
+	<h3>Questions / Discussion</h3>
+	<ul>
+		<li>The <a href="https://poeditor.com/kb/using-the-comment-system">comments</a> for a specific translation item sometimes give additional hints about the string and can be used for basic discussion.</li>
+		<li>Another (probably better) place to discuss things is <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a>.</li>
 	</ul>
 
 	<h3>Replacements</h3>
