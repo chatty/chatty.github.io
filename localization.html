@@ -103,7 +103,7 @@
 
 	<p>Remember that you can also join languages that have already been completely translated, since future Chatty updates will likely also require more or updated translations. This is especially true now, since still not all GUI parts have been added for localization yet.</p>
 
-	<p>Note that not everything can be translated yet, and the help pages probably won't be at all, since it would be too much work to keep updated. My goal for now is to make the basic functions of the program more comfortable to use for people who don't speak english as their first language.</p>
+	<p>Note that not everything can be translated yet, and the help pages probably won't be at all, since it would be too much work to keep updated. My goal for now is to make the basic functions of the program more comfortable to use for people who don't speak English as their first language.</p>
 
 	<h2>Translation Guidelines</h2>
 	<ul>
@@ -113,10 +113,8 @@
 		<li>Try to be consistent within each language, for example check other translations for already used terms.</li>
 		<li>Try to replicate things like strings ending with a colon (e.g. <code>Language:</code>) or HTML codes.</li>
 		<li>In some cases (like button labels) it can be important that the translated text is not too long, so it may be necessary to rephrase things.</li>
-		<li>Some strings may be marked as <a href="https://poeditor.com/kb/fuzzy-translations">Fuzzy</a>, which indicates that the original string has changed and the translation may have to be updated. You can filter and order by Fuzzy strings.</li>
+		<li>Translations that are marked as <a href="https://poeditor.com/kb/fuzzy-translations">Fuzzy</a> should be reviewed again, usually because the original string has changed and the translation may have to be updated. You can filter and order by Fuzzy strings. If you are satisfied that the translation is correct, you can remove the Fuzzy flag.</li>
 	</ul>
-
-	<p>Translations have to be converted to be included in Chatty. Currently I'm still developing the conversion program, so I have to commit the translation files (Java properties) myself. I'll probably make the conversion program available later, or maybe even completely automate the process.</p>
 
 	<h3>Questions / Discussion</h3>
 	<ul>
@@ -135,6 +133,13 @@
 		<li>The first one <code>{0,choice,1#|1&lt;{0} }</code> outputs the number and a space (<code>{0} </code>) only if it's greater than one.</li>
 		<li>In the second one the choices are "<code>1#channel</code>" and "<code>1&lt;channels</code>", meaning if the parameter is 1 it will be replaced with "channel", if it's 1 or greater it will be replaced with "channels" (the plural). In this case the number should never be 0, so that's not a consideration.</li>
 	</ul>
+
+	<h2>After Translation</h2>
+	<p>Translations are commited to the repository by myself, since the files have to be converted into the format I want (e.g. proper structure and order of items). The process is mostly automated. It also adds the names of contributors to each language at the top of the file (if you want to be excluded from that or want to appear with a different name, let me know).</p>
+
+	<h2>Other</h2>
+	<p>Changes of the <a href="https://github.com/chatty/chatty/blob/master/src/chatty/lang/Strings.properties">original English strings</a> have to be done via GitHub (the normal way via Pull Requests).</p>
+	
 </div>
 </body>
 </html>

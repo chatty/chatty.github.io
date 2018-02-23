@@ -17,7 +17,7 @@ function loaded() {
 	}
 	document.getElementById("ago").innerHTML = "Version 0.9 released "+humanized_time_span("2017/12/26", Date(), custom_date_formats)+"";
 
-	getDownloads("v0.8.7");
+	getDownloads("v0.9");
 }
 
 function getDownloads(tag) {
@@ -158,6 +158,8 @@ function getDownloads(tag) {
 
 	<p style="clear:both;">Chatty is a Twitch chat client for everyone who appreciates a dedicated desktop application (similiar to a classic IRC client), but doesn't want to miss out on Twitch-specific features.</p>
 
+	<p class="announce">Note that Java 8 Update 161/162 (the current stable version) contains a <a href="https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8195830">bug</a> that can lead to unusual high CPU usage (at least on Windows). To prevent this, either install a different Java version yourself or <a href="#download">download</a> the Standalone Version which still comes bundled with Java 8 Update 151.</p>
+
 	<h2 id="features">Features</h2>
 	<ul>
 		<li>General Features
@@ -223,7 +225,7 @@ function getDownloads(tag) {
 			<li><a href="https://github.com/chatty/chatty/releases/download/v0.9/Chatty_0.9_hotkey_64bit.zip">Download Version 0.9 (for 64bit-Java)</a>
 				</li>
 		</ul></li>
-		<li>Standalone Bundle (Windows executable, includes JRE, no installed Java required):<ul><li><a href="https://github.com/chatty/chatty/releases/download/v0.9/Chatty_0.9_windows_standalone.zip">Download Version 0.9 Windows Standalone</a></li></ul></li>
+		<li>Standalone Bundle (Windows executable, includes JRE, no installed Java required):<ul><li><a href="https://github.com/chatty/chatty/releases/download/v0.9/Chatty_0.9_windows_standalone_fixed.zip">Download Version 0.9 Windows Standalone</a></li></ul></li>
 		<li>Previous versions and source code are on <a href="https://github.com/chatty/chatty/releases">GitHub</a></li>
 	</ul>
 	
