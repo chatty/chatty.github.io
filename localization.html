@@ -83,6 +83,15 @@
 		font-style: italic;
 		background-color: #FFFF77;
 	}
+	dl {
+		margin-left: 10px;
+	}
+	.cond {
+		background-color: lime;
+	}
+	.repl {
+		background-color: yellow;
+	}
 
 </style>
 </head>
@@ -110,7 +119,7 @@
 		<li>You don't have to translate everything. If there is no good translation for something, just keep it in English (this especially applies if the English term is commonly used in that language and better fitting).</li>
 		<li>Strings that aren't translated will automatically fallback to English, so please don't just copy the English strings to fill translations, unless the English string <em>is</em> the translation (see previous point).</li>
 		<li>If you're translating a term specific to Twitch or Streaming, try to use the "official" translation from the Twitch website.</li>
-		<li>Try to be consistent within each language, for example check other translations for already used terms.</li>
+		<li>Try to be consistent within each language, for example check other strings for already used terms.</li>
 		<li>Try to replicate things like strings ending with a colon (e.g. <code>Language:</code>) or HTML codes.</li>
 		<li>In some cases (like button labels) it can be important that the translated text is not too long, so it may be necessary to rephrase things.</li>
 		<li>Translations that are marked as <a href="https://poeditor.com/kb/fuzzy-translations">Fuzzy</a> should be reviewed again, usually because the original string has changed and the translation may have to be updated. You can filter and order by Fuzzy strings. If you are satisfied that the translation is correct, you can remove the Fuzzy flag.</li>
@@ -122,20 +131,43 @@
 		<li>Another (probably better) place to discuss things is <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a>.</li>
 	</ul>
 
-	<h3>Replacements</h3>
-	<p>Something like <code>{0}</code> in a string is replaced with a certain value, for example in <code>Join #{0}</code> the <code>{0}</code> is replaced with the stream name (e.g. resulting in <code>Join #joshimuz</code>).</p>
+	<h2>Replacements</h2>
+	<p>Something like <code>{0}</code> in a string means it is replaced with the number <code>0</code> parameter. It should say in a comment what it gets replaced with (although most of the time it's clear from context already).</p>
 	
-	<p>Replacements use the <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a> class, you can read that documentation if you're interested, although mostly it's enough to just stick close to the template. One important thing is that any single quotes need to be escaped with a single quote (e.g. <code>Can''t join ''{0}''</code>).</p>
+	<dl>
+		<dt>Example: <code>Join #{0}</code></dt>
+		<dd>When <code>{0}</code> is <code>joshimuz</code> turns into <code>Join #joshimuz</code></dd>
+	</dl>
 
-	<p>The more advanced <code>choice</code> pattern is commonly used for plurals: <code>Join {0,choice,1#|1&lt;{0} }{0,choice,1#channel|1&lt;channels}</code>. In this example there are two separate choice patterns (<code>{0,choice,&lt;choices&gt;}</code>), both using the first parameter (<code>0</code>), which contains the number of channels:</p>
 
-	<ul>
-		<li>The first one <code>{0,choice,1#|1&lt;{0} }</code> outputs the number and a space (<code>{0} </code>) only if it's greater than one.</li>
-		<li>In the second one the choices are "<code>1#channel</code>" and "<code>1&lt;channels</code>", meaning if the parameter is 1 it will be replaced with "channel", if it's 1 or greater it will be replaced with "channels" (the plural). In this case the number should never be 0, so that's not a consideration.</li>
-	</ul>
+	<p>Replacements use the <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a> class. Mostly it's enough to just stick close to the template.</p>
+	
+	<p><em>Important:</em> Any single quote (<code>'</code>) in a string that contains a replacement needs to be escaped with a single quote (e.g. <code>Can''t join ''{0}''</code>).</p>
+
+	<h3>Choice</h3>
+	<p>The more advanced <code>{0,choice,&lt;choices&gt;}</code> pattern is used to decide between two strings depending on the value in the number <code>0</code> parameter. This is commonly used to decide between a singular and plural form.</p>
+
+	<dl>
+		<dt>Example: <code>Join {0,choice,<span class="cond">1#</span><span class="repl">channel</span>|<span class="cond">1&lt;</span><span class="repl">{0} channels</span>}</code></dt>
+		<dd><ul>
+			<li><code><span class="cond">1#</span></code> means "exactly 1" (in which case it chooses <code><span class="repl">channel</span></code></li>
+			<li><code><span class="cond">1&lt;</span></code> means "more than 1" in which case it chooses <code><span class="repl">{0} channels</span></code> (where the <code>{0}</code> is replaced as well)</li>
+		</ul></dd>
+		<dd>When <code>{0}</code> is <code>1</code> turns into <code>Join channel</code></dd>
+		<dd>When <code>{0}</code> is <code>2</code> turns into <code>Join 2 channels</code></dd>
+		<dd>When <code>{0}</code> is <code>30</code> turns into <code>Join 30 channels</code></dd>
+	</dl>
+
+	<dl>
+		<dt>Example: <code>{0} {0,choice,<span class="cond">1#</span><span class="repl">Hour</span>|<span class="cond">1&lt;</span><span class="repl">Hours</span>}</code></dt>
+		<dd>When <code>{0}</code> is <code>1</code> turns into <code>1 Hour</code></dd>
+		<dd>When <code>{0}</code> is <code>2</code> turns into <code>2 Hours</code></dd>
+	</dl>
 
 	<h2>After Translation</h2>
-	<p>Translations are commited to the repository by myself, since the files have to be converted into the format I want (e.g. proper structure and order of items). The process is mostly automated. It also adds the names of contributors to each language at the top of the file (if you want to be excluded from that or want to appear with a different name, let me know).</p>
+	<p>Translations are commited to the repository by myself, since the files have to be converted into the format I want (e.g. proper structure and order of items). The process is mostly automated.</p>
+	
+	<p><em>Note:</em> The names of contributors to each language (as registered on POEditor) are added to the top of the language file. If you want to be excluded from that or want to appear with a different name, let me know.</p>
 
 	<h2>Other</h2>
 	<p>Changes of the <a href="https://github.com/chatty/chatty/blob/master/src/chatty/lang/Strings.properties">original English strings</a> have to be done via GitHub (the normal way via Pull Requests).</p>
