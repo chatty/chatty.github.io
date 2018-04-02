@@ -1,5 +1,53 @@
 
-0.9 (2017-12-26) Latest Version
+0.9.1 (2018-04-02) Latest Version
+
+### Main Features
+- Added basic support for Rooms (join via Channels-menu and Favorites/History)
+- Added initial support for translating the Chatty GUI to other languages,
+  added some partial translations (thanks to volunteers translating)
+
+### Highlighting/Ignore
+- Added Highlight Blacklist, to prevent some matches from triggering Highlights
+- Improved Highlight pattern tester (used in other places as well), now with
+  match color highlighting, and open directly instead of hiding behind "Test"
+- Some text matching prefixes changes (Highlighting/Ignore/..):
+  - Changed `w:`/`wcs:` to not take Regex anymore
+  - Added `reg:` prefix and variations for using Regex with more consistent and
+    predictable naming scheme (`re:` and `re*:` still work as before)
+
+### Settings
+- Setting files `favoritesAndHistory` and `statusPresets` now both merged into
+  `settings` file, unused files are removed
+- Possibly made saving settings more reliable in some circumstances
+- Reorganized Settings Dialog, added new menu for navgiation
+- Added setting for vertical zoom in Channel Info Dialog, improved context menu
+- Added setting for logging regular chat messages (and thus a way to disable it)
+- Added setting whether to show chat inputbox by default (and thus a way to hide
+  it by default)
+- Added "Off" option for notification type setting
+- Updated Livestreamer context menu qualities setting format to allow specifying
+  display names for groups of qualities
+- Changed TAB Completion default to complete both usernames and emotes with TAB
+
+### Other Changes
+- Changed chat inputbox to automatically grow when entering long lines
+- Added /favorite and /unfavorite commands (Channel Favorites)
+- Added /joinhosted command to join currently hosted channel
+- Changed /appinfo command to contain more information
+- Don't add space anymore when chat timestamp is empty
+- Show more stream types as "[VOD]" (Premiere, Vodcast, Rerun..)
+- Updated help
+
+### Bugfixes
+- Fixed bug loading emotes.txt
+- Fixed possible Community search issue
+- Fixed username capitalization locale bug (e.g. Turkish locale)
+- Fixed bug where "Cancel" in the Open URL dialog would sometimes copy the URL
+- Fixed possible bug with tray icon
+- Fixed some FFZ API/other URLs not using https
+
+
+0.9 (2017-12-26)
 
 ### Twitch Updates
 - Added /raid command and display of incoming raids, joining raids doesn't work
