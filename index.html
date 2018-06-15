@@ -145,7 +145,7 @@ function getDownloads(tag) {
 
 	<p style="clear:both;">Chatty is a Twitch chat client for everyone who appreciates a dedicated desktop application (similiar to a classic IRC client), but doesn't want to miss out on Twitch-specific features.</p>
 
-	<p class="announce">Note that Java 8 Update 161/162 (the current stable version) contains a <a href="https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8195830">bug</a> that can lead to unusual high CPU usage (at least on Windows). To prevent this, either install a different Java version yourself or <a href="#download">download</a> the Standalone Version which still comes bundled with Java 8 Update 151.</p>
+	<p class="announce">Note that Java 8u161/162 contains a <a href="https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8195830">bug</a> that can lead to unusual high CPU usage (at least on Windows). This seems to be fixed in 8u172 (not 8u171). You can <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html">download 8u172 here</a>. The current Standalone Version <a href="#download">download</a> still comes bundled with Java 8u151.</p>
 
 	<h2 id="features">Features</h2>
 	<ul>
@@ -204,16 +204,17 @@ function getDownloads(tag) {
 	
 	<h2 id="download">Download & Getting started</h2>
 	<ul>
-		<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1/Chatty_0.9.1.zip"><strong>Download Version 0.9.1</strong></a>
+		<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix.zip"><strong>Download Version 0.9.1</strong></a>
 			(all OS)</li>
 		<li>With global hotkey support (Windows only):<ul>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1/Chatty_0.9.1_hotkey_32bit.zip">Download Version 0.9.1 (for 32bit-Java)</a>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix_hotkey_32bit.zip">Download Version 0.9.1 (for 32bit-Java)</a>
 				</li>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1/Chatty_0.9.1_hotkey_64bit.zip">Download Version 0.9.1 (for 64bit-Java)</a>
+			<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix_hotkey_64bit.zip">Download Version 0.9.1 (for 64bit-Java)</a>
 				</li>
 		</ul></li>
-		<li>Standalone Bundle (Windows executable, includes JRE, no installed Java required):<ul><li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1/Chatty_0.9.1_windows_standalone_fixed.zip">Download Version 0.9.1 Windows Standalone</a></li></ul></li>
+		<li>Standalone Bundle (Windows executable, includes JRE, no installed Java required):<ul><li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix_windows_standalone_fixed.zip">Download Version 0.9.1 Windows Standalone</a></li></ul></li>
 		<li>Previous versions and source code are on <a href="https://github.com/chatty/chatty/releases">GitHub</a></li>
+		<li><em>Note:</em> The version with <code>emotefix</code> in the filename was released 2018-06-13, but <em>only</em> fixes Emotes and had to be released pretty quickly, so it's not really listed like a regular release.</li>
 	</ul>
 	
 	<p>Extract the .zip into a folder of your choice and start Chatty.jar (or the Chatty.exe in case of the standalone).</p>
