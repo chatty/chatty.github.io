@@ -4,6 +4,7 @@
 <title>Chatty - Twitch Chat Client</title>
 <link rel="icon" href="icons2.ico" type="image/x-icon" />
 <script type="text/javascript" src="humanized_time_span.js"></script>
+<script type="text/javascript" src="slideshow.js"></script>
 <script type="text/javascript">
 <!--
 function loaded() {
@@ -15,9 +16,11 @@ function loaded() {
 		      { ceiling: null,  text: "$years years ago" }
 		]
 	}
-	document.getElementById("ago").innerHTML = "Version 0.9.1 released "+humanized_time_span("2018/04/02", Date(), custom_date_formats)+"";
+	document.getElementById("ago").innerHTML = "Version 0.8.7 released "+humanized_time_span("2017/09/12", Date(), custom_date_formats)+"";
 
-	getDownloads("v0.9.1");
+	getDownloads("v0.9.2");
+
+	slideshow_init("slideshow");
 }
 
 function getDownloads(tag) {
@@ -27,232 +30,203 @@ function getDownloads(tag) {
 		for (var i=0; i < assets.length; i++) {
 			total += assets[i].download_count;
 		}
-		$("#dlCount").text("Total Downloads ("+tag+"): "+total);
+		$("#dlCount").text(" ("+total+" downloads)");
 	});
 }
 -->
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
-<style type="text/css">
-	body {
-		font-size: 1em;
-		font-family: Arial, sans-serif;
-		
-		background-color: #EEE;
-	}
-	#content {
-		margin: auto;
-		width: 1000px;
-		background-color: #FFF;
-		padding: 30px;
-		border: 1px solid #DDD;
-		clear:both;
-	}
-	li {
-		margin: 5px;
-		
-	}
-	h1 {
-		display: inline;
-	}
-	h2 {
-		font-size: 1.1em;
-	}
-	h3 {
-		font-size: 0.9em;
-	}
-
-	#menu {
-		display: inline;
-	}
-	#menu li {
-		display: inline;
-	}
-	#ago {
-		display: inline;
-		font-weight: bold;
-		color: Firebrick;
-		border: 0px solid #333;
-		float: right;
-		
-	}
-	#top {
-		width: 1000px;
-		margin: auto;
-		text-align: right;
-		margin-top: 10px;
-	}
-	#bottom {
-		width: 1000px;
-		margin: auto;
-		text-align: center;
-		margin-top: 10px;
-	}
-	#project {
-		float: right;
-		padding-bottom: 10px;
-	}
-	#twitter {
-		float:right;
-		padding-right: 25px;
-		}
-	#youtube {
-		float:right;
-		padding-right: 25px;
-	}
-
-	dt {
-		margin-top: 8px;
-		margin-bottom: 2px;
-	}
-	.new {
-		font-size: 0.75em;
-		font-style: italic;
-		background-color: #FFFF77;
-	}
-	.announce {
-		border: 1px solid #000;
-		padding: 10px;
-		margin: 10px;
-	}
-	.group {
-		background-color: lightyellow;
-	}
-
-	.small-image {
-		padding: 3px;
-	}
-
-</style>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="slideshow.css" />
 </head>
 <body onload="loaded()">
-	<div id="top">
-		<div id="project"><a href="https://github.com/chatty/chatty">GitHub</a></div>
-		<div id="youtube"><a href="https://youtube.com/chattyclient">YouTube Channel</a></div>
-		<div id="twitter"><a href="https://twitter.com/ChattyClient"><img src="twitter.png" /></a></div>
+
+<div id="social">
+	<a href="https://github.com/chatty/chatty"><span class="social_text">Chatty Project on GitHub</span><img src="img/GitHub.png" /></a>
+				<a href="https://youtube.com/chattyclient"><span class="social_text">Chatty YouTube Channel</span><img src="img/YouTube.png" /></a>
+				<a href="https://twitter.com/ChattyClient"><span class="social_text">Chatty Twitter Account</span><img src="img/Twitter.png" /></a>
+			</div>
+
+	<div id="menu-section">
+		<div id="menu-container">
+			<ul id="menu">
+				<h1><img src="img/app_main_32.png" style="margin-bottom: -5px;padding-right: 7px;" />Chatty</h1>
+				<li><a href="#features">Features</a></li>
+				<li><a href="#download">Download</a></li>
+				<li><a href="#feedback">Contact</a></li>
+				<li><a href="#faq">Help</a></li>
+				<li><a href="#donate">Support Me</a></li>
+			</ul>
+			
+			<p id="ago"></p>
+
+			
+		</div>
 	</div>
+	
 	<div id="content">
-		<h1><img src="icons2.png" style="margin-bottom: -5px;padding-right: 7px;" />Chatty</h1>
-	<ul id="menu">
-		<li><a href="#features">Features</a></li>
-		<li><a href="#requirements">Requirements</a></li>
-		<li><a href="#download">Download & Getting started</a></li>
-		<li><a href="#bugs">Feedback</a></li>
-		<li><a href="#faq">FAQ</a></li>
-	</ul>
+	
+		
 
-	<p id="ago"></p>
 
-	<p style="clear:both;">Chatty is a Twitch chat client for everyone who appreciates a dedicated desktop application (similiar to a classic IRC client), but doesn't want to miss out on Twitch-specific features.</p>
+	<p style="clear:both;">Chatty is a chat software specifically made for Twitch, in the spirit of a classic IRC Client. It runs on Windows and any other OS that supports Java 8 or later.</p>
 
-	<p class="announce">Note that Java 8u161/162 contains a <a href="https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8195830">bug</a> that can lead to unusual high CPU usage (at least on Windows). This seems to be fixed in 8u172 (not 8u171). You can <a href="http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html">download 8u172 here</a>. The current Standalone Version <a href="#download">download</a> still comes bundled with Java 8u151.</p>
+<div id="slideshow">
+	<div class="slideshow_main">
+		<div class="vertical_helper"></div>
+		<img src="img/stuff.png" title="Chatty supports many Twitch-specific features like Emotes, Badges, Namecolors, Stream Information and more" />
+		<a class="slideshow_prev slideshow_hidden"><span>&#10094;</span></a>
+		<a class="slideshow_next slideshow_hidden"><span>&#10095;</span></a>
+	</div>
+	<div class="slideshow_caption slideshow_hidden"></div>
+	<div class="slideshow_images">
+		<a href="img/emotes.png"><img src="img/emotes.png" title="Emote Dialog and Emoji support with TAB-Completion" /></a>
+		<a href="img/userdialog.png"><img src="img/userdialog.png" title="Customizable Buttons in User Dialog (click on name in chat)" /></a>
+		<a href="img/dark.png"><img src="img/dark.png" title="Customizable chat colors" /></a>
+		<a href="img/dark2.png"><img src="img/dark2.png" title="Several Look&Feel that affect the whole program" /></a>
+	</div>
+</div>
 
 	<h2 id="features">Features</h2>
-	<ul>
-		<li>General Features
+	<p>There's more to Chatty than meets the eye, here's just an incomplete list of what it can do.</p>
+<div id="featurelist">
+	<div class="column">
+	<div>
+		<h3>Basic Features</h3>
 		<ul>
-			<li>Nick colors, emoticons, badges, chat info, stream status and viewercount display</li>
-			<li>With <a href="https://frankerfacez.com">FrankerFaceZ</a>-Support (Emoticons &amp; Custom Mod Icons) and <a href="https://betterttv.nightdev.com">BetterTTV</a> emotes (no Personal Emotes though), including unified bot badge</li>
-			<li>Connect with OAuth (your Twitch account password is never entered in the application)</li>
-			<li>Basic Whisper Support (no history)</li>
-			<li>Chatlog, clickable links, TAB Completion (nicks, emotes, commands, custom), input history</li>
-			<li>Message Highlighting and Ignoring</li>
-			<li><a href="https://speedrunslive.com">SpeedRunsLive</a> Race Viewer</li>
+			<li>Join several channels (tabbed), popout individual channels</li>
+			<li>Channel Favorites &amp; History</li>
+			<li>Log chat to file, TAB-Completion, Input History</li>
+			<li>Flexible message Highlighting and Ignoring</li>
+			<li>Customizable chat colors, font, line spacings, alternating backgrounds</li>
+			<li>Choose between several Look&amp;Feel, including Dark Mode</li>
 		</ul>
-		</li>
+	</div>
 
-		<li>Viewer-centered Features
+	<div>
+		<h3>Watching</h3>
 		<ul>
-			<li>Get notified when channels you follow go live and view a list of live streams</li>
-			<li>Follow and unfollow channels</li>
-			<li>View and insert your subemotes, channel-specific emotes, all global emotes and Twitch emotes you favorited</li>
+			<li>Get notified when channels you follow go live</li>
+			<li>Follow and unfollow channels through Chatty</li>
 			<li>Easily open streams in your browser, or run <a href="https://github.com/chrippa/livestreamer">Livestreamer</a> (or the more up-to-date <a href="https://streamlink.github.io/">Streamlink</a>) out of Chatty</li>
-			<li>Join several channels, popout individual channels to view them side-by-side</li>
 		</ul>
-		</li>
+	</div>
 
-		<li>Streamer/Moderation-centered Features
+	<div>
+		<h3>Streaming</h3>
 		<ul>
-			<li>Set your stream title/game/communities (using presets/favorites) and run commercials</li>
-			<li>Add the current stream time to a file via hotkey or mod command to assist in making Stream Highlights</li>
-			<li>View a list with the 100 most recent followers/subscribers of your channel</li>
-			<li>Graph of how your viewercount developed over time this session</li>
-			<li>Click on nick in chat to open customizable moderation dialog, showing the last messages of this user (no banning the wrong user) and basic account info</li>
+			<li>Set your stream title &amp; game (with custom Presets) and run commercials</li>
+			<li>Write current stream uptime to a file, via configurable hotkey or Mod Command, to assist in making Stream Highlights</li>
+			<li>List your 100 most recent followers/subscribers</li>
+			<li>Viewerhistory graph of your current streaming session</li>
+		</ul>
+	</div>
+</div>
+<div class="column">
+
+	<div>
+		<h3>Moderating</h3>
+		<ul>
+			<li>Click on nick to open customizable User Dialog, showing recent messages and basic account info</li>
+			<li>Optional pause-chat-on-hover to avoid misclicks</li>
 			<li>AutoMod support to approve/deny filtered messages</li>
+			<li>Create Custom Commands and customize Context Menus</li>
 		</ul>
-		</li>
-
-		<li>Customization
+	</div>
+	<div>
+		<h3>Emotes &amp; Badges</h3>
 		<ul>
-			<li>Choose your font, customize colors, timestamp, how bans are shown, joins/parts and more</li>
-			<li>Customize usercolors based on user-type (mod, sub, turbo..), specific usernames or colors (replace colors)</li>
-			<li>Customize usericons (badges), replace default ones or add your own for specific users</li>
-			<li>Disable specific emotes, replace emotes with your own locally, change scaling all emotes in chat or the Emote Dialog</li>
-			<li>Create custom commands and add them to context menus or the user dialog</li>
-			<li>Add or remove regular, app-wide or global hotkeys according to your needs</li>
-			<li>Extensive settings dialog to adjust the features to your needs</li>
+			<li><a href="http://frankerfacez.com">FrankerFaceZ</a> Emotes (&amp; Mod Icons), <a href="http://betterttv.nightdev.com">BetterTTV</a> Emotes (no Personal Emotes though)</li>
+			<li>Unified Bot Badge (using multiple sources)</li>
+			<li>Emote Dialog with Favorites, Subemotes, Channel-specific Emotes, and more..</li>
+			<li>Emote TAB-Completion using <kbd>Shift-TAB</kbd> (configurable)</li>
+			<li>Enter Emoji codes like <code>:thinking:</code>, aided by TAB-Completion</li>
+			<li>Locally hide/ignore individual Emotes or Badges or add your own</li>
 		</ul>
-		</li>
+	</div>
+	<div>
+		<h3>Other Features</h3>
+		<ul>
+			<li>Use Chatty in several languages, including English, German, French, Russian, Japanese, and more.. (the help and parts of the GUI aren't translated, translations thanks to contributers)</li>
+			<li><a href="http://speedrunslive.com">SpeedRunsLive</a> Race Viewer</li>
+		</ul>
+	</div>
+</div>
+</div>
 
-	</ul>
 
+	<h2 id="download">Download</h2>
+	<p>Choose one of the following downloads of <strong>Chatty Version 0.9.2</strong><span id="dlCount" style="margin-bottom:7px;"></span>. For older versions or betas go to <a href="https://github.com/chatty/chatty/releases">GitHub</a>.</p>
+	<p>If this is your first time using Chatty check out the <a href="help/help-getting-started.html"><strong>Getting Started Guide</strong></a>.</p>
 
-	<img src="chatty_screenshot.png" style="margin-bottom:5px;" />
+	<h3>Windows</h3>
+	<table class="download-table">
+		<tr>
+			<th>Windows Standalone (No Java installation)</th>
+			<th>JAR-Version (requires <a href="http://www.java.com/download/">Java 8 JRE or later</a> installed)</th>
+		</tr>
+		<tr>
+			<td>
+				<dl>
+					<dt><a href=""><strong>Download Windows Standalone (Installer)</strong></a> <span class="recommended"><sup>Recommended</sup></span></dt>
+					<dd>Install into a folder of your choice and start <code>Chatty.exe</code> (or optionally created shortcuts).</dd>
+				</dl>
+				<dl>
+					<dt><a href="https://github.com/chatty/chatty/releases/download/v0.8.7/Chatty_0.8.7_windows_standalone.zip">Download Windows Standalone (.zip)</a></dt>
+					<dd>Extract the .zip into a folder of your choice and start <code>Chatty.exe</code>.</dd>
+				</dl>
 
-	<h2 id="requirements" style="clear:both;">Requirements</h2>
-	<p>You need to have the Java 8 JRE or later installed (unless you're using the Windows Standalone version). <a href="http://www.java.com/download/">Download Java</a> if you need it.</p>
-	
-	<h2 id="download">Download & Getting started</h2>
-	<ul>
-		<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix.zip"><strong>Download Version 0.9.1</strong></a>
-			(all OS)</li>
-		<li>With global hotkey support (Windows only):<ul>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix_hotkey_32bit.zip">Download Version 0.9.1 (for 32bit-Java)</a>
-				</li>
-			<li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix_hotkey_64bit.zip">Download Version 0.9.1 (for 64bit-Java)</a>
-				</li>
-		</ul></li>
-		<li>Standalone Bundle (Windows executable, includes JRE, no installed Java required):<ul><li><a href="https://github.com/chatty/chatty/releases/download/v0.9.1-emotefix/Chatty_0.9.1-emotefix_windows_standalone_fixed.zip">Download Version 0.9.1 Windows Standalone</a></li></ul></li>
-		<li>Previous versions and source code are on <a href="https://github.com/chatty/chatty/releases">GitHub</a></li>
-		<li><em>Note:</em> The version with <code>emotefix</code> in the filename was released 2018-06-13, but <em>only</em> fixes Emotes and had to be released pretty quickly, so it's not really listed like a regular release.</li>
-	</ul>
-	
-	<p>Extract the .zip into a folder of your choice and start Chatty.jar (or the Chatty.exe in case of the standalone).</p>
-	<p>When you start Chatty the Connect Dialog should come up. Click <code>Create login..</code> and <code>Request login data</code> and follow the instructions to authorize Chatty to connect to chat for you. There is also a short
-	<a href="help/help-getting-started.html"><strong>Getting Started Guide</strong></a>.</p>
-	<p>There is some <a href="help/help.html">help</a> available (you can find the same in the program itself). There is also a <a href="changes.txt">changelog</a>.</p>
-	<p>You can use <a href="Chatty_banner_320px.png">this banner</a> if you like Chatty and want to promote it. Just link to <code>https://chatty.github.io</code> please. :)</p>
+				<p><em>Note:</em> The Windows Standalone contains it's own version of Java, which remains in the Chatty folder and is only used for Chatty itself. Larger download size.</p>
+			</td>
+			<td>
+				<dl>
+					<dt><a href="">Download JAR-Version (Installer)</a></dt>
+					<dd>Can select global hotkey support during installation.</dd>
+					<dd>Install into a folder of your choice and start <code>Chatty.jar</code> (or optionally created shortcuts).</dd>
+				</dl>
+				<dl>
+					<dt><a href="https://github.com/chatty/chatty/releases/download/v0.8.7/Chatty_0.8.7.zip">Download JAR-Version (.zip)</a></dt>
+					<dd>Also available with global hotkey support for <a href="https://github.com/chatty/chatty/releases/download/v0.8.7/Chatty_0.8.7_hotkey_32bit.zip">32bit-Java</a> / <a href="https://github.com/chatty/chatty/releases/download/v0.8.7/Chatty_0.8.7_hotkey_64bit.zip">64bit-Java</a></dd>
+					<dd>Extract the .zip into a folder of your choice and start <code>Chatty.jar</code>.</dd>
+				</dl>
+			</td>
+	</tr>
+	</table>
 
-	<h2 id="bugs">Feedback (Feature requests, Bug reports)</h2>
-	<p>This is my first slightly bigger program, so go easy on me. ;) But if you find any bugs or have any other feedback, feel free to tell me. You can send an <a href="mailto:chattyclient@gmail.com">E-Mail</a>, <a href="https://twitter.com/chattyclient">Tweet</a> or join the <a href="https://discord.gg/WTuqGeJ">Chatty Discord</a>.</p>
-	<p>Please tell me about bugs or else I can't fix them. Please describe exactly <em>what</em> happened and <em>how</em> it happened, since this is absolutely necessary to find out what went wrong (just saying "it doesn't work" or "it won't load" can mean a lot of things). You should also copy the debug.log file in your settings directory (type /openDir to open it, or /dir if that doesn't work) before it is overwritten, in case it could be helpful to find the bug.</p>
-	<h3>Known issues</h3>
-	<ul>
-		<li>Sometimes users aren't correctly sorted in the userlist</li>
-		<li>Windows: Dragging the upper edge to maximize the window vertically doesn't resize the contents of the window.
-		This may be a Java Bug that I cannot fix. Workaround: Try double-clicking the upper edge instead of dragging it.</li>
-	</ul>
+	<h3>Non-Windows</h3>
+	<p>For OS other than Windows (e.g. Linux or MacOS) you will need to download the <a href="https://github.com/chatty/chatty/releases/download/v0.8.7/Chatty_0.8.7.zip">JAR-Version (.zip)</a> and must have Java 8 or later installed on your system. Extract the .zip into a folder of your choice and start <code>Chatty.jar</code>.</p>
 
-	<h2 id="faq">FAQ (Frequently Asked Questions)</h2>
+	<h2 id="feedback">Contact</h2>
+	<p>If you have any feedback or questions feel free to contact me. You can <a href="https://discord.gg/WTuqGeJ">join the Chatty Discord</a> <sup>preferred</sup>, write me an <a href="mailto:chattyclient@gmail.com">E-Mail</a> or use <a href="https://twitter.com/chattyclient">Twitter</a>.</p>
+
+	<p>If you're having an issue with Chatty, make sure to check out the <a href="help/help-troubleshooting.html">Troubleshooting help page</a> and <a href="https://twitter.com/chattyclient">Twitter</a> for news on current problems. If this doesn't solve your issue please read <a href="help/help-troubleshooting.html#report">How to report issues</a> on how to let me know about it.</p>
+
+	<h2 id="faq">Help</h2>
+	<p>The <a href="help/help.html">Chatty Help</a> can be opened in-app via <code>Help - About / Help</code> or by pressing <kbd>F1</kbd>. Here just some common questions and answers:</p>
+
 	<dl>
 		<dt>I have an issue with Chatty, what do I do?</dt>
-		<dd>Read the <a href="help/help-troubleshooting.html">Troubleshooting</a>. If you can't solve the issue with that information <a href="help/help.html#contact">write a message</a>.</dd>
+		<dd>Read the <a href="help/help-troubleshooting.html">Troubleshooting</a>. If you can't solve the issue with that information read <a href="help/help-troubleshooting.html#report">How to report issues</a>.</dd>
+		
+		<dt>I'm not encountering a bug, but I need help using Chatty, what do I do?</dt>
+		<dd><a href="help/help.html">Read the help</a>. If you need help with a certain setting you can open the correct help page directly out of the Settings Dialog. If you can't find the answer there, contact me, see <a href="#feedback">Contact / Feedback</a>.</dd>
 
 		<dt>Does Chatty support other streaming services like YouTube or hitbox.tv?</dt>
 		<dd>Unfortunately not, and it's not currently planned either. Chatty is designed around Twitch and adding support for other services wouldn't be a trivial task.</dd>
 
-		<dt>Why does Chatty report "Stream offline", even though the stream clearly didn't go offline?</dt>
-		<dd>Sometimes the Twitch API will return a stream as offline, even though it isn't. Chatty checks the API twice before reporting a stream as offline, but if both checks return false data, then a false offline report will happen.</dd>
+		<dt>What about Chatty for mobile?</dt>
+		<dd>Developing a mobile version is very different from a Desktop App and is currently not planned.</dd>
 
 		<dt>Why does the userlist not show all users correctly?</dt>
-		<dd>First of all check that <code>Settings - Advanced - Correct Userlist</code> is enabled. Even then, the userlist in Twitch Chat shouldn't be taken too seriously. <a href="http://chatty.github.io/help/help.html#userlist">Read more about the userlist..</a></dd>
-
-		<dt>Is there any help/documentation?</dt>
-		<dd><a href="help/help.html">Yes.</a></dd>
+		<dd>First of all check that <code>Settings - Advanced - Correct Userlist</code> is enabled (it should be by default). Even then, the userlist in Twitch Chat shouldn't be taken too seriously. <a href="http://chatty.github.io/help/help.html#userlist">Read more about the userlist..</a></dd>
 	</dl>
-</div>
-<div id="bottom">
-	<div id="dlCount" style="margin-bottom:7px;"></div>
+
+	<h2 id="donate">Support Me</h2>
+	<p>Chatty is entirely free and Open Source software. No paywalled features or advertisements.</p><p>If you like Chatty, there are several ways you can show your appreciation, like simply sending me a nice message, recommending Chatty to others or showing your involvement by submitting bug reports and feature requests.</p>
+	<p>You can also say thanks by <a href="https://www.patreon.com/tduva">supporting me on Patreon</a>, which is highly appreciated.</p>
+
+	<p><a href="https://www.patreon.com/tduva"><img src="img/Patreon_Button.png" /></a></p>
 </div>
 </body>
 </html>
+

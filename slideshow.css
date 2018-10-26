@@ -1,0 +1,103 @@
+.slideshow_main {
+	background: #EEE;
+	border-radius: 6px;
+	height: 600px;
+	position:relative;
+	white-space: nowrap;
+	text-align: center;
+	padding: 8px 0;
+}
+
+.slideshow_main img {
+	display: inline-block;
+	max-height: 600px;
+	max-width: 1000px;
+	margin: auto;
+	vertical-align: middle;
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
+}
+
+#slideshow .slideshow_images img {
+	height: 100px;
+	margin: 0 4px;
+}
+
+.slideshow_images {
+	text-align:center;
+	margin-top: 10px;
+}
+
+.slideshow_active_image {
+	padding-bottom: 4px;
+	border-bottom: 3px solid #333;
+}
+
+.slideshow_caption {
+	color: white;
+	width: 100%;
+	text-align: center;
+	background: black;
+	padding: 8px 0;
+	opacity: 0.7;
+}
+
+.slideshow_next, .slideshow_prev {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	vertical-align: middle;
+	color: white;
+	font-weight: bold;
+	height: 100%;
+	width: 10%;
+}
+
+.slideshow_next span, .slideshow_prev span {
+	margin-top: -20px;
+	position: absolute;
+	top: 50%;
+	transition: 0.6s ease;
+	padding: 12px;
+	background-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+			  supported by Chrome and Opera */
+}
+
+.slideshow_next:hover span, .slideshow_prev:hover span {
+	background-color: rgba(0,0,0,0.8);
+}
+
+.slideshow_next {
+	right: 5px;
+}
+
+.slideshow_next span {
+	right: 0;
+	border-radius: 10px;
+}
+
+.slideshow_prev {
+	left: 0;
+}
+
+.slideshow_prev span {
+	left: 5px;
+	border-radius: 10px;
+}
+
+.slideshow_hidden {
+	display: none;
+}
+
+.vertical_helper {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}

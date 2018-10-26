@@ -1,4 +1,14 @@
-﻿
+﻿###############################################################
+
+This is no longer being updated.
+
+Website: https://chatty.github.io
+Changelog: https://chatty.github.io/help/help-releases.html
+Releases: https://github.com/chatty/chatty/releases
+
+###############################################################
+
+
 0.9.1 (2018-04-02) Latest Version
 
 ### Main Features
