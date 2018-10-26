@@ -1,1 +1,1 @@
-0.9.2 Update
+0.9.2 New update dialog, improved chat color settings and performance improvements

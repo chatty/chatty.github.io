@@ -17,6 +17,7 @@
     <h1><a name="top">Release Information</a></h1>
     
     <p>
+        <a href="#0.9.2">0.9.2</a> |
         <a href="#0.9.1">0.9.1</a> |
         <a href="#0.9">0.9</a> |
         <a href="#0.8.7">0.8.7</a> |
@@ -51,7 +52,65 @@
     full list of changes.</p>
     
     <h2>
-        <a name="0.9.1">Version 0.9.1</a> <a name="latest">(This one!)</a> (2018-04-02)
+        <a name="0.9.2">Version 0.9.2</a> <a name="latest">(This one!)</a> (2018-10-26)
+        <a href="#top" class="top">[back to top]</a>
+    </h2>
+    <p>Highlights of this update include the changed Color Settings &amp; Chat
+        Layout (with various options for message background colors and more),
+        performance improvements (especially for animated GIFs) and the new
+        Update Dialog.</p>
+    
+    <pre>
+### Chat Layout/Colors
+- Improved Badge/Emote positioning and chat margins
+- Added support for alternating message backgrounds and message separators
+- Updated Chat Color settings, added more presets
+
+### More Chat
+- Improved chat scrolling performance
+- Improved Animated GIF performance
+- Emphasize Highlight/Ignore matches
+- Added tooltips to Emotes/Badges in chat
+- Added support for FrankerFaceZ Supporter badge
+- Improved output of Usernotice messages (Emote support for message part, output
+  unknown message types better)
+- Combine gifted subs messages to improve performance
+- Added chat filter to filter out parts of messages (as opposed to ignoring the
+  while messages)
+
+### Installing/Updating
+- Added new Update Dialog, easier updating process on Windows
+- Added option to include Betas in update notifications
+- Added Windows installers for more comfortable installation
+
+### Other
+- Removed Communities (Twitch hasn't released an API for Tags yet)
+- Added User Dialog pinning (if pinned the dialog stays open on the same user,
+  clicking on another user opens a new one)
+- Changed default User Dialog opening location
+- Added position value for Custom Usericons
+- Remember scroll position when navigating through help
+- Changed default window position and how dialogs move with main window
+- Added some more debug and system commands
+- Updated translations
+- Updated help
+
+### Bugfixes
+- Fixed scrolling chat with PageUp/Down while focus is on inputbox
+- Fixed exception occuring on some systems
+- Fixed Stream Chat scrolling
+- Fixed Stream Chat message timeout when timestamp is disabled
+- Fixed Desktop Notifications memory leak
+- Fixed Animated GIFs using resources even when not visible
+- Fixed Emoji TAB Completion eating following word sometimes
+- Fixed Twitch Emotes not appearing sometimes (same as Emotefix version)
+- Fixed error occuring due to some rare incompatible images
+- Fixed Highlight configuration (e.g. no notification) not carrying over to
+  follow-up Highlights
+    </pre>
+    
+    <h2>
+        <a name="0.9.1">Version 0.9.1</a> (2018-04-02)
         <a href="#top" class="top">[back to top]</a>
     </h2>
     <p>This version has a lot of under-the-hood changes to allow for the new
@@ -79,6 +138,8 @@
   - Changed `w:`/`wcs:` to not take Regex anymore
   - Added `reg:` prefix and variations for using Regex with more consistent and
     predictable naming scheme (`re:` and `re*:` still work as before)
+  - Invalid regex now won't match any text, instead of just disregarding the
+    pattern and matching all text
 
 ### Settings
 - Setting files `favoritesAndHistory` and `statusPresets` now both merged into
@@ -96,6 +157,7 @@
 
 ### Other Changes
 - Changed chat inputbox to automatically grow when entering long lines
+  (you need to hold Ctrl to navigate input history, changeable in Chat Settings)
 - Added /favorite and /unfavorite commands (Channel Favorites)
 - Added /joinhosted command to join currently hosted channel
 - Changed /appinfo command to contain more information

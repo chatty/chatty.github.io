@@ -10,12 +10,8 @@ function slideshow_init(slideshowId) {
 	let newElement = '<a href="'+mainImageElement.src+'"><img src="'+mainImageElement.src+'" title="'+mainImageElement.title+'" /></a>';
 	images[1].parentElement.insertAdjacentHTML('beforebegin', newElement);
 
-	console.log(mainImageElement.src);
-
 	for (let i=1;i<images.length;i++) {
-		console.log(images[i].src);
 		images[i].parentElement.onclick = function(evt) {
-			console.log(images[i].src);
 			evt.preventDefault();
 			slideshow_show(slideshowId, images[i]);
 		};
@@ -28,9 +24,7 @@ function slideshow_init(slideshowId) {
 	nextButton.onclick = evt => slideshow_move(slideshowId, +1);
 
 	let hiddenElements = element.getElementsByClassName("slideshow_hidden");
-	console.log(hiddenElements);
 	for (let i = hiddenElements.length - 1; i >= 0; i--) {
-		console.log(i+" "+hiddenElements[i]);
 		hiddenElements[i].classList.remove("slideshow_hidden");
 	}
 
@@ -49,7 +43,6 @@ function slideshow_move(slideshowId, step) {
 				next -= images.length - 1;
 			}
 
-			console.log(i + step+" "+next);
 			slideshow_show(slideshowId, images[next]);
 			return;
 		}
@@ -60,7 +53,6 @@ function slideshow_show(slideshowId, imageElement) {
 	let element = document.getElementById(slideshowId);
 	let active = element.getElementsByClassName("slideshow_active_image");
 	if (active[0] === imageElement) {
-		console.log("already selected");
 		return;
 	}
 	let images = element.getElementsByTagName("img");
