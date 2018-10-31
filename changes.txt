@@ -1,6 +1,7 @@
 ﻿###############################################################
 
-This is no longer being updated.
+This changelog is no longer being updated. Please check the
+changelog in the help or GitHub for changes in future versions.
 
 Website: https://chatty.github.io
 Changelog: https://chatty.github.io/help/help-releases.html
@@ -8,8 +9,12 @@ Releases: https://github.com/chatty/chatty/releases
 
 ###############################################################
 
+0.9.2 (2018-10-26)
 
-0.9.1 (2018-04-02) Latest Version
+https://chatty.github.io/help/help-releases.html#0.9.2
+
+
+0.9.1 (2018-04-02)
 
 ### Main Features
 - Added basic support for Rooms (join via Channels-menu and Favorites/History)
