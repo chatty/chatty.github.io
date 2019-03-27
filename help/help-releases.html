@@ -17,6 +17,7 @@
     <h1><a name="top">Release Information</a></h1>
     
     <p>
+        <a href="#0.9.6">0.9.6</a> |
         <a href="#0.9.5">0.9.5</a> |
         <a href="#0.9.4">0.9.4</a> |
         <a href="#0.9.3">0.9.3</a> |
@@ -55,7 +56,55 @@
     full list of changes.</p>
     
     <h2>
-        <a name="0.9.5">Version 0.9.5</a> <a name="latest">(This one!)</a> (2019-02-14)
+        <a name="0.9.6">Version 0.9.6</a> <a name="latest">(This one!)</a> (2019-03-27)
+        <a href="#top" class="top">[back to top]</a>
+    </h2>
+    <p>The new clickable mentions feature allows you to open the User Dialog by
+        clicking not only on the usernames in front of the messages, but also on
+        names that are mentioned within the messages themselves (as long as the
+        mentioned user has recently chatted). In addition, hovering your mouse
+        over a mention marks the username in chat temporarily.</p>
+    
+    <pre>
+### Chat
+- Added clickable mentions for users who have recently chatted (configurable in
+  "Names" settings with different styling options)
+- Hovering mention in chat with the mouse now temporarily marks that user
+  (configurable in "Names" settings with different options on what triggers it)
+- Mark Highlight/Ignore matches in more places, such as links or mentions
+  (toggle in "Highlight" settings)
+- Improved support for some new Twitch Chat messages
+- Switched GIF decoder (which should fix some previously broken Animated GIFs)
+
+### Custom Commands / Customization
+- Added Custom Command functions `$datetime()` and `$randnum()`
+- Added "vip" to `$mod` Custom Usericon position
+- Added general "Info Message" Notification type
+- Added hotkey actions for 120s and 180s commericals
+- Added hotkey action to toggle Channel Favorites dialog
+
+### Other
+- Changed image cache structure to improve startup time
+- Made some timing methods independent of system clock
+- Added default fallback font (Unifont) to Windows Standalone
+- Added commands for fallback font directory
+- Increased/added character limit for some input fields
+- Livestreamer Dialog: Don't reset size/position as often
+- Updated localization strings
+- Updated help
+
+### Bugfixes
+- Fixed bug that would cause the wrong element to be clicked sometimes
+- Fixed error when trying to insert Emote from Emote Dialog into full inputbox
+- Fixed loading of English (UK) strings
+- Fixed User Dialog opening position being wrong with some taskbar locations
+- Fixed custom emotes not showing in Emote Dialog favorites tab
+- Fixed marked word (rectangle) style on some backgrounds
+- Fixed some Emoji having an unrendered character behind them
+    </pre>
+    
+    <h2>
+        <a name="0.9.5">Version 0.9.5</a> (2019-02-14)
         <a href="#top" class="top">[back to top]</a>
     </h2>
     <p>Twitch released the Stream Tags API for third-party developers, so Chatty
