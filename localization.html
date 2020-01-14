@@ -97,24 +97,22 @@
 </head>
 </head>
 <body>
-	<div id="top">
-		<div id="project"><a href="https://github.com/chatty/chatty">GitHub</a></div>
-		<div id="youtube"><a href="https://youtube.com/chattyclient">YouTube Channel</a></div>
-		<div id="twitter"><a href="https://twitter.com/ChattyClient"><img src="twitter.png" /></a></div>
-	</div>
 	<div id="content">
-		<h1><img src="icons2.png" style="margin-bottom: -5px;padding-right: 7px;" />Translate Chatty <span style="font-size:0.7em"><a href="index.html">to main page</a></span></h1>
+		<h1><img src="img/app_main_32.png" style="margin-bottom: -5px;padding-right: 7px;" />Translate Chatty <span style="font-size:0.7em"><a href="index.html">to main page</a></span></h1>
 	
 	<p>Parts of Chatty can be translated into different languages, and you can help!</p>
 	
 	<h2>Getting started</h2>
-	<p><a href="https://poeditor.com/join/project/1Lld6f5Swi">Join the localization project</a> and tell me the account name you used so I can approve it. The best way is via <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a>, but you can also <a href="mailto:chattyclient@gmail.com">send a mail</a>. If the language you want to work on hasn't been added yet, tell me.</p>
+	<ol>
+		<li><a href="https://poeditor.com/join/project/1Lld6f5Swi">Join the localization project</a></li>
+		<li>Tell me the account name you used so I can approve it. The best way is via <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a>, but you can also <a href="mailto:chattyclient@gmail.com">send a mail</a>.</li>
+	</ol>
+	<p>Note: If the language you want to work on hasn't been added yet, tell me, then proceed with step 1 once it has been added.</p>
 
-	<p>Remember that you can also join languages that have already been completely translated, since future Chatty updates will likely also require more or updated translations. This is especially true now, since still not all GUI parts have been added for localization yet.</p>
-
-	<p>Note that not everything can be translated yet, and the help pages probably won't be at all, since it would be too much work to keep updated. My goal for now is to make the basic functions of the program more comfortable to use for people who don't speak English as their first language.</p>
+	<p>Note that not everything can be translated yet, and the help pages probably won't be at all, since it would be too much work to keep updated.</p>
 
 	<h2>Translation Guidelines</h2>
+	<p><a href=" https://youtu.be/vbt_42IpH-k">This video</a> explains some of these things as well.</p>
 	<ul>
 		<li>You don't have to translate everything. If there is no good translation for something, just keep it in English (this especially applies if the English term is commonly used in that language and better fitting).</li>
 		<li>Strings that aren't translated will automatically fallback to English, so please don't just copy the English strings to fill translations, unless the English string <em>is</em> the translation (see previous point).</li>
@@ -131,7 +129,7 @@
 		<li>Another (probably better) place to discuss things is <a href="https://discord.gg/WTuqGeJ">#localization on Discord</a>.</li>
 	</ul>
 
-	<h2>Replacements</h2>
+	<h2>Substitutions</h2>
 	<p>Something like <code>{0}</code> in a string means it is replaced with the number <code>0</code> parameter. It should say in a comment what it gets replaced with (although most of the time it's clear from context already).</p>
 	
 	<dl>
@@ -140,7 +138,7 @@
 	</dl>
 
 
-	<p>Replacements use the <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a> class. Mostly it's enough to just stick close to the template.</p>
+	<p>Substitutions use the <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a> class. Mostly it's enough to just stick close to the template.</p>
 	
 	<p><em>Important:</em> Any single quote (<code>'</code>) in a string that contains a replacement needs to be escaped with a single quote (e.g. <code>Can''t join ''{0}''</code>).</p>
 
