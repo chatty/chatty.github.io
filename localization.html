@@ -140,7 +140,7 @@
 
 	<p>Substitutions use the <a href="https://docs.oracle.com/javase/8/docs/api/java/text/MessageFormat.html">MessageFormat</a> class. Mostly it's enough to just stick close to the template.</p>
 	
-	<p><em>Important:</em> Any single quote (<code>'</code>) in a string that contains a replacement needs to be escaped with a single quote (e.g. <code>Can''t join ''{0}''</code>).</p>
+	<p><em>Important:</em> <del>Any single quote (<code>'</code>) in a string that contains a replacement needs to be escaped with a single quote (e.g. <code>Can''t join ''{0}''</code>).</del> <ins>This does not seem to be the case anymore. Quotes are automatically escaped on export by POEditor, so they should not be escaped anymore.</ins></p>
 
 	<h3>Choice</h3>
 	<p>The more advanced <code>{0,choice,&lt;choices&gt;}</code> pattern is used to decide between two strings depending on the value in the number <code>0</code> parameter. This is commonly used to decide between a singular and plural form.</p>
