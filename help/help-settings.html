@@ -55,12 +55,8 @@
         <dd>Connect immediately and join the channels specified in the field
             below. You can define several channels by seperating them with a
             comma.</dd>
-        <dd>Can include Addressbook categories, e.g. <code>[vip]</code> to join
-            all entries associated with the "vip" category. Can restrict to just
-            channel entries <code>[vip #]</code> (would only get Addressbook
-            entries such as "#joshimuz") or non-channel entries <code>[vip !#]</code>
-            (entries such as "joshimuz"). This can also be used in some other
-            places for joining channels.</dd>
+        <dd>For more information on how channels can be specified, such as joining
+            channels by Addressbook category, see <a href="help.html#join">Joining Channels</a>.</dd>
         
         <dt>Connect and join previously open channels</dt>
         <dd>Connect immediately and join the channels you had open when you
@@ -259,7 +255,8 @@
                     the category <code>vip</code>)</li>
                 <li>User-related <a href="#Highlight_Meta_Matching">Highlight Matching</a>
                     prefixes (e.g. <code>$m:status:r</code>, where <code>status:r</code>
-                    is the Highlight Matching prefix)</li>
+                    is the Highlight Matching prefix, or <code>$m:config:t|first-msg=1</code>
+                    to match message tags, some of which are also user-related)</li>
                 <li>Most other <a href="#Usercolors">Usercolors</a> restrictions</li>
             </ul>
         </dd>
@@ -972,7 +969,11 @@
             <ul>
                 <li><code>config:firstmsg</code> - Restrict matching to the
                     first message of this user in this channel during the
-                    current session (first message in User Dialog)</li>
+                    current session (first message in User Dialog).<br />
+                    To match on the first message of this user in the channel
+                    overall, you can match on the message tags that Twitch
+                    sends: <code>config:t|first-msg=1</code> (as long as Twitch
+                    doesn't change it)</li>
                 <li><code>config:repeatedmsg</code> - Matches if a user repeats
                     the same message (this requires the <a href="#RepeatMsg">Repetition Detection</a> in
                     the Moderation settings to be enabled). Can optionally
@@ -996,6 +997,13 @@
                     regex matching on the value.</li>
                 <li><code>config:url</code> - Message must contain a URL (same
                     as what is made clickable)</li>
+                <li><code>config:live</code> or <code>config:live|title/game</code> -
+                    Stream must be live, title and game are interpreted as regex
+                    (like the <code>reg:</code> prefix) and match on the stream's
+                    title or game, use <code>!live</code> to negate match<br />
+                    Example: <code>config:live|/"Grand Theft Auto"</code> would match
+                    in any channel with a live stream where <code>Grand Theft Auto</code>
+                    occurs in the currently streamed game/category</li>
             </ul>
         </li>
         <li><a name="Highlight_Prefix-blacklist"><code>blacklist:</code></a> to specify one or more text patterns
@@ -1655,8 +1663,9 @@
     
     <h3>Event settings (Notification/Sound)</h3>
     <dl class="dl-settings">
-        <dt>Channel</dt>
-        <dd>Name of the channel this item should be restricted to.</dd>
+        <dt>Channels</dt>
+        <dd>Name of the channel or channels (comma-separated) this item should be
+            restricted to.</dd>
         
         <dt>Match</dt>
         <dd>Match the given text or message, in the same format as for
@@ -1788,11 +1797,18 @@
         <a name="Other">Other</a>
         <a href="#top" class="top">[back to menu]</a>
     </h2>
+    <h3>Graphic Settings</h3>
+    <p>More information about <a href="help-troubleshooting.html#visual-glitches">Graphics Glitches</a>
+        and <a href="help-troubleshooting.html#scaling">UI Scaling</a>.</p>
+    
+    <h3>Updates</h3>
+    <dl class="dl-settings">
+        <dt>Automatically check for new version</dt>
+        <dd>Checks for new versions every few days and outputs a message about it.</dd>
+    </dl>
+    
     <h3>Other</h3>
     <dl class="dl-settings">
-        <dt>Inform me about new versions</dt>
-        <dd>Checks for new versions every few days and outputs a message about it.</dd>
-        
         <dt>Auto-Unhost when your stream goes live</dt>
         <dd>Automatically
             sends the <code>/unhost</code> command to your channel if you started
