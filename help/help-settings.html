@@ -446,13 +446,11 @@
         messages, since Twitch handles emotes parsing serverside for those.</p>
     
     <p>With the removal of the old Twitch v5 API in February 2022 this problem
-        can affect even more Emotes than before. The Emote Dialog provides the
-        "Highlight endangered emotes" function until the API is removed (see
-        below).</p>
+        can affect even more Emotes than before.</p>
     
     <p>Recommendations:</p>
     <ul>
-        <li>Only add Twitch Emotes that you have permament access to.</li>
+        <li>Only add Twitch Emotes that you have permanent access to.</li>
         <li>Only add Emotes that would otherwise not show up in Chatty in your
             sent messages or Emote Dialog.</li>
         <li><strong>Do not add</strong> Global, Subscriber and Follower Emotes
@@ -462,40 +460,19 @@
             Settings Dialog).</li>
     </ul>
     
-    <p>You can add/remove Local Emotes in different ways:</p>
-    <ul>
-        <li>The <strong>Emote Context Menu</strong> (e.g. right-click on an emote in chat)
-            using the <strong>"Add local emote"</strong> option.
-            For example if you have a favorite emote that you have permanent
-            access to but that isn't available through the API (meaning it
-            doesn't show up in the Emote Dialog or when you send a message), you
-            can send a message with it through Webchat to the same channel you
-            have joined in Chatty and then use the Context Menu option on it.
-        </li>
-        <li>In the <strong>Settings Dialog</strong> in the Emoticon settings you
-            can view and edit the list of Local Emotes.</li>
-        <li>The <strong>Emote Dialog "My Emotes" tab</strong> can highlight
-            Emotes that are only available through the old API, as long as the
-            old API hasn't been removed. Enable the <strong>"Highlight endangered emotes"</strong>
-            checkbox to see which Emotes might make sense to add.
-            <ul>
-                <li>Magenta border: Only available through old API</li>
-                <li>Gray border: Only available through old API, but already
-                    added to Local Emotes</li>
-            </ul>
-            To add Local Emotes you can use:
-            <ul>
-                <li>The Emote Context Menu to add a single Emote</li>
-                <li>The Section Title Context Menu to add all Emotes of a section</li>
-            </ul>
-            <em>Note:</em> You must have a channel joined and all API requests
-            must have finished for this to show up correctly. For example
-            Subscriber Emotes should not be highlighted. If the old API has
-            already been removed, adding Local Emotes through the Emote Dialog
-            doesn't really make sense, since all shown Emotes would be available
-            through the new API anyway.
-        </li>
-    </ul>
+    <p>Add Local Emotes through the <strong>Emote Context Menu</strong> (e.g.
+        right-click on an emote in chat) using the <strong>"Add local emote"</strong>
+        option. For example if you have a favorite emote that you have permanent
+        access to but that isn't available through the API (meaning it
+        doesn't show up in the Emote Dialog or when you send a message), you
+        can send a message with it through Webchat to the same channel you
+        have joined in Chatty and then use the Context Menu option on it.
+    </p>
+    <p>In the <strong>Settings Dialog</strong> in the Emoticon settings you can
+        view and edit the list of Local Emotes.</p>
+    
+    <p>The help on the Emote Dialog's "Highlight endangered emotes" function has
+        been removed since the old API that it relied on has been turned off.</p>
 
     <h2>
         <a name="Fonts">Fonts</a>
@@ -926,15 +903,24 @@
                 When editing a Highlight/Ignore entry you will be warned when a
                 pattern could be problematic.
         </li>
+        <li>You can prefix all of the above with "msg", such as <code>msgtext:</code>
+            in order to only match on user-generated messages. For regular chat
+            messages this makes no difference, however for Subscriptions,
+            Announcements, Point Redemptions or AutoMod messages it will only
+            match the attached message rather than the full info message. If
+            there is no attached message it will not match.<br />
+            Example: <code>config:any msgtext:bad word</code> will match all
+            messages (regular and info messages) that have an attached user
+            message containing "bad word".</li>
     </ul>
     
-    <p>All Text Matching Prefixes can be inverted (matches when it doesn't find
+    <p>All Text Matching Prefixes can be <strong>inverted</strong> (matches when it doesn't find
         the search text) by prepending an exclamation mark, for example: <code>!start:!bet all</code>.
         See the <a href="#Highlight_Prefix-blacklist"><code>blacklist:</code> Prefix description</a>
         for further information on the differences between blacklisting and
         negated matches.</p>
     
-    <p>Additionally, several Text Matching Prefixes can be specified by prepending
+    <p>Additionally, <strong>several Text Matching Prefixes</strong> can be specified by prepending
         a plus sign. In this case the value cannot contain spaces or must be
         quoted. Example: <code>+!start:"!bet all" regi:Regular search text</code></p>
     
@@ -1037,6 +1023,9 @@
                 <li><code>config:firstmsg</code> - Restrict matching to the
                     first message of this user in this channel during the
                     current session (first message in User Dialog).<br />
+                    The messages can be reset without restarting Chatty via the
+                    <a href="help.html#commands-clearUserMessages"><code>/clearUserMessages</code></a>
+                    command, so that the prefix triggers again.<br />
                     To match on the first message of this user in the channel
                     overall, you can match on the message tags that Twitch
                     sends: <code>config:t|first-msg=1</code> (as long as Twitch
@@ -1063,7 +1052,9 @@
                     has to match), prefix value with <code>reg:</code> to use
                     regex matching on the value.</li>
                 <li><code>config:url</code> - Message must contain a URL (same
-                    as what is made clickable)</li>
+                    as what is made clickable), or <code>config:msgurl</code> to
+                    only match in a user message (see <a href="#Highlight_Matching">Text Matching Prefixes</a>
+                    for explanation).</li>
                 <li><code>config:live</code> or <code>config:live|title/game</code> -
                     Stream must be live, title and game are interpreted as regex
                     (like the <code>reg:</code> prefix) and match on the stream's

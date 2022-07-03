@@ -17,6 +17,7 @@
     <h1><a name="top">Release Information</a></h1>
     
     <p>
+        <a href="#0.19">0.19</a> |
         <a href="#0.18">0.18</a> |
         <a href="#0.17">0.17</a> |
         <a href="#0.16">0.16</a> |
@@ -67,7 +68,46 @@
     full list of changes.</p>
     
     <h2>
-        <a name="0.18">Version 0.18</a> <a name="latest">(This one!)</a> (2022-04-09)
+        <a name="0.19">Version 0.19</a> <a name="latest">(This one!)</a> (2022-07-03)
+        <a href="#top" class="top">[back to top]</a>
+    </h2>
+    <pre>
+### Commands
+- Added `/timer` for delaying commands
+- Added `/exportText` to write text to a file in the "exported" folder
+- Added `/clearUserMessages` to clear User Dialog messages (or just the count
+  for `config:firstmsg`) for all users
+- Added `/triggerNotification` to trigger a special "Triggered by command"
+  notification (has to be added as an event in the Notification Settings)
+- Added Custom Command function `$round()`, added `%` operator to `$calc()`
+- Added `/j` as default Custom Command
+
+### Settings
+- Added `msg` variant to all text matching prefixes
+- Added setting to return to previously active tab when closing tab
+- Added settings for pausing animated emotes
+- Added Live Streams favorite games to Settings Dialog
+- Added setting to change locale
+- Added commands `/setSwitch` and `/setList`
+
+### Other
+- Restore active tabs when loading layout
+- Improved showing Highlight matches for some message types
+- Changed formatting of user name for announcements
+- Updated Twemoji image set to v14
+- Some memory usage improvements
+- Improved debug output
+- Updated help
+
+### Bugfixes
+- Fixed bug where animated emotes with transparency aren't displayed correctly
+  when the first frame doesn't have transparency
+- Fixed Tab Completion popup being stuck when closing tab via hotkey
+- Fixed some locale dependent issues
+    </pre>
+    
+    <h2>
+        <a name="0.18">Version 0.18</a> (2022-04-09)
         <a href="#top" class="top">[back to top]</a>
     </h2>
     <pre>

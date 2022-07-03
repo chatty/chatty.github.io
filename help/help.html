@@ -5,7 +5,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-    <h1><a name="top">Chatty (Version: 0.18)</a></h1>
+    <h1><a name="top">Chatty (Version: 0.19)</a></h1>
     <table>
         <tr>
             <td valign="top">
@@ -275,16 +275,13 @@
                 <code>/color</code>
                 just like in normal Twitch Chat</li>
         <li><code>/join &lt;channel&gt;</code> - Joins the given channels, see <a href="#join">Joining Channels</a> for more information</li>
-        <li><code>/part</code> or <code>/close</code> - Leaves the current channel</li>
         <li><code>/joinhosted</code> - Join currently hosted channel (if any)</li>
-        <li><code>/favorite [channel]</code> and <code>/unfavorite [channel]</code> - Add/remove a channel to/from the Channel Favorites</li>
+        <li><code>/part</code> or <code>/close</code> - Leaves the current channel</li>
+        <li><code>/rejoin</code> - Rejoins the channel (without clearing users or chat)</li>
         <li><code>/reconnect</code> - Disconnects and reconnects</li>
         <li><code>/fixMods</code> - Temporarily fixes the list of mods (like
                 <code>/mods</code> but without showing the list of mods in chat)</li>
-        <li><code>/ignore &lt;user&gt;</code>, <code>/unignore &lt;user&gt;</code> - To ignore/unignore user (chat and whisper)</li>
-        <li><code>/ignoreChat</code>, <code>/unignoreChat</code>, <code>/ignoreWhisper</code>, <code>/unignoreWhisper</code>
-                - To ignore/unignore user only from chat/whispering you</li>
-        <li><code>/clearchat</code> - Clears the current chat window of all text</li>
+        <li><code>/clearchat</code> - Clears the current chat window of all text (only locally)</li>
         <li><code>/connection</code> - Show info about the current connection</li>
     </ul>
     
@@ -295,9 +292,15 @@
     <h3><a name="commands-twitch">Other Twitch Commands</a></h3>
     <ul>
         <li><a href="#streamhighlights">Stream Highlights / Markers commands</a> (including <code>/marker</code>)</li>
-        <li><code>/follow [user]</code>, <code>/unfollow [user]</code> - Follow
-            or unfollow the given user, or the current channel if no user is given
-            <em>(Following/unfollowing has been removed from the Twitch API)</em></li>
+    </ul>
+    
+    <h3><a name="special-commands">Special Commands</a></h3>
+    <p>These commands change how other commands are run.</p>
+    <ul>
+        <li><a href="#commands-chain"><code>/chain</code></a> to run several commands at once</li>
+        <li><a href="#commands-foreach"><code>/foreach</code></a> to run a command for each value in a list</li>
+        <li><a href="#commands-runin"><code>/runin</code></a> to run a command in a specific channel context</li>
+        <li><a href="#commands-timer"><code>/timer</code></a> to run a command on a delay</li>
     </ul>
     
     <h3><a name="commands-settings">Settings / Customization commands:</a></h3>
@@ -307,6 +310,15 @@
         for the given name</li>
         <li><a href="#addressbook">Addressbook commands</a></li>
         <li><a href="#streamchat">Stream Chat commands</a></li>
+        <li><code>/favorite [channel]</code>, <code>/unfavorite [channel]</code>
+            - Edit the Channel Favorites list (defaults to current channel if
+            none is given)</li>
+        <li><code>/ignore &lt;user&gt;</code>, <code>/unignore &lt;user&gt;</code>
+            - Add/remove a user from "Settings - Ignore - Ignored Users" (chat
+            and whisper, only takes effect locally in Chatty),
+            <code>/ignoreChat</code>, <code>/unignoreChat</code>,
+            <code>/ignoreWhisper</code>, <code>/unignoreWhisper</code> to do the
+            same, except it only affects one type of message</li>
     </ul>
     
     <h3><a name="commands-gui">GUI commands:</a></h3>
@@ -330,6 +342,12 @@
         <li><code>/openFile &lt;path&gt;</code> - Opens the given path in the default application</li>
         <li><code>/openFilePrompt &lt;path&gt;</code> - Opens the given path in the default application (with prompt asking for confirmation)</li>
         <li><code>/setSize &lt;width&gt; &lt;height&gt;</code> - Sets the main window size</li>
+        <li><code>/triggerNotification [-hmt] &lt;text&gt;</code> - Triggers a
+            command notification event that was added in the Notification Settings
+            (if none is added, this won't do anything), <code>-h</code> to hide
+            notification popup, <code>-m</code> to don't play sound, <code>-t</code>
+            to specify the title of the notification popup (e.g.
+            <code>/triggerNotification -mt "This is the title" This is the text</code>)</li>
         <li><a href="#layouts-save-load">Save and load layouts</a></li>
     </ul>
     
@@ -345,6 +363,7 @@
         <li><code>/showJavaDir</code> / <code>/openJavaDir</code> - Show/open the directory of the JRE used by Chatty</li>
         <li><code>/showFallbackFontDir</code> / <code>/openFallbackFontDir</code> - Show/open the directory where Java looks for <a href="help-troubleshooting.html#font">fallback fonts</a></li>
         <li><code>/showTempDir</code> / <code>/openTempDir</code> - Show/open the system's temp directory</li>
+        <li><code>/exportText [-sna] &lt;fileName&gt; &lt;text&gt;</code> - Write the text to a file in the "exported" directory in the settings directory (UTF-8), <code>-s</code> for no info message when writing successfully, <code>-n</code> for replacing "\n" in the text with a newline, <code>-a</code> for appending to the file (Example: <code>/exportText -n abc.txt one\ntwo</code> - Writes "one" and "two" as separate lines)</li>
         <li><code>/refresh &lt;emoticons/badges/ffz/ffzglobal/bttvemotes&gt;</code>
             - Refresh the given data from it's respective API:
             <ul>
@@ -358,10 +377,12 @@
                 if new emotes have been added (it's basicially like pressing
                 reload in your browser, but only for some select stuff per command).</em></li>
         <li><code>/releaseinfo</code> - Opens the help with the release information</li>
-        <li><code>/myemotes</code> - Show your subscriber emote codes (only works if you
-            have joined any channel before, this is only a quick info, better emote
-            integration maybe to be implemented later)</li>
-        <li><code>/ffz</code>, <code>/ffzGlobal</code> - Shows the FFZ channel emote codes for the current channel/global FFZ emotes</li>
+        <li><code>/ffz</code> - Shows the FFZ channel emote codes for the current channel</li>
+        <li><a name="commands-clearUserMessages"><code>/clearUserMessages [-an]</code></a>
+            - Clears the message history in the User Dialog for all users in the
+            current channel, <code>-a</code> for all channels, <code>-n</code>
+            to only clear the number of messages (e.g. so the <code>config:firstmsg</code>
+            Highlight prefix matches again)</li>
     </ul>
     
     <h3><a name="commands-test">Test commands:</a></h3>
@@ -619,6 +640,131 @@
             </ul>
             The resulting command <code>/echo Channel context: #chan1 -> #chan2</code>
             is then run and outputs an info message.
+        </dd>
+    </dl>
+    
+    <h3><a name="commands-timer">Execute a command on a delay</a></h3>
+    <p>The <code>/timer</code> command allows you to run a delayed command after
+        a duration or at a certain time. The timed command is run as if it was
+        entered into the inputbox of the same channel that the <code>/timer</code>
+        command was entered in (the command is not run at all if the channel is
+        not a regular channel or not open anymore, unless the <code>-a</code>
+        option is used).</p>
+    
+    <p>Certain restrictions apply:</p>
+    <ul>
+        <li>A timed command can't contain another <code>/timer</code> command as well as some other commands.</li>
+        <li>A timed message can only be send to regular channels (not whispers)
+            and only as a moderator of the channel.</li>
+        <li>Parameters from the context of where <code>/timer</code> is called
+            do not carry over into the context when the timed command is executed.
+            Note that in a lot of cases the parameters would already have been
+            replaced anyway. Consider a button "Test" added to the User Dialog:
+            <ul>
+                <li>In case of <code>Test=/timer 1 /echo $(nick)</code>
+                    replacements are performed on <code>/timer 1 /echo $(nick)</code>,
+                    resulting in <code>/timer 1 /echo someusername</code>, resulting in
+                    <code>/echo someusername</code> one second later.</li>
+                <li>On the other hand <code>Test=/timer 1 //echo \$(nick)</code>
+                    replacements are performed on <code>/timer 1 //echo \$(nick)</code>
+                    (note that <code>\$(nick)</code> is escaped, so it is not
+                    replaced yet), resulting in <code>/timer 1 //echo $(nick)</code>,
+                    resulting in <code>//echo $(nick)</code> one second later, which
+                    (because of the double-slash) is parsed as a Custom Command and
+                    replacements are performed, which won't find the "nick" parameter
+                    because it didn't carry over. Normally there is no reason to do it
+                    like this though.</li>
+            </ul>
+    </ul>
+    
+    <dl class="defList">
+        <dt><code>/timer [-options] [:id] &lt;duration|time|'list'|'stop'&gt; &lt;timed command&gt;</code></dt>
+        <dd>Optionally one or several options (<code>-rs</code>) can be specified:
+            <ul>
+                <li><code>-r</code> (Keeps the timer through a restart of Chatty
+                    if it hasn't run yet. The timer is saved in the settings and
+                    restored with the same target time, channel and timed
+                    command. If the target time has already been passed when
+                    Chatty is started again it will immediately run the timed
+                    command.)</li>
+                <li><code>-o</code> (If a timer of the same id already exists,
+                    overwrite it, without this option the new timer would not be
+                    started in such a case.)</li>
+                <li><code>-s</code> (Silent, starting the timer successfully
+                    doesn't output a message.)</li>
+                <li><code>-a</code> (Always run the command, even if the channel
+                    the timer was started in is not open anymore or not valid,
+                    which can make sense if the command being run is not
+                    channel-specific, such as modifying the Addressbook. If the
+                    channel is not open anymore the currently active channel is
+                    used, in which case sending messages it not allowed.)</li>
+                <li>Full example: <code>/timer -rs 10m /echo hello</code>
+                    (Outputs "hello" in 10 minutes, keeps it when Chatty is
+                    restarted within that time and doesn't output a timer
+                    started message.)</li>
+            </ul>
+        </dd>
+        <dd>The id is used to identify a timer after it has been started (e.g.
+            to stop it). Can be anything (no spaces), if it ends with <code>*</code>
+            an automatically generated number will be appended to make the id
+            unique if used more than once. If no id is specified an
+            automatically generated number without prefix will be used.
+            <ul>
+                <li><code>:abc</code> (the id is "abc")</li>
+                <li><code>:abc*</code> (the id might be "abc1", "abc2", "abc3", ...)</li>
+                <li><em>Not specified</em> (the id is an automatically generated number)</li>
+                <li>Full example: <code>/timer :abc 10m /echo hello</code>
+                    (outputs "hello" in 10 minutes, with the timer id "abc")</li>
+            </ul>
+        </dd>
+        <dd>The duration is in seconds by default, but you can also append a
+            time unit and several durations that get added up (no spaces):
+            <ul>
+                <li><code>5ms</code> (milliseconds)</li>
+                <li><code>5s</code> (seconds)</li>
+                <li><code>5m</code> (minutes)</li>
+                <li><code>5h</code> (hours)</li>
+                <li><code>5h10m</code> (5 hours 10 minutes)</li>
+                <li><code>5h10</code> (5 hours 10 minutes)</li>
+                <li><code>5h10m30</code> (5 hours 10 minutes 30 seconds)</li>
+                <li>Full example: <code>/timer 5h /echo hello</code> (outputs "hello" in 5 hours)</li>
+            </ul>
+        </dd>
+        <dd>An absolute time is written like a digital clock in 24hr format, a
+            date can be added in front, in which case it has to be enclosed in
+            <code>[ ]</code>. With no date specified the next occurence of the
+            time is used, so e.g. if it's already in the evening a time of 5 in
+            the morning would be on the next day:
+            <ul>
+                <li><code>5:30</code> (5:30 in the morning)</li>
+                <li><code>17:30</code> (5:30 in the afternoon)</li>
+                <li><code>5:30:50</code> (5:30 and 50 seconds in the morning)</li>
+                <li><code>[05:20:00]</code> (the time can also be enclosed in
+                    <code>[ ]</code>)</li>
+                <li><code>[2022-01-10 5:30]</code> (when including the date the
+                    <code>[ ]</code> is required and the date has to always be
+                    the full date in the format YYYY-MM-DD)</li>
+                <li>Full example: <code>/timer 16:30 /echo hello</code> (outputs
+                    the info message "hello" at 4:30 PM)</li>
+            </ul>
+        </dd>
+        <dd>Output info about currently active timers:
+            <ul>
+                <li><code>list</code> (Lists all timers, soonest to run first.)</li>
+                <li><code>-q list</code> (Same as above, but the list is in timer start order.)</li>
+                <li><code>:a* list</code> (Outputs information about timers with ids that begin with "a".)</li>
+                <li><code>list a*</code> (Same as above, but id in place of the timed command.)</li>
+                <li>Full example: <code>/timer list a*</code> (Shows all active timers with ids that begin with "a".)</li>
+            </ul>
+        </dd>
+        <dd>Stop active timers:
+            <ul>
+                <li><code>:abc1 stop</code> (Stops a timer with the id "abc1".)</li>
+                <li><code>stop abc1</code> (Same as above, but id in place of the timed command.)</li>
+                <li><code>:abc* stop</code> (Stops all timers with ids that begin with "abc".)</li>
+                <li><code>:* stop</code> (Stops all active timers.)</li>
+                <li>Full example: <code>/timer stop *</code> (Stops all active timers.)</li>
+            </ul>
         </dd>
     </dl>
     
