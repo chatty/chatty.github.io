@@ -19,6 +19,8 @@
         | <a href="#Names">Names</a>
         | <a href="#Highlight">Highlight</a>
         | <a href="#Ignore">Ignore</a>
+        | <a href="#Filter">Filter</a>
+        | <a href="#Custom_Tabs">Custom Tabs</a>
         | <a href="#Log_to_file">Log to file</a>
         | <a href="#Window">Window</a>
         | <a href="#Tabs">Tabs</a>
@@ -1024,6 +1026,39 @@
             updated on channel join and when sending a message, so e.g. if you
             get modded while already in the channel it will not be recognized
             until after you have sent a message.</li>
+        <li><code>msgs:</code> / <code>!msgs:</code> matches on the
+            past messages of the user as they are shown in the User Dialog,
+            not including the message that triggered this Highlight checking.<br />
+            The value is a list of one or several Highlight items, which will be
+            used to match against the text of the user's past messages (only one
+            item has to match, to require several items to match use separate
+            <code>msgs:</code> prefixes).<br />
+            For example <code>msgs:"mlimit:1 start:!v","!vote"</code> checks if
+            the latest message begins with "!v" or any message contains "!vote".
+            The usual text matching related prefixes can be used, as well as
+            these additional prefixes:<br />
+            <ul>
+                <li><code>mlimit:</code> limits how many messages are checked
+                    (starting from the latest), for example <code>mlimit:2</code>
+                    only checks the latest two messages (by default it checks
+                    all).</li>
+                <li><code>mtime:</code> limits how long ago messages are
+                    checked, for example <code>mtime:1h</code> only checks
+                    messages from the last hour, whereas <code>mtime:>1h</code>
+                    only checks messages from <em>before</em> the last hour (by
+                    default it checks all).</li>
+                <li><code>mreq:</code> defines how many messages must match, for
+                    example <code>mreq:3</code> requires at least three past
+                    messages to match (by default at least one has to match).</li>
+                <li><code>mtype:outer</code> ignores text matching in the <code>msgs:</code>
+                    prefix itself (so for <code>msgs:"mtype:outer abc"</code>
+                    the "abc" would have no effect) and instead uses the outer
+                    item's text matching. For example <code>msgs:"mtype:outer" start:!vote</code>
+                    would match if both the message and also a past message
+                    begin with "!vote" (<code>msgs:"start:!vote" start:!vote</code>
+                    would have the same effect).</li>
+            </ul>
+        </li>
         <li><code>config:</code> to specify on or more options (separated by comma, no spaces):
             <ul>
                 <li><code>config:firstmsg</code> - Restrict matching to the
@@ -1043,12 +1078,28 @@
                     match, for example <code>config:repeatedmsg|4</code> requires
                     4 repeated messages (can't be lower than the Repetition
                     Detection setting).</li>
+                <li><code>config:afterban|number</code> - Matches on the number
+                    of messages after the user was banned/timed out (based on
+                    the bans/messages visible in the User Dialog). <code>config:afterban|1</code>
+                    matches the first message after a ban, <code>config:afterban|5</code>
+                    up to the fifth message. The number is optional, so
+                    <code>config:afterban</code> matches all messages after a
+                    ban. If the user was not banned (or Chatty doesn't know
+                    about it) then this never matches.</li>
                 <li><code>config:info</code> - This item applies to info
                     messages instead of regular user messages</li>
                 <li><code>config:any</code> - This item applies to both info
                     messages and regular user messages</li>
                 <li><code>config:hl</code> - Restrict matching to user messages
                     highlighted by using channel points</li>
+                <li><code>config:historic</code> - Applies to messages loaded
+                    from the history service on channel join. This also allows
+                    historic message to be matched for features that are
+                    otherwise turned off in the History settings.</li>
+                <li><code>config:historic2</code> - Allows historic message to be
+                    matched for features that are otherwise turned off in the
+                    History settings, but does not restrict the match to just
+                    historic messages.</li>
                 <li><code>config:b|id/version</code> - Match a Twitch Badge
                     (version optional, if several are specified in the same
                     <code>config:</code> prefix, only one has to match).</li>
@@ -1171,6 +1222,12 @@
             only <code>config:info startw:!quote</code> will have an effect
             (see <a href="#Highlight_Meta_Matching">Meta Prefixes (Matching)</a>
             on how quoting works).</li>
+        <li><code>to:</code> to provide one or several comma-separated names of
+            <a href="#Custom_Tabs">Custom Tabs</a> (case-insensitive) to copy
+            the message to. For example <code>to:Commands start:!</code> will
+            copy messages beginning with "!" to the Custom Tab named "Commands".
+            This is available for the settings Msg. Colours, Highlight, Ignore
+            and Custom Tabs Routing.</li>
     </ul>
     
     <p><em>Note:</em> If you're using the <code>color:</code> or <code>bgcolor:</code>
@@ -1476,6 +1533,26 @@
     
     <p>You can use <code>replacement:none</code> to output no replacement at
         all.</p>
+    
+    <h2>
+        <a name="Custom_Tabs">Custom Tabs</a>
+        <a href="#top" class="top">[back to menu]</a>
+    </h2>
+    <p>Custom Tabs can have messages routed to them by use of the <code>to:</code>
+        prefix in entries of the settings Msg. Colours, Highlight, Ignore and
+        Custom Tabs Routing. In addition, Notifications can be routed to Custom
+        Tabs as an Info Message ("Message" tab in the Notification editor).</p>
+    
+    <dl class="dl-settings">
+        <dt>Allow routing to several custom tabs</dt>
+        <dd>The routing targets defined with <code>to:</code> get collected from
+            each setting that has a match (e.g. Highlights and Msg. Colours). If
+            this setting is enabled, the same message may be routed to several
+            Custom Tabs and the Routing setting may match more than one entry.
+            If disabled only the first Custom Tab is used (which one is the
+            first is not well defined yet and may change in future Chatty
+            versions).</dd>
+    </dl>
     
     <h2>
         <a name="Log_to_file">Log to file</a>
@@ -1788,7 +1865,7 @@
             <a href="#Highlight">Highlighting</a> (although some prefixes won't
             work unless it's a chat message).</dd>
         
-        <dt>Notification (Tab)</dt>
+        <dt>Desktop Notification (Tab)</dt>
         <dd>A Desktop Notification, with customizable colors.</dd>
         
         <dt>Sound (Tab)</dt>
@@ -1809,6 +1886,13 @@
             it would play the sound after 5 minutes even if the chat has been
             busy non-stop, at which point you probably wouldn't need to be alerted
             since you're already paying attention to it.</dd>
+        
+        <dt>Message (Tab)</dt>
+        <dd>Output a message to <a href="#Custom_Tabs">Custom Tabs</a> as an
+            info message, with text similar to the Desktop Notification.</dd>
+        <dd>The <code>Custom Tab</code> field can contain one or several
+            comma-separated Custom Tab names. Commas can be quoted to not use as
+            a separator (same as <a href="#Highlight_Meta_Matching">Highlight Meta Prefixes</a>).</dd>
     </dl>
     
     <p>On both the <strong>Notification (Tab)</strong> and <strong>Sound (Tab)</strong>
