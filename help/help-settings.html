@@ -25,6 +25,7 @@
         | <a href="#Window">Window</a>
         | <a href="#Tabs">Tabs</a>
         | <a href="#Notifications">Notifications</a>
+        | <a href="#TTS">Text to Speech</a>
         | <a href="#Sounds">Sounds</a>
         | <a href="#Other">Other</a>
         | <a href="#Commands">Commands</a>
@@ -998,18 +999,19 @@
         <li><code>status:</code> to specify that the user has to have one of the
             given status codes (case-sensitive):
             <ul>
-                <li><code>m</code> Moderator</li>
-                <li><code>s</code> Subscriber</li>
-                <li><code>a</code> Admin</li>
-                <li><code>f</code> Staff</li>
                 <li><code>b</code> Broadcaster</li>
-                <li><code>t</code> Turbo User</li>
-                <li><code>g</code> Global Moderator</li>
+                <li><code>L</code> Lead Moderator</li>
+                <li><code>m</code> Moderator (includes Lead Moderator)</li>
+                <li><code>M</code> User with any kind of moderator/special powers
+                    (Broadcaster, Lead Mod, Mod, Admin, Staff combined)</li>
+                <li><code>s</code> Subscriber</li>
+                <li><code>v</code> VIP</li>
                 <li><code>r</code> Bot as in <em>R</em>obot (depending on what the FFZ/BTTV APIs provides (if
                     enabled) and values in the <a href="help-setting_commands.html#bots">botNames</a> setting)</li>
-                <li><code>M</code> User with any kind of moderator/special powers
-                    (so Broadcaster/Moderator/Global Moderator/Admin/Staff combined)</li>
-                <li><code>v</code> VIP</li>
+                <li><code>a</code> Admin</li>
+                <li><code>f</code> Staff</li>
+                <li><code>t</code> Turbo User</li>
+                <li><code>g</code> <del>Global Moderator</del> (deprecated, Global Moderator program has been discontinued on Twitch)</li>
             </ul>
             For example: <code>status:sv</code> matches users that are either a
             subscriber or a VIP (or both). <code>status:s&nbsp;status:v</code>
@@ -1092,6 +1094,9 @@
                     messages and regular user messages</li>
                 <li><code>config:hl</code> - Restrict matching to user messages
                     highlighted by using channel points</li>
+                <li><code>config:highlighted</code> - Applies when the message
+                    has been highlighted through the Highlight list, doesn't
+                    work for entries on the Highlight or Ignore list.</li>
                 <li><code>config:historic</code> - Applies to messages loaded
                     from the history service on channel join. This also allows
                     historic message to be matched for features that are
@@ -1137,6 +1142,9 @@
                     restricted users shown only for moderators. Note that
                     messages by monitored users can not be matched yet.</li>
                 <li><code>config:hypechat</code> - Match Hype Chat messages.</li>
+                <li><code>config:shared</code> - Match Shared Messages.
+                    Optionally add one or several channel names the message must
+                    originate from to match (e.g. <code>config:shared|chan1|chan2</code>).</li>
             </ul>
         </li>
         <li><a name="Highlight_Prefix-blacklist"><code>blacklist:</code></a> to specify one or more text patterns
@@ -1215,6 +1223,11 @@
                 <li><code>config:!log</code> - Don't log the message to the
                     separate highlighted/ignored log file (may still be logged
                     to the channel log file)</li>
+                <li><code>config:followup</code> - Enable highlighting follow-up
+                    messages from the same user within 10s, regardless of the
+                    state of the setting in the Highlights settings
+                    (<code>config:followup|0</code> to force off regardless of
+                    setting).</li>
             </ul>
         </li>
         <li><code>n:</code> to provide a note that is ignored for matching.
@@ -1228,6 +1241,15 @@
             copy messages beginning with "!" to the Custom Tab named "Commands".
             This is available for the settings Msg. Colours, Highlight, Ignore
             and Custom Tabs Routing.</li>
+        <li><code>ncat:</code> to provide one or several comma-separated
+            Notification Categories. A Notification entry that has this prefix
+            in it's "Match" field will only trigger on Highlight entries that
+            have at least one Notification Category in common. Example:
+            A Notification entry of type "Highlights" with <code>ncat:vip,mod</code>
+            in it's "Match" field can trigger only on Highlights caused by
+            Highlight list entries containing e.g. <code>ncat:vip</code>,
+            <code>ncat:mod</code> or <code>ncat:mod,abc</code> (but not
+            <code>ncat:abc</code>).</li>
     </ul>
     
     <p><em>Note:</em> If you're using the <code>color:</code> or <code>bgcolor:</code>
@@ -1864,6 +1886,9 @@
         <dd>Match the given text or message, in the same format as for
             <a href="#Highlight">Highlighting</a> (although some prefixes won't
             work unless it's a chat message).</dd>
+        <dd>Use the <code>ncat:</code> <a href="#Highlight_Meta_Behaviour">prefix</a>
+            to match only on Highlights that are caused by Highlight entries
+            containing the same prefix.</dd>
         
         <dt>Desktop Notification (Tab)</dt>
         <dd>A Desktop Notification, with customizable colors.</dd>
@@ -1984,13 +2009,33 @@
     Chatty to know about your followed streams, so notifications aren't the only
     advantage. It also allows it to record the viewer count and status history
     of followed live streams as long as Chatty is running.</p>
-    
+
     
     <h2>
         <a name="Sounds">Sounds</a>
         <a href="#top" class="top">[back to menu]</a>
     </h2>
     <p>Sounds are now integrated into the <a href="#Notifications">Notifications</a>.</p>
+    
+    
+    <h2>
+        <a name="TTS">Text to Speech</a>
+        <a href="#top" class="top">[back to menu]</a>
+    </h2>
+    <p>This feature can feed chat messages to a Text to Speech program available
+        on the computer. Currently only Windows is supported.</p>
+    
+    <p>You can enable the settings in the "Chat Messages" section to automatically
+        read chat messages in any open channel or configure your own TTS Notification
+        on the Notifications settings page.</p>
+    
+    <p>TTS messages are put in a queue to be read on after the other. Hotkeys
+        can be used to navigate the queue, clear it, stop reading from the queue
+        until enabled again or turn on/off TTS altogether. Using a hotkey often
+        produces a sound to indicate it was used (you can change the volume for
+        that in the Text to Speech settings hotkeys section).</p>
+    
+    <p>There are also <a href="help-builtin_commands.html#commands-system">TTS Commands</a> (similar to the hotkeys).</p>
     
     
     <h2>

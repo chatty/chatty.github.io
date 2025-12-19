@@ -45,7 +45,7 @@
         <li><code>/me &lt;message&gt;</code> - Send an action message (* nickname says something)</li>
         <li><code>/msgreply &lt;message&gt;</code> - Send a reply to a specific message, only works when added to the User Context Menu or User Dialog
             in the Commands settings (e.g. <code>Reply=/msgreply $$input(Reply to $(nick))</code>)</li>
-        <li><code>/msgreplythread &lt;message&gt;</code> - Same as <code>/msgreply</code>, but will continue the thread (if present)</li>
+        <li><code>/msgreplythread &lt;message&gt;</code> - Identical to <code>/msgreply</code> (used to work differently)</li>
 
         <li><code>/join &lt;channel&gt;</code> - Joins the given channels, see <a href="help.html#join">Joining Channels</a> for more information</li>
         <li><code>/part</code> or <code>/close</code> - Leaves the current channel</li>
@@ -106,6 +106,15 @@
             in a menu)</li>
         <li><code>/insertword &lt;text&gt;</code> - Same as <code>/insert</code>,
             but adds spaces so it's separated from text before and after (if present)</li>
+        <li><code>/insert2 [-options] &lt;text&gt;</code> - Options:
+            <code>f</code> - Focus inputbox,
+            <code>p</code> - Insert at beginning of input (prepend),
+            <code>a</code> - Insert at the end of input (append),
+            <code>b</code> - Set caret to beginning after inserting,
+            <code>e</code> - Set caret to end after inserting,
+            <code>s</code> - Append space if necessary,
+            <code>c</code> - Insert in currently active channel (can sometimes differ from channel context of command).
+            Example: <code>/insert2 -fpe @$(nick) \</code> (add "username " at start of inputbox and afterwards focus/set caret to end)</li>
         <li><code>/setSize &lt;width&gt; &lt;height&gt;</code> - Sets the main window size</li>
         <li><code>/echo &lt;text&gt;</code> - Outputs the given text as an info message</li>
         <li><code>/triggerNotification [-hmt] &lt;text&gt;</code> - Triggers a
@@ -151,6 +160,16 @@
             </ul>
             (Example: <code>/exportText -n abc.txt one\ntwo</code> - Writes "one" and "two" as separate lines)</li>
         <li><code>/proc</code> - <a href="help.html#custom-processes">Execute a system process</a> (be careful with this)</li>
+        <li><code>/tts &lt;say|start|pause|clear|on|off&gt;</code> - Controls <a href="help-settings.html#TTS">Text to Speech</a>
+            <ul>
+                <li><code>say &lt;message&gt;</code> - add the given messages to the TTS queue (if TTS is enabled)</li>
+                <li><code>start</code> - start reading queued TTS messages again if it was paused before</li>
+                <li><code>pause</code> - pause reading queued TTS messages (queue active)</li>
+                <li><code>clear</code> - clear the current queue</li>
+                <li><code>on</code> - turn on TTS (queue active, start reading from queue)</li>
+                <li><code>off</code> - turn off TTS (clears queue, no new messages queued)</li>
+            </ul>
+        </li>
     </ul>
     
     <h3>Learn things about Chatty</h3>
